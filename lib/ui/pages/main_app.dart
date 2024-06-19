@@ -25,7 +25,8 @@ class SaveraERP extends StatelessWidget {
         ],
         theme: CustomAppTheme.defaultTheme,
         home: _AppSplashScreen(),
-        onGenerateRoute: PathMapper.generateRoute,
+        // onGenerateRoute: PathMapper.generateRoute,
+        routes: PathMapper.routes,
       ),
     );
   }

@@ -63,25 +63,11 @@ class _PgLoginState extends State<PgLogin> {
             });
 
             final loginState = ref.watch(loginNotifier);
-
-            if (loginState is LoginLoading) {
-              return Stack(
-                children: [
-                  _LoginBody(
-                    loginNotifier: ref.read(loginNotifier.notifier),
-                    userNameController: userName,
-                    passwordController: password,
-                  ),
-                  const Center(
-                    child: CircularProgressIndicator(strokeWidth: 3),
-                  ),
-                ],
-              );
-            }
             return _LoginBody(
               loginNotifier: ref.read(loginNotifier.notifier),
               userNameController: userName,
               passwordController: password,
+              isLoading: loginState is LoginLoading,
             );
           },
         ),
@@ -95,21 +81,88 @@ class _LoginBody extends ConsumerWidget {
     required this.loginNotifier,
     required this.userNameController,
     required this.passwordController,
+    this.isLoading = false,
   });
 
   final LoginNotifier loginNotifier;
   final TextEditingController userNameController;
   final TextEditingController passwordController;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
+      body: LayoutBuilder(builder: (context, constraints) {
+        // place a check for tab, mobile, desktop
+        if (constraints.maxWidth > 1200) {
+          return Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: Colors.red,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: loginBody(
+                  context,
+                  padding: EdgeInsets.only(
+                    left: 150.0,
+                    right: 150.0,
+                    top: 100,
+                    bottom: 100,
+                  ),
+                ),
+              ),
+            ],
+          );
+        } else if (constraints.maxWidth > 600) {
+          return Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: Colors.yellow,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: loginBody(
+                  context,
+                  padding: EdgeInsets.only(
+                    left: 80.0,
+                    right: 80.0,
+                    top: 100,
+                    bottom: 100,
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
+
+        return Stack(
+          children: [
+            loginBody(context),
+            if (isLoading) const LinearProgressIndicator(),
+          ],
+        );
+      }),
+    );
+  }
+
+  Widget loginBody(
+    BuildContext context, {
+    EdgeInsetsGeometry? padding,
+  }) {
     return Scaffold(
       body: Container(
         color: Colors.white,
         alignment: Alignment.center,
         child: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+            padding: padding ?? const EdgeInsets.only(left: 25.0, right: 25.0),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

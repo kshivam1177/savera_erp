@@ -9,13 +9,26 @@ class PathMapper {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-      case '/login':
+      case login:
         return MaterialPageRoute(builder: (_) => const PgLogin());
-      case '/home':
+      case home:
         // final someArg = settings.arguments as SomeArgType;
         return MaterialPageRoute(builder: (_) => const PgHome());
       default:
         return null;
     }
   }
+
+  static Map<String, WidgetBuilder> routes = {
+    login: (context) {
+      final args = ModalRoute.of(context)!.settings.arguments as String;
+      print("args is: login $args");
+      return const PgLogin();
+    },
+    home: (context) {
+      final args = ModalRoute.of(context)!.settings.arguments as String;
+      print("args is: home $args");
+      return const PgHome();
+    }
+  };
 }
