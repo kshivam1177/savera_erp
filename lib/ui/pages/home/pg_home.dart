@@ -7,7 +7,14 @@ import 'package:savera_erp/ui/dailog/logout_dailog.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
 
 class PgHome extends StatefulWidget {
-  const PgHome({super.key});
+  static const String routeName = '/home';
+
+  final String arg1;
+
+  const PgHome({
+    required this.arg1,
+    super.key,
+  });
 
   @override
   State<PgHome> createState() => PgHomeState();
@@ -191,19 +198,19 @@ class _DistributorBodyTiles extends StatelessWidget {
                   _getEachCellWidget(
                     iconWidget: getMyImageAsset(context, AppImages.icLogoURL),
                     name: "Wholesale Scan",
-                    function: () => Helpers.toast("Wholesale Scan"),
+                    function: () => Helpers.toast(context,msg: "Wholesale Scan"),
                   ),
                   myVerticalDivider(),
                   _getEachCellWidget(
                     iconWidget: getMyImageAsset(context, AppImages.icLogoURL),
                     name: "Retail Scan",
-                    function: () => Helpers.toast("Retail Scan"),
+                    function: () => Helpers.toast(context,msg: "Retail Scan"),
                   ),
                   myVerticalDivider(),
                   _getEachCellWidget(
                     iconWidget: getMyIcon(context, Icons.keyboard_return),
                     name: "Sale Return",
-                    function: () => Helpers.toast("Sale Return"),
+                    function: () => Helpers.toast(context,msg: "Sale Return"),
                   ),
                 ],
               ),
@@ -226,7 +233,7 @@ class _DistributorBodyTiles extends StatelessWidget {
                         Icons.format_list_numbered,
                       ),
                       name: "Sale Report",
-                      function: () => Helpers.toast("Sale Report")),
+                      function: () => Helpers.toast(context,msg: "Sale Report")),
                   myVerticalDivider(),
                   _getEachCellWidget(
                     iconWidget: getMyImageAsset(context, AppImages.icLogoURL),
@@ -240,7 +247,7 @@ class _DistributorBodyTiles extends StatelessWidget {
                       AppImages.icLogoURL,
                     ),
                     name: "Point Ledger",
-                    function: () => Helpers.toast("Point Ledger"),
+                    function: () => Helpers.toast(context,msg: "Point Ledger"),
                   ),
                 ],
               ),
@@ -257,7 +264,7 @@ class _DistributorBodyTiles extends StatelessWidget {
                   _getEachCellWidget(
                     iconWidget: getMyImageAsset(context, AppImages.icLogoURL),
                     name: "Sales Mans",
-                    function: () => Helpers.toast("Sales Mans"),
+                    function: () => Helpers.toast(context,msg: "Sales Mans"),
                   ),
                   myVerticalDivider(),
                   _getEachCellWidget(

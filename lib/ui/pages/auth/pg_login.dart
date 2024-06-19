@@ -2,18 +2,20 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:savera_erp/app_utilities/app_images.dart';
 import 'package:savera_erp/app_utilities/app_info.dart';
 import 'package:savera_erp/app_utilities/helpers.dart';
 import 'package:savera_erp/global_providers.dart';
 import 'package:savera_erp/notifiers/auth/login/login_notifier.dart';
+import 'package:savera_erp/route/route_helper.dart';
 import 'package:savera_erp/ui/custom_widgets/dx_buttons.dart';
 import 'package:savera_erp/ui/custom_widgets/dx_input_fields.dart';
 import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
-import 'package:savera_erp/ui/route/app_router.dart';
 
 class PgLogin extends StatefulWidget {
+  static const String routeName = '/login';
+
   const PgLogin({
     super.key,
   });
@@ -55,9 +57,9 @@ class _PgLoginState extends State<PgLogin> {
             ref.listen<LoginState>(loginNotifier, (previous, currentState) {
               if (currentState is LoginWithResult) {
                 if (currentState.user != null) {
-                  AppRouter.toHomePage(context);
+                  RouteHelper.toHomePage(context);
                 } else if (currentState.errorMsg != null) {
-                  Helpers.toast(currentState.errorMsg!);
+                  Helpers.toast(context, msg: currentState.errorMsg!);
                 }
               }
             });
@@ -222,9 +224,7 @@ class _LoginBody extends ConsumerWidget {
                     width: double.maxFinite,
                     height: kToolbarHeight * 0.9,
                     onPressed: () async {
-                      Fluttertoast.showToast(
-                        msg: "Clicked",
-                      );
+
                       // if (userNameController.text.length < 5) {
                       //   Helpers.toast("Invalid UserName");
                       //   return;
@@ -245,7 +245,7 @@ class _LoginBody extends ConsumerWidget {
                 DxOutlineButton(
                   "  Forgot Password ?  ",
                   onPressed: () {
-                    AppRouter.toHomePage(context);
+                    RouteHelper.toHomePage(context);
                   },
                   size: const Size(double.minPositive, 38),
                   textColor: Theme.of(context).colorScheme.secondary,

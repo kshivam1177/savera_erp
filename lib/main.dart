@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'core_initlizers.dart';
-import 'ui/pages/main_app.dart';
+import 'main_app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

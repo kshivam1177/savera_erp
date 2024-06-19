@@ -57,8 +57,11 @@ class DxTextBlack extends StatelessWidget {
       overflow: overflow,
       maxLines: maxLine,
       style: bold
-          ? AppStyles.getTextStyle(bold, getSize(fontSize, context),
-              fontWeight: fontWeight)
+          ? AppStyles.getTextStyle(
+              bold,
+              getSize(fontSize, context),
+              fontWeight: fontWeight,
+            )
           : AppStyles.getTextStyle(bold, getSize(fontSize, context)),
       textAlign: textAlign,
     );

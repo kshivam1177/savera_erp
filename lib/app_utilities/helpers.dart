@@ -3,11 +3,10 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart' as ul;
 
 abstract class Helpers {
-
   static bool ensureBackgroundInit() {
     if (RootIsolateToken.instance == null) {
       debugPrint("RootIsolateToken.instance==null");
@@ -49,19 +48,45 @@ abstract class Helpers {
     await SystemChannels.textInput.invokeMethod('TextInput.hide');
   }
 
+  // static void toast(
+  //   String msgToDisplay, {
+  //   bool isError = false,
+  //   Toast? toastLength,
+  // }) {
+  //   Fluttertoast.showToast(
+  //     msg: msgToDisplay,
+  //     toastLength: toastLength ?? Toast.LENGTH_LONG,
+  //     gravity: ToastGravity.BOTTOM,
+  //     timeInSecForIosWeb: 1,
+  //     backgroundColor: isError ? Colors.red : Colors.black26,
+  //     textColor: isError ? Colors.white : Colors.black,
+  //     fontSize: 16.0,
+  //     webBgColor: isError ? "linear-gradient(to right, #dc1c13, #dc1c13)" : "linear-gradient(to right, #4C988C, #00BCD4)",
+  //     webPosition: "right",
+  //   );
+  // }
   static void toast(
-    String msgToDisplay, {
-    bool isError = false,
-    Toast? toastLength,
+    BuildContext context, {
+    required String msg,
+    String? description,
+    ToastificationType type = ToastificationType.success,
+    Duration? duration,
   }) {
-    Fluttertoast.showToast(
-      msg: msgToDisplay,
-      toastLength: toastLength ?? Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: isError ? Colors.red : Colors.black26,
-      textColor: isError ? Colors.white : Colors.black,
-      fontSize: 16.0,
+    Toastification().show(
+      context: context,
+      title: Text(msg),
+      description: description != null ? Text(description) : null,
+      type: type,
+      overlayState: Overlay.of(context),
+      style: ToastificationStyle.flatColored,
+      autoCloseDuration: duration ?? Duration(seconds: 2),
+      // progressBarTheme: ProgressIndicatorThemeData(
+      //   color: Colors.green,
+      //   linearTrackColor: Colors.red,
+      //   linearMinHeight: 1,
+      //   circularTrackColor: Colors.blue,
+      //   refreshBackgroundColor: Colors.yellow,
+      // ),
     );
   }
 
