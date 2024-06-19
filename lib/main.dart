@@ -1,6 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:savera_erp/app.dart';
+import 'dart:async';
 
-void main() {
-  runApp(const ErpApp());
+import 'package:flutter/material.dart';
+import 'core_initlizers.dart';
+import 'ui/pages/main_app.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CoreInitializers.init();
+
+  runZonedGuarded(() async {
+    // FlutterError.onError = NewrelicMobile.onError;
+    runApp(SaveraERP());
+  }, (Object error, StackTrace stackTrace) {});
 }
