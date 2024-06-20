@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
-
-import '../utils/dx_app_decoration.dart';
+import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 class DisplayMessageDialog extends StatelessWidget {
   final String title;
@@ -9,7 +8,8 @@ class DisplayMessageDialog extends StatelessWidget {
   final String buttonText;
   final VoidCallback onPressed;
 
-  const DisplayMessageDialog({super.key,
+  const DisplayMessageDialog({
+    super.key,
     required this.title,
     this.body,
     required this.buttonText,
@@ -28,10 +28,10 @@ class DisplayMessageDialog extends StatelessWidget {
       content: body == null
           ? null
           : DxTextBlack(
-            body!,
-            maxLine: 6,
-            fontSize: 18,
-          ),
+              body!,
+              maxLine: 6,
+              fontSize: 18,
+            ),
       actions: [
         TextButton(
           onPressed: onPressed,
@@ -50,7 +50,8 @@ class PurchaseCompleteDialog extends StatelessWidget {
   final Function() onOrderDetailClick;
   final Function() onCancelClick;
 
-  const PurchaseCompleteDialog({super.key,
+  const PurchaseCompleteDialog({
+    super.key,
     required this.msg,
     required this.title,
     required this.onOrderDetailClick,

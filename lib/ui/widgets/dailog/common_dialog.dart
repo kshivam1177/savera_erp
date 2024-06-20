@@ -1,8 +1,8 @@
 //NEW Dialog
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
 import 'package:savera_erp/ui/utils/app_theme.dart';
 import 'package:savera_erp/ui/utils/dx_responsive.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 const double _padding = 8;
 const double _avatarRadius = 35;

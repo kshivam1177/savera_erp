@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
-class BtnValidateNow extends StatelessWidget {
+class DxBtnValidateNow extends StatelessWidget {
   final VoidCallback onTap;
 
-  const BtnValidateNow({
+  const DxBtnValidateNow({
     required this.onTap,
     super.key,
   });

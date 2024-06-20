@@ -3,10 +3,10 @@ import 'package:savera_erp/app_utilities/app_images.dart';
 import 'package:savera_erp/app_utilities/helpers.dart';
 import 'package:savera_erp/local_storage/preference_handler.dart';
 import 'package:savera_erp/models/auth_result.model.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
-import 'package:savera_erp/ui/dailog/logout_dailog.dart';
 import 'package:savera_erp/ui/utils/app_theme.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
+import 'package:savera_erp/ui/widgets/dailog/logout_dailog.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});

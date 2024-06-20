@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../app_utilities/app_images.dart';
-import '../utils/app_theme.dart';
-import 'dx_text.dart';
+import 'package:savera_erp/app_utilities/app_images.dart';
+import 'package:savera_erp/ui/utils/app_theme.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 class ErrorPage extends StatelessWidget {
   final VoidCallback onPressed;
@@ -9,7 +9,8 @@ class ErrorPage extends StatelessWidget {
   final String error;
   final bool showAppBar;
 
-  const ErrorPage({super.key,
+  const ErrorPage({
+    super.key,
     required this.onPressed,
     required this.error,
     this.pageTitle = "Error",

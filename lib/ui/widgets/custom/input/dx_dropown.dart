@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/custom_widgets/chips_and_tiles/single_selection_chip.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text_form_field.dart';
+import 'package:savera_erp/ui/widgets/custom/chips/single_selection_chip.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
+import 'package:savera_erp/ui/widgets/custom/input/dx_text_form_field.dart';
 
 typedef DataBuilder<T> = List<T> Function();
 typedef ObjMapper<T> = SingleSelectionModel<T> Function(T);

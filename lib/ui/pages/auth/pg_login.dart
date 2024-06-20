@@ -9,9 +9,9 @@ import 'package:savera_erp/app_utilities/helpers.dart';
 import 'package:savera_erp/global_providers.dart';
 import 'package:savera_erp/notifiers/auth/login/login_notifier.dart';
 import 'package:savera_erp/route/route_helper.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_buttons.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_input_fields.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
+import 'package:savera_erp/ui/widgets/custom/button/dx_buttons.dart';
+import 'package:savera_erp/ui/widgets/custom/input/dx_input_fields.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 class PgLogin extends StatefulWidget {
   static const String routeName = '/login';

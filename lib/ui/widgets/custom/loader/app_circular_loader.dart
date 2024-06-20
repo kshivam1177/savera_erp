@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 class AppLoaderProgress extends StatelessWidget {
   final bool transparentBg;
   final String? title;
 
-  const AppLoaderProgress({super.key,
+  const AppLoaderProgress({
+    super.key,
     this.transparentBg = false,
     this.title,
   });

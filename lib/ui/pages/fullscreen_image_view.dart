@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 class FullScreenImageView extends StatefulWidget {
   final String image;

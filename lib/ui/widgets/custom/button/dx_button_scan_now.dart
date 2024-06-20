@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 
-class BtnScanNow extends StatelessWidget {
+class DxBtnScanNow extends StatelessWidget {
   final VoidCallback onTap;
 
-  const BtnScanNow({
+  const DxBtnScanNow({
     required this.onTap,
     super.key,
   });

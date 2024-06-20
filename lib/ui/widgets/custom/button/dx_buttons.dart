@@ -3,7 +3,7 @@ import 'package:savera_erp/ui/utils/app_theme.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
 import 'package:savera_erp/ui/utils/size_reziser.dart';
 
-import 'dx_text.dart';
+import '../text/dx_text.dart';
 
 class DxCancelButton extends StatelessWidget {
   final VoidCallback onClicked;

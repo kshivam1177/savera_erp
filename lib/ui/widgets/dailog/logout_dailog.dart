@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:savera_erp/local_storage/preference_handler.dart';
 import 'package:savera_erp/route/route_helper.dart';
-import 'package:savera_erp/ui/custom_widgets/dx_text.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 
 class LogoutDialog extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'dx_text.dart';
+import '../custom/text/dx_text.dart';
 
 @immutable
 class DxCenterText extends StatelessWidget {
