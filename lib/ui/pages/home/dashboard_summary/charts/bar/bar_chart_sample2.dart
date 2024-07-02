@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 import '../app_colors.dart';
 
@@ -57,25 +58,9 @@ class BarChartSample2State extends State<BarChartSample2> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                makeTransactionsIcon(),
-                const SizedBox(
-                  width: 38,
-                ),
-                const Text(
-                  'Transactions',
-                  style: TextStyle(color: Colors.white, fontSize: 22),
-                ),
-                const SizedBox(
-                  width: 4,
-                ),
-                const Text(
-                  'state',
-                  style: TextStyle(color: Color(0xff77839a), fontSize: 16),
-                ),
-              ],
+            Align(
+              alignment: Alignment.topRight,
+              child: const DxText('Chart Title'),
             ),
             const SizedBox(
               height: 38,

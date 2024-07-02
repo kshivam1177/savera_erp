@@ -7,6 +7,8 @@ import 'package:savera_erp/ui/pages/home/dashboard_summary/dashboard_summary.dar
 import 'package:savera_erp/ui/pages/home/drawer/DxDrawer.dart';
 import 'package:savera_erp/ui/pages/home/home_app_bar.dart';
 import 'package:savera_erp/ui/widgets/dailog/logout_dailog.dart';
+import 'package:savera_erp/ui/widgets/dx_layout_builder.dart';
+import 'package:toastification/toastification.dart';
 
 class PgHome extends StatefulWidget {
   static const String routeName = '/home';
@@ -36,7 +38,9 @@ class PgHomeState extends State<PgHome> {
       appBar: HomeAppBar(),
       body: DashboardSummary(),
       drawer: DxDrawer(
-        onItemTapped: (index) {},
+        onItemTapped: (item) {
+          Helpers.toast(context, msg: item.title);
+        },
       ),
     );
   }
