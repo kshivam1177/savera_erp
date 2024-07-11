@@ -69,6 +69,16 @@ class _DashboardSummaryState extends State<DashboardSummary> {
           SizedBox(
             height: height,
             width: widget,
+            child: Card(child: BarChartSample3()),
+          ),
+          SizedBox(
+            height: height,
+            width: widget,
+            child: Card(child: GridData()),
+          ),
+          SizedBox(
+            height: height,
+            width: widget,
             child: Card(child: BarChartSample1()),
           ),
         ],
@@ -82,39 +92,56 @@ class _DashboardSummaryState extends State<DashboardSummary> {
     return Container(
       color: Colors.blue.shade100,
       margin: EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: height,
-                width: widget,
-                child: Card(child: PieChartSample2()),
-              ),
-              SizedBox(
-                height: height,
-                width: widget,
-                child: Card(child: LineChartSample2()),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: height,
-                width: widget,
-                child: Card(child: BarChartSample2()),
-              ),
-              SizedBox(
-                height: height,
-                width: widget,
-                child: Card(child: BarChartSample1()),
-              ),
-            ],
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: PieChartSample2()),
+                ),
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: LineChartSample2()),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: BarChartSample3()),
+                ),
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: GridData()),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: BarChartSample2()),
+                ),
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: BarChartSample1()),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -126,39 +153,56 @@ class _DashboardSummaryState extends State<DashboardSummary> {
     return Container(
       color: Colors.blue.shade100,
       margin: EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: height,
-                width: widget,
-                child: Card(child: PieChartSample2()),
-              ),
-              SizedBox(
-                height: height,
-                width: widget,
-                child: Card(child: LineChartSample2()),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: height,
-                width: widget,
-                child: Card(child: BarChartSample2()),
-              ),
-              SizedBox(
-                height: height,
-                width: widget,
-                child: Card(child: BarChartSample1()),
-              ),
-            ],
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: PieChartSample2()),
+                ),
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: LineChartSample2()),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: BarChartSample3()),
+                ),
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: GridData()),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: BarChartSample2()),
+                ),
+                SizedBox(
+                  height: height,
+                  width: widget,
+                  child: Card(child: BarChartSample1()),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
