@@ -7,7 +7,7 @@ import 'package:savera_erp/app_utilities/app_images.dart';
 import 'package:savera_erp/app_utilities/app_info.dart';
 import 'package:savera_erp/app_utilities/helpers.dart';
 import 'package:savera_erp/global_providers.dart';
-import 'package:savera_erp/notifiers/auth/login/login_notifier.dart';
+import 'package:savera_erp/blocs/auth/login/login_notifier.dart';
 import 'package:savera_erp/route/route_helper.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_buttons.dart';
 import 'package:savera_erp/ui/widgets/custom/input/dx_input_fields.dart';

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/pages/attendance/pg_attendance.dart';
 import 'package:savera_erp/ui/widgets/custom/dx_logo.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
@@ -16,6 +18,7 @@ class DxDrawer extends StatefulWidget {
 
 class _DxDrawerState extends State<DxDrawer> {
   ItemData? _selectedItem;
+  List<ItemData> menus = [];
 
   void _onItemTapped(ItemData item) {
     _selectedItem = item;
@@ -24,141 +27,135 @@ class _DxDrawerState extends State<DxDrawer> {
   }
 
   @override
+  void initState() {
+    menus = [
+      ItemData(
+        title: 'Home',
+        route: '/home',
+        leading: Icon(CupertinoIcons.home, size: 20),
+        onTap: (item) {
+          _onItemTapped(item);
+          Navigator.pop(context);
+        },
+      ),
+      ItemData(
+        title: 'Attendance',
+        route: PgAttendance.routeName,
+        leading: Icon(CupertinoIcons.checkmark_rectangle, size: 20),
+        onTap: (item) {
+          _onItemTapped(item);
+          Navigator.pop(context);
+        },
+      ),
+      ItemData(
+        title: 'Tracking',
+        route: '/tracking',
+        leading: Icon(Icons.location_on_outlined, size: 25),
+        onTap: (item) {
+          _onItemTapped(item);
+          Navigator.pop(context);
+        },
+      ),
+      ItemData(
+        title: 'Profile',
+        route: '/profile',
+        leading: Icon(CupertinoIcons.person, size: 20),
+        onTap: (item) {
+          _onItemTapped(item);
+          Navigator.pop(context);
+        },
+      ),
+      ItemData(
+        title: 'Settings',
+        route: '/settings',
+        leading: Icon(CupertinoIcons.settings, size: 20),
+        onTap: (item) {
+          _onItemTapped(item);
+          Navigator.pop(context);
+        },
+        items: [
+          ItemData(
+            title: 'General',
+            route: '/settings/general',
+            leading: Icon(CupertinoIcons.square_grid_2x2, size: 20),
+            onTap: (item) {
+              _onItemTapped(item);
+              Navigator.pop(context);
+            },
+          ),
+          ItemData(
+            title: 'Tracking',
+            route: '/settings/tracking',
+            leading: Icon(CupertinoIcons.location, size: 20),
+            onTap: (item) {
+              _onItemTapped(item);
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      )
+    ];
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      // padding: const EdgeInsets.all(5.0),
+      padding: EdgeInsets.zero,
       child: Drawer(
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          // borderRadius: BorderRadius.all(Radius.circular(20)),
           side: BorderSide(
             color: Colors.white,
             width: 0,
           ),
         ),
-        child: ListView(
-          padding: EdgeInsets.zero,
+        child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-              child: DxLogo(height: 30),
-            ),
-            ItemsGroup(
-              items: [
-                ItemData(
-                  title: 'Welcome Shivam',
-                  route: '',
-                ),
-              ],
-              borderColor: Colors.grey.shade300,
-            ),
-            SizedBox(height: 10),
-            ItemsGroup(
-              items: [
-                ItemData(
-                  title: 'Dashboard',
-                  route: '/home',
-                  leading: Icon(Icons.dashboard, size: 20),
-                  onTap: (item) {
-                    _onItemTapped(item);
-                    Navigator.pop(context);
-                  },
-                ),
-                ItemData(
-                  title: 'Profile',
-                  route: '/profile',
-                  leading: Icon(Icons.person, size: 20),
-                  onTap: (item) {
-                    _onItemTapped(item);
-                    Navigator.pop(context);
-                  },
-                ),
-                ItemData(
-                  title: 'Settings',
-                  route: '/settings',
-                  leading: Icon(Icons.settings, size: 20),
-                  onTap: (item) {
-                    _onItemTapped(item);
-                    Navigator.pop(context);
-                  },
-                  items: [
-                    ItemData(
-                      title: 'General',
-                      route: '/settings/general',
-                      leading: Icon(Icons.settings, size: 20),
-                      onTap: (item) {
-                        _onItemTapped(item);
-                        Navigator.pop(context);
-                      },
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      child: DxLogo(height: 25),
                     ),
-                    ItemData(
-                      title: 'Security',
-                      route: '/settings/security',
-                      leading: Icon(Icons.security, size: 20),
-                      onTap: (item) {
-                        _onItemTapped(item);
-                        Navigator.pop(context);
-                      },
-                      items: [
-                        ItemData(
-                          title: 'Change Password',
-                          route: '/settings/security/change-password',
-                          leading: Icon(Icons.lock, size: 20),
-                          onTap: (item) {
-                            _onItemTapped(item);
-                            Navigator.pop(context);
-                          },
-                        ),
-                        ItemData(
-                          title: 'Two Factor Authentication',
-                          route: '/settings/security/two-factor-auth',
-                          leading: Icon(Icons.verified_user, size: 20),
-                          onTap: (item) {
-                            _onItemTapped(item);
-                            Navigator.pop(context);
-                          },
-                          items: [
-                            ItemData(
-                              title: 'Enable',
-                              route:
-                                  '/settings/security/two-factor-auth/enable',
-                              leading: Icon(Icons.verified_user, size: 20),
-                              onTap: (item) {
-                                _onItemTapped(item);
-                                Navigator.pop(context);
-                              },
-                            ),
-                            ItemData(
-                              title: 'Disable',
-                              route:
-                                  '/settings/security/two-factor-auth/disable',
-                              leading: Icon(Icons.verified_user, size: 20),
-                              onTap: (item) {
-                                _onItemTapped(item);
-                                Navigator.pop(context);
-                              },
-                              items: [
-                                ItemData(
-                                  title: 'Confirm',
-                                  route:
-                                      '/settings/security/two-factor-auth/disable/confirm',
-                                  leading: Icon(Icons.verified_user, size: 20),
-                                  onTap: (item) {
-                                    _onItemTapped(item);
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-              borderColor: Colors.grey.shade300,
+                  ),
+                  CloseButton(),
+                ],
+              ),
             ),
+            Expanded(
+              flex: 1,
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  ItemsGroup(
+                    items: [
+                      ItemData(
+                        title: 'Welcome Shivam',
+                        route: '',
+                      ),
+                    ],
+                    borderColor: Colors.grey.shade300,
+                  ),
+                  SizedBox(height: 10),
+                  ItemsGroup(
+                    items: menus,
+                    borderColor: Colors.grey.shade300,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 20,
+              child: DxText('Version 1.0.0', fontSize: 12),
+            )
           ],
         ),
       ),

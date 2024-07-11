@@ -43,6 +43,18 @@ abstract class RouteMapper {
             child: PgHome(arg1: qpms["arg1"] ?? ""),
           );
         },
+      ),
+
+      GoRoute(
+        path: PgAttendance.routeName,
+        name: PgAttendance.routeName,
+        pageBuilder: (context, state) {
+          final qpms = state.uri.queryParameters;
+          return _pageTransition(
+            key: state.pageKey,
+            child: PgAttendance(),
+          );
+        },
       )
     ],
   );

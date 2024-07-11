@@ -13,38 +13,26 @@ enum DxLayoutType {
 }
 
 class DxLayoutBuilder extends StatelessWidget {
-  final Widget Function(BuildContext) buildMobileView;
-  final Widget Function(BuildContext) buildTabView;
-  final Widget Function(BuildContext) buildSmallTabView;
-  final Widget Function(BuildContext) buildDesktopView;
-  final ValueSetter<DxLayoutType>? deviceNotifier;
+  final Widget Function(BuildContext, DxLayoutType) buildView;
 
   const DxLayoutBuilder({
     super.key,
-    required this.buildMobileView,
-    required this.buildTabView,
-    required this.buildSmallTabView,
-    required this.buildDesktopView,
-    this.deviceNotifier,
+    required this.buildView,
   });
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final maxWidth = MediaQuery.of(context).size.width;
+        final maxWidth = MediaQuery.sizeOf(context).width;
         if (maxWidth < 600) {
-          deviceNotifier?.call(DxLayoutType.mobile);
-          return buildMobileView(context);
+          return buildView(context, DxLayoutType.mobile);
         } else if (maxWidth < 900) {
-          deviceNotifier?.call(DxLayoutType.smallTab);
-          return buildSmallTabView(context);
+          return buildView(context, DxLayoutType.smallTab);
         } else if (maxWidth < 1200) {
-          deviceNotifier?.call(DxLayoutType.tab);
-          return buildTabView(context);
+          return buildView(context, DxLayoutType.tab);
         } else {
-          deviceNotifier?.call(DxLayoutType.desktop);
-          return buildDesktopView(context);
+          return buildView(context, DxLayoutType.desktop);
         }
       },
     );

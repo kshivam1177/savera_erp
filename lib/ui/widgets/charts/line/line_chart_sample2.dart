@@ -1,4 +1,4 @@
- import 'package:fl_chart/fl_chart.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../app_colors.dart';
@@ -15,6 +15,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
     AppColors.contentColorCyan,
     AppColors.contentColorBlue,
   ];
+  List<Color> gradientColors1 = [
+    AppColors.contentColorYellow,
+    AppColors.contentColorOrange,
+  ];
 
   bool showAvg = false;
 
@@ -23,13 +27,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
     return Stack(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1.70,
+          aspectRatio: 21 / 16,
           child: Padding(
             padding: const EdgeInsets.only(
-              right: 18,
-              left: 12,
+              right: 1,
+              left: 8,
               top: 24,
-              bottom: 12,
+              bottom: 8,
             ),
             child: LineChart(
               showAvg ? avgData() : mainData(),
@@ -49,7 +53,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
               'avg',
               style: TextStyle(
                 fontSize: 12,
-                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
+                color: showAvg ? Colors.black.withOpacity(0.5) : Colors.black,
               ),
             ),
           ),
@@ -154,29 +158,30 @@ class _LineChartSample2State extends State<LineChartSample2> {
         ),
       ),
       borderData: FlBorderData(
-        show: true,
+        show: false,
         border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: 11,
+      maxX: 12,
       minY: 0,
-      maxY: 6,
+      maxY: 8,
       lineBarsData: [
         LineChartBarData(
           spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
+            FlSpot(0, 4),
+            FlSpot(2, 7),
+            FlSpot(4, 6),
+            FlSpot(6, 5.5),
+            FlSpot(8, 5),
+            FlSpot(10, 6),
+            FlSpot(12, 7),
           ],
           isCurved: true,
+          curveSmoothness: 0.1,
           gradient: LinearGradient(
             colors: gradientColors,
           ),
-          barWidth: 5,
+          barWidth: 2,
           isStrokeCapRound: true,
           dotData: const FlDotData(
             show: false,
@@ -185,6 +190,36 @@ class _LineChartSample2State extends State<LineChartSample2> {
             show: true,
             gradient: LinearGradient(
               colors: gradientColors
+                  .map((color) => color.withOpacity(0.3))
+                  .toList(),
+            ),
+          ),
+        ),
+        LineChartBarData(
+          spots: const [
+            FlSpot(0, 2),
+            FlSpot(2, 2.8),
+            FlSpot(4, 5.4),
+            FlSpot(6, 4.1),
+            FlSpot(8, 3.4),
+            FlSpot(10, 2.4),
+            FlSpot(12, 4),
+
+          ],
+          isCurved: true,
+          curveSmoothness: 0.1,
+          gradient: LinearGradient(
+            colors: gradientColors1,
+          ),
+          barWidth: 2,
+          isStrokeCapRound: true,
+          dotData: const FlDotData(
+            show: false,
+          ),
+          belowBarData: BarAreaData(
+            show: true,
+            gradient: LinearGradient(
+              colors: gradientColors1
                   .map((color) => color.withOpacity(0.3))
                   .toList(),
             ),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/pages/home/dashboard_summary/charts/bar/bar_chart_sample2.dart';
-import 'package:savera_erp/ui/pages/home/dashboard_summary/charts/bar/bar_chart_sample3.dart';
+import 'package:savera_erp/ui/pages/home/dashboard_summary/grid_data.dart';
+import 'package:savera_erp/ui/widgets/custom/table/dx_custom_table.dart';
 import 'package:savera_erp/ui/widgets/dx_layout_builder.dart';
 
-import 'charts/bar/bar_chart_sample1.dart';
+import '../../../widgets/charts/bar/bar_chart_sample1.dart';
+import '../../../widgets/charts/bar/bar_chart_sample2.dart';
+import '../../../widgets/charts/bar/bar_chart_sample3.dart';
+import '../../../widgets/charts/line/line_chart_sample2.dart';
+import '../../../widgets/charts/pie/pie_chart_sample2.dart';
 
 class DashboardSummary extends StatefulWidget {
   const DashboardSummary({
@@ -23,13 +27,80 @@ class _DashboardSummaryState extends State<DashboardSummary> {
   @override
   Widget build(BuildContext context) {
     return DxLayoutBuilder(
-      buildMobileView: (context) {
-        double height = MediaQuery.sizeOf(context).height * 0.45;
-        double widget = MediaQuery.sizeOf(context).width * 0.95;
-        return Container(
-          color: Colors.greenAccent.shade100,
-          margin: EdgeInsets.all(10),
-          child: ListView(
+      buildView: (context, deviceType) {
+        final size = MediaQuery.sizeOf(context);
+        switch (deviceType) {
+          case DxLayoutType.mobile:
+            return getMobileView(context, size);
+          case DxLayoutType.tab:
+            return getTabView(context, size);
+          case DxLayoutType.smallTab:
+            return getSmallTabView(context, size);
+          case DxLayoutType.desktop:
+            return getDesktopView(context, size);
+        }
+      },
+    );
+  }
+
+  Widget getMobileView(BuildContext context, Size size) {
+    double height = size.height * 0.45;
+    double widget = size.width * 0.95;
+    return Container(
+      color: Colors.greenAccent.shade100,
+      margin: EdgeInsets.all(10),
+      child: ListView(
+        children: [
+          SizedBox(
+            height: height,
+            width: widget,
+            child: Card(child: PieChartSample2()),
+          ),
+          SizedBox(
+            height: height,
+            width: widget,
+            child: Card(child: LineChartSample2()),
+          ),
+          SizedBox(
+            height: height,
+            width: widget,
+            child: Card(child: BarChartSample2()),
+          ),
+          SizedBox(
+            height: height,
+            width: widget,
+            child: Card(child: BarChartSample1()),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget getTabView(BuildContext context, Size size) {
+    double height = size.height * 0.45;
+    double widget = size.width * 0.45;
+    return Container(
+      color: Colors.blue.shade100,
+      margin: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(child: PieChartSample2()),
+              ),
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(child: LineChartSample2()),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
                 height: height,
@@ -41,6 +112,40 @@ class _DashboardSummaryState extends State<DashboardSummary> {
                 width: widget,
                 child: Card(child: BarChartSample1()),
               ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget getSmallTabView(BuildContext context, Size size) {
+    double height = size.height * 0.45;
+    double widget = size.width * 0.45;
+
+    return Container(
+      color: Colors.blue.shade100,
+      margin: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(child: PieChartSample2()),
+              ),
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(child: LineChartSample2()),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
               SizedBox(
                 height: height,
                 width: widget,
@@ -53,153 +158,63 @@ class _DashboardSummaryState extends State<DashboardSummary> {
               ),
             ],
           ),
-        );
-      },
-      buildSmallTabView: (context) {
-        double height = MediaQuery.sizeOf(context).height * 0.45;
-        double widget = MediaQuery.sizeOf(context).width * 0.45;
-        return Container(
-          color: Colors.blue.shade100,
-          margin: EdgeInsets.all(10),
-          child: Column(
+        ],
+      ),
+    );
+  }
+
+  Widget getDesktopView(BuildContext context, Size size) {
+    double height = size.height * 0.45;
+    double widget = size.width * 0.32;
+
+    return Container(
+      margin: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample2()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample1()),
-                  ),
-                ],
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(child: PieChartSample2()),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample2()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample1()),
-                  ),
-                ],
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(child: LineChartSample2()),
+              ),
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(
+                  child: GridData(),
+                ),
               ),
             ],
           ),
-        );
-      },
-      buildTabView: (context) {
-        double height = MediaQuery.sizeOf(context).height * 0.45;
-        double widget = MediaQuery.sizeOf(context).width * 0.32;
-        return Container(
-          color: Colors.red.shade100,
-          margin: EdgeInsets.all(10),
-          child: Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample2()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample3()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample1()),
-                  ),
-                ],
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(child: BarChartSample2()),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample2()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample3()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample1()),
-                  ),
-                ],
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(child: BarChartSample3()),
+              ),
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(child: BarChartSample1()),
               ),
             ],
           ),
-        );
-      },
-      buildDesktopView: (context) {
-        double height = MediaQuery.sizeOf(context).height * 0.45;
-        double widget = MediaQuery.sizeOf(context).width * 0.32;
-        return Container(
-          margin: EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample2()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample3()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample1()),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample2()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample3()),
-                  ),
-                  SizedBox(
-                    height: height,
-                    width: widget,
-                    child: Card(child: BarChartSample1()),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

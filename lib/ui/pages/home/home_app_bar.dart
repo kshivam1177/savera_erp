@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:savera_erp/app_utilities/app_images.dart';
 import 'package:savera_erp/app_utilities/helpers.dart';
 import 'package:savera_erp/ui/widgets/custom/dx_logo.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
@@ -23,50 +22,22 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: false,
       backgroundColor: Colors.white,
       title: DxLogo(),
-      leading: Builder(
-        builder: (context) {
-          return IconButton(
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          );
+      leading: IconButton(
+        icon: const Icon(
+          Icons.menu,
+          color: Colors.black,
+        ),
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
         },
       ),
       actions: <Widget>[
         DxLayoutBuilder(
-          buildMobileView: (c) {
+          buildView: (context, deviceType) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
-                child: DxText(DxLayoutType.mobile.toString()),
-              ),
-            );
-          },
-          buildTabView: (c) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: DxText(DxLayoutType.tab.toString()),
-              ),
-            );
-          },
-          buildSmallTabView: (c) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: DxText(DxLayoutType.smallTab.toString()),
-              ),
-            );
-          },
-          buildDesktopView: (c) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: DxText(DxLayoutType.desktop.toString()),
+                child: DxText(deviceType.toString()),
               ),
             );
           },

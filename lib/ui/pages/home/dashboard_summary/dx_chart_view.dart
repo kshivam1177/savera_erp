@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'charts/bar/bar_chart_sample1.dart';
-import 'charts/bar/bar_chart_sample2.dart';
-import 'charts/bar/bar_chart_sample3.dart';
-import 'charts/bar/bar_chart_sample4.dart';
-import 'charts/bar/bar_chart_sample7.dart';
-import 'charts/bar/bar_chart_sample8.dart';
-import 'charts/line/line_chart_sample1.dart';
-import 'charts/line/line_chart_sample2.dart';
-import 'charts/line/line_chart_sample3.dart';
-import 'charts/line/line_chart_sample4.dart';
-import 'charts/line/line_chart_sample5.dart';
-import 'charts/line/line_chart_sample6.dart';
-import 'charts/line/line_chart_sample7.dart';
-import 'charts/line/line_chart_sample9.dart';
-import 'charts/pie/pie_chart_sample1.dart';
-import 'charts/pie/pie_chart_sample2.dart';
-import 'charts/pie/pie_chart_sample3.dart';
-
-
+import '../../../widgets/charts/bar/bar_chart_sample1.dart';
+import '../../../widgets/charts/bar/bar_chart_sample2.dart';
+import '../../../widgets/charts/bar/bar_chart_sample3.dart';
+import '../../../widgets/charts/bar/bar_chart_sample4.dart';
+import '../../../widgets/charts/bar/bar_chart_sample7.dart';
+import '../../../widgets/charts/line/line_chart_sample1.dart';
+import '../../../widgets/charts/line/line_chart_sample2.dart';
+import '../../../widgets/charts/line/line_chart_sample5.dart';
+import '../../../widgets/charts/line/line_chart_sample9.dart';
+import '../../../widgets/charts/pie/pie_chart_sample1.dart';
+import '../../../widgets/charts/pie/pie_chart_sample2.dart';
+import '../../../widgets/charts/pie/pie_chart_sample3.dart';
 
 class DxChartView extends StatefulWidget {
   const DxChartView({super.key});
