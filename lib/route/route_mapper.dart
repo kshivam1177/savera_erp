@@ -44,7 +44,6 @@ abstract class RouteMapper {
           );
         },
       ),
-
       GoRoute(
         path: PgAttendance.routeName,
         name: PgAttendance.routeName,
@@ -53,6 +52,20 @@ abstract class RouteMapper {
           return _pageTransition(
             key: state.pageKey,
             child: PgAttendance(),
+          );
+        },
+      ),
+      GoRoute(
+        path: PgMapView.routeName,
+        name: PgMapView.routeName,
+        pageBuilder: (context, state) {
+          final qpms = state.uri.queryParameters;
+          return _pageTransition(
+            key: state.pageKey,
+            child: PgMapView(
+              empId: int.parse("${qpms["attendanceId"]}"),
+              empName: "${qpms["empName"]}",
+            ),
           );
         },
       )

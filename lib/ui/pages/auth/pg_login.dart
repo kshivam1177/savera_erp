@@ -1,17 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:savera_erp/app_utilities/app_images.dart';
 import 'package:savera_erp/app_utilities/app_info.dart';
 import 'package:savera_erp/app_utilities/helpers.dart';
-import 'package:savera_erp/global_providers.dart';
 import 'package:savera_erp/blocs/auth/login/login_notifier.dart';
 import 'package:savera_erp/route/route_helper.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_buttons.dart';
 import 'package:savera_erp/ui/widgets/custom/input/dx_input_fields.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
+import 'package:savera_erp/ui/widgets/dx_layout_builder.dart';
 
 class PgLogin extends StatefulWidget {
   static const String routeName = '/login';
@@ -25,20 +24,28 @@ class PgLogin extends StatefulWidget {
 }
 
 class _PgLoginState extends State<PgLogin> {
-  final loginNotifier = StateNotifierProvider<LoginNotifier, LoginState>(
-    (ref) => LoginNotifier(ref.watch(GlobalProviders.userAuth)),
-  );
-
+  final loginBloc = LoginBloc();
   final userName = TextEditingController();
   final password = TextEditingController();
 
   @override
   void initState() {
-    super.initState();
     if (kDebugMode) {
       userName.text = "kshivam1177";
       password.text = "123456789";
     }
+    loginBloc.stateNotifier.addListener(() {
+      final currentState = loginBloc.stateNotifier.value;
+      if (currentState is LoginWithResult) {
+        // if (currentState.user != null) {
+        //   RouteHelper.toHomePage(context);
+        // } else if (currentState.errorMsg != null) {
+        //   Helpers.toast(context, msg: currentState.errorMsg!);
+        // }
+        RouteHelper.toHomePage(context);
+      }
+    });
+    super.initState();
   }
 
   @override
@@ -50,107 +57,107 @@ class _PgLoginState extends State<PgLogin> {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: Scaffold(
-        body: Consumer(
-          builder: (context, ref, child) {
-            ref.listen<LoginState>(loginNotifier, (previous, currentState) {
-              if (currentState is LoginWithResult) {
-                if (currentState.user != null) {
-                  RouteHelper.toHomePage(context);
-                } else if (currentState.errorMsg != null) {
-                  Helpers.toast(context, msg: currentState.errorMsg!);
-                }
-              }
-            });
-
-            final loginState = ref.watch(loginNotifier);
-            return _LoginBody(
-              loginNotifier: ref.read(loginNotifier.notifier),
-              userNameController: userName,
-              passwordController: password,
-              isLoading: loginState is LoginLoading,
-            );
-          },
-        ),
+    return Scaffold(
+      body: ValueListenableBuilder<LoginState>(
+        valueListenable: loginBloc.stateNotifier,
+        builder: (context, state, _) {
+          return _LoginBody(
+            bloc: loginBloc,
+            userNameController: userName,
+            passwordController: password,
+            isLoading: state is LoginLoading,
+          );
+        },
       ),
     );
   }
 }
 
-class _LoginBody extends ConsumerWidget {
+class _LoginBody extends StatelessWidget {
   const _LoginBody({
-    required this.loginNotifier,
+    required this.bloc,
     required this.userNameController,
     required this.passwordController,
     this.isLoading = false,
   });
 
-  final LoginNotifier loginNotifier;
+  final LoginBloc bloc;
   final TextEditingController userNameController;
   final TextEditingController passwordController;
   final bool isLoading;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: LayoutBuilder(builder: (context, constraints) {
-        // place a check for tab, mobile, desktop
-        if (constraints.maxWidth > 1200) {
-          return Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  color: Colors.red,
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: loginBody(
-                  context,
-                  padding: EdgeInsets.only(
-                    left: 150.0,
-                    right: 150.0,
-                    top: 100,
-                    bottom: 100,
+      body: DxLayoutBuilder(
+        buildView: (context, deviceType) {
+          switch (deviceType) {
+            case DxLayoutType.mobile:
+              return Stack(
+                children: [
+                  loginBody(context),
+                  if (isLoading) const LinearProgressIndicator(),
+                ],
+              );
+            case DxLayoutType.smallTab:
+              return Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 150.0),
+                    child: loginBody(context),
                   ),
-                ),
-              ),
-            ],
-          );
-        } else if (constraints.maxWidth > 600) {
-          return Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  color: Colors.yellow,
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: loginBody(
-                  context,
-                  padding: EdgeInsets.only(
-                    left: 80.0,
-                    right: 80.0,
-                    top: 100,
-                    bottom: 100,
+                  if (isLoading) const LinearProgressIndicator(),
+                ],
+              );
+            case DxLayoutType.tab:
+              return Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      color: Colors.yellow,
+                    ),
                   ),
-                ),
-              ),
-            ],
-          );
-        }
-
-        return Stack(
-          children: [
-            loginBody(context),
-            if (isLoading) const LinearProgressIndicator(),
-          ],
-        );
-      }),
+                  Expanded(
+                    flex: 1,
+                    child: loginBody(
+                      context,
+                      padding: EdgeInsets.only(
+                        left: 80.0,
+                        right: 80.0,
+                        top: 100,
+                        bottom: 100,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            case DxLayoutType.desktop:
+              return Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      color: Colors.red,
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: loginBody(
+                      context,
+                      padding: EdgeInsets.only(
+                        left: 150.0,
+                        right: 150.0,
+                        top: 100,
+                        bottom: 100,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+          }
+        },
+      ),
     );
   }
 
@@ -224,20 +231,20 @@ class _LoginBody extends ConsumerWidget {
                     width: double.maxFinite,
                     height: kToolbarHeight * 0.9,
                     onPressed: () async {
-
-                      // if (userNameController.text.length < 5) {
-                      //   Helpers.toast("Invalid UserName");
-                      //   return;
-                      // } else if (passwordController.text.length < 4) {
-                      //   Helpers.toast(
-                      //     "Please enter valid and strong Password",
-                      //   );
-                      // } else {
-                      //   loginNotifier.doLogin(
-                      //     userNameController.text,
-                      //     passwordController.text,
-                      //   );
-                      // }
+                      if (userNameController.text.length < 5) {
+                        Helpers.toast(context, msg: "Invalid UserName");
+                        return;
+                      } else if (passwordController.text.length < 4) {
+                        Helpers.toast(
+                          context,
+                          msg: "Please enter valid and strong Password",
+                        );
+                      } else {
+                        bloc.doLogin(
+                          userNameController.text,
+                          passwordController.text,
+                        );
+                      }
                     },
                   ),
                 ),
@@ -245,7 +252,7 @@ class _LoginBody extends ConsumerWidget {
                 DxOutlineButton(
                   "  Forgot Password ?  ",
                   onPressed: () {
-                    RouteHelper.toHomePage(context);
+                    Helpers.toast(context, msg: "Forgot Password Clicked");
                   },
                   size: const Size(double.minPositive, 38),
                   textColor: Theme.of(context).colorScheme.secondary,

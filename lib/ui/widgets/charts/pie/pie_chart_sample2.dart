@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
 
 import '../app_colors.dart';
 import '../indicator.dart';
@@ -42,9 +43,7 @@ class PieChart2State extends State {
                       });
                     },
                   ),
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
+                  borderData: FlBorderData(show: false),
                   sectionsSpace: 0,
                   centerSpaceRadius: 40,
                   sections: showingSections(),
@@ -59,7 +58,7 @@ class PieChart2State extends State {
               Indicator(
                 color: AppColors.contentColorBlue,
                 text: 'First',
-                isSquare: true,
+                isSquare: false,
               ),
               SizedBox(
                 height: 4,
@@ -67,7 +66,7 @@ class PieChart2State extends State {
               Indicator(
                 color: AppColors.contentColorYellow,
                 text: 'Second',
-                isSquare: true,
+                isSquare: false,
               ),
               SizedBox(
                 height: 4,
@@ -75,7 +74,7 @@ class PieChart2State extends State {
               Indicator(
                 color: AppColors.contentColorPurple,
                 text: 'Third',
-                isSquare: true,
+                isSquare: false,
               ),
               SizedBox(
                 height: 4,
@@ -83,11 +82,9 @@ class PieChart2State extends State {
               Indicator(
                 color: AppColors.contentColorGreen,
                 text: 'Fourth',
-                isSquare: true,
+                isSquare: false,
               ),
-              SizedBox(
-                height: 18,
-              ),
+              SizedBox(height: 18),
             ],
           ),
           const SizedBox(
@@ -101,9 +98,9 @@ class PieChart2State extends State {
   List<PieChartSectionData> showingSections() {
     return List.generate(4, (i) {
       final isTouched = i == touchedIndex;
-      final fontSize = isTouched ? 25.0 : 16.0;
+      final fontSize = isTouched ? 22.0 : 14.0;
       final radius = isTouched ? 60.0 : 50.0;
-      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+      // const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
       switch (i) {
         case 0:
           return PieChartSectionData(
@@ -111,11 +108,10 @@ class PieChart2State extends State {
             value: 40,
             title: '40%',
             radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
+            titleStyle: AppStyles.getTextStyle(
+              true,
+              fontSize,
               color: AppColors.mainTextColor1,
-              shadows: shadows,
             ),
           );
         case 1:
@@ -124,11 +120,10 @@ class PieChart2State extends State {
             value: 30,
             title: '30%',
             radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
+            titleStyle: AppStyles.getTextStyle(
+              true,
+              fontSize,
               color: AppColors.mainTextColor1,
-              shadows: shadows,
             ),
           );
         case 2:
@@ -137,11 +132,10 @@ class PieChart2State extends State {
             value: 15,
             title: '15%',
             radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
+            titleStyle: AppStyles.getTextStyle(
+              true,
+              fontSize,
               color: AppColors.mainTextColor1,
-              shadows: shadows,
             ),
           );
         case 3:
@@ -150,11 +144,10 @@ class PieChart2State extends State {
             value: 15,
             title: '15%',
             radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
+            titleStyle: AppStyles.getTextStyle(
+              true,
+              fontSize,
               color: AppColors.mainTextColor1,
-              shadows: shadows,
             ),
           );
         default:

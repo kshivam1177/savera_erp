@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 import '../app_colors.dart';
 
@@ -49,12 +50,11 @@ class _LineChartSample2State extends State<LineChartSample2> {
                 showAvg = !showAvg;
               });
             },
-            child: Text(
-              'avg',
-              style: TextStyle(
-                fontSize: 12,
-                color: showAvg ? Colors.black.withOpacity(0.5) : Colors.black,
-              ),
+            child: DxText(
+              "Avg",
+              fontSize: 14,
+              bold: true,
+              textColor: showAvg ? Colors.black.withOpacity(0.5) : Colors.black,
             ),
           ),
         ),
@@ -63,23 +63,31 @@ class _LineChartSample2State extends State<LineChartSample2> {
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
-    );
     Widget text;
     switch (value.toInt()) {
       case 2:
-        text = const Text('MAR', style: style);
+        text = DxText(
+          "MAR",
+          fontSize: 14,
+          bold: true,
+        );
         break;
       case 5:
-        text = const Text('JUN', style: style);
+        text = DxText(
+          "JUN",
+          fontSize: 14,
+          bold: true,
+        );
         break;
       case 8:
-        text = const Text('SEP', style: style);
+        text = DxText(
+          "SEP",
+          fontSize: 14,
+          bold: true,
+        );
         break;
       default:
-        text = const Text('', style: style);
+        text = Container();
         break;
     }
 
@@ -90,10 +98,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
   }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 15,
-    );
     String text;
     switch (value.toInt()) {
       case 1:
@@ -109,7 +113,11 @@ class _LineChartSample2State extends State<LineChartSample2> {
         return Container();
     }
 
-    return Text(text, style: style, textAlign: TextAlign.left);
+    return DxText(
+      text,
+      bold: false,
+      textAlign: TextAlign.left,
+    );
   }
 
   LineChartData mainData() {
@@ -143,7 +151,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            reservedSize: 30,
+            reservedSize: 25,
             interval: 1,
             getTitlesWidget: bottomTitleWidgets,
           ),
@@ -204,7 +212,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
             FlSpot(8, 3.4),
             FlSpot(10, 2.4),
             FlSpot(12, 4),
-
           ],
           isCurved: true,
           curveSmoothness: 0.1,
@@ -255,7 +262,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            reservedSize: 30,
+            reservedSize: 25,
             getTitlesWidget: bottomTitleWidgets,
             interval: 1,
           ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:savera_erp/ui/pages/home/dashboard_summary/grid_data.dart';
-import 'package:savera_erp/ui/widgets/custom/table/dx_custom_table.dart';
 import 'package:savera_erp/ui/widgets/dx_layout_builder.dart';
 
 import '../../../widgets/charts/bar/bar_chart_sample1.dart';
@@ -221,18 +220,25 @@ class _DashboardSummaryState extends State<DashboardSummary> {
               SizedBox(
                 height: height,
                 width: widget,
-                child: Card(child: PieChartSample2()),
+                child: Card(
+                  child: PieChartSample2(),
+                  elevation: 0,
+                ),
               ),
               SizedBox(
                 height: height,
                 width: widget,
-                child: Card(child: LineChartSample2()),
+                child: Card(
+                  child: LineChartSample2(),
+                  elevation: 0,
+                ),
               ),
               SizedBox(
                 height: height,
                 width: widget,
                 child: Card(
                   child: GridData(),
+                  elevation: 0,
                 ),
               ),
             ],
@@ -243,17 +249,26 @@ class _DashboardSummaryState extends State<DashboardSummary> {
               SizedBox(
                 height: height,
                 width: widget,
-                child: Card(child: BarChartSample2()),
+                child: Card(
+                  child: BarChartSample2(),
+                  elevation: 0,
+                ),
               ),
               SizedBox(
                 height: height,
                 width: widget,
-                child: Card(child: BarChartSample3()),
+                child: Card(
+                  child: BarChartSample3(),
+                  elevation: 0,
+                ),
               ),
               SizedBox(
                 height: height,
                 width: widget,
-                child: Card(child: BarChartSample1()),
+                child: Card(
+                  child: BarChartSample1(),
+                  elevation: 0,
+                ),
               ),
             ],
           ),
