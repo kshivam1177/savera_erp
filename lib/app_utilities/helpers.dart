@@ -48,23 +48,23 @@ abstract class Helpers {
     await SystemChannels.textInput.invokeMethod('TextInput.hide');
   }
 
-  // static void toast(
-  //   String msgToDisplay, {
-  //   bool isError = false,
-  //   Toast? toastLength,
-  // }) {
-  //   Fluttertoast.showToast(
-  //     msg: msgToDisplay,
-  //     toastLength: toastLength ?? Toast.LENGTH_LONG,
-  //     gravity: ToastGravity.BOTTOM,
-  //     timeInSecForIosWeb: 1,
-  //     backgroundColor: isError ? Colors.red : Colors.black26,
-  //     textColor: isError ? Colors.white : Colors.black,
-  //     fontSize: 16.0,
-  //     webBgColor: isError ? "linear-gradient(to right, #dc1c13, #dc1c13)" : "linear-gradient(to right, #4C988C, #00BCD4)",
-  //     webPosition: "right",
-  //   );
-  // }
+// static void toast(
+//   String msgToDisplay, {
+//   bool isError = false,
+//   Toast? toastLength,
+// }) {
+//   Fluttertoast.showToast(
+//     msg: msgToDisplay,
+//     toastLength: toastLength ?? Toast.LENGTH_LONG,
+//     gravity: ToastGravity.BOTTOM,
+//     timeInSecForIosWeb: 1,
+//     backgroundColor: isError ? Colors.red : Colors.black26,
+//     textColor: isError ? Colors.white : Colors.black,
+//     fontSize: 16.0,
+//     webBgColor: isError ? "linear-gradient(to right, #dc1c13, #dc1c13)" : "linear-gradient(to right, #4C988C, #00BCD4)",
+//     webPosition: "right",
+//   );
+// }
   static void toast(
     BuildContext context, {
     required String msg,
@@ -80,13 +80,13 @@ abstract class Helpers {
       overlayState: Overlay.of(context),
       style: ToastificationStyle.flatColored,
       autoCloseDuration: duration ?? Duration(seconds: 2),
-      // progressBarTheme: ProgressIndicatorThemeData(
-      //   color: Colors.green,
-      //   linearTrackColor: Colors.red,
-      //   linearMinHeight: 1,
-      //   circularTrackColor: Colors.blue,
-      //   refreshBackgroundColor: Colors.yellow,
-      // ),
+// progressBarTheme: ProgressIndicatorThemeData(
+//   color: Colors.green,
+//   linearTrackColor: Colors.red,
+//   linearMinHeight: 1,
+//   circularTrackColor: Colors.blue,
+//   refreshBackgroundColor: Colors.yellow,
+// ),
     );
   }
 
@@ -111,13 +111,13 @@ abstract class Helpers {
     try {
       final result = await InternetAddress.lookup('www.google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        //  print('connected');
+//  print('connected');
         return true;
       } else {
         return false;
       }
     } on SocketException catch (_) {
-      //print('not connected');
+//print('not connected');
       return false;
     }
   }
@@ -130,7 +130,7 @@ abstract class Helpers {
       } else if (connectivityResult.contains(ConnectivityResult.wifi)) {
         return true;
       } else {
-        // print("Unable to connect. Please Check Internet Connection");
+// print("Unable to connect. Please Check Internet Connection");
         return await isInternetPresentOld();
       }
     } on SocketException catch (_) {

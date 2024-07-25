@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:savera_erp/ui/pages/attendance/pg_attendance.dart';
 import 'package:savera_erp/ui/pages/auth/pg_login.dart';
 import 'package:savera_erp/ui/pages/home/pg_home.dart';
-import 'package:savera_erp/ui/pages/map_view.dart';
+import 'package:savera_erp/ui/pages/pg_map_view.dart';
 import 'package:savera_erp/ui/theme/custom_app_theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
