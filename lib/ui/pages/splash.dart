@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:savera_erp/route/route_helper.dart';
-import 'package:savera_erp/services/storage/preferance/preference_handler.dart';
+import 'package:savera_erp/services/storage/preference/preference_handler.dart';
 
 class PgSplashScreen extends StatefulWidget {
   static const String routeName = '/';

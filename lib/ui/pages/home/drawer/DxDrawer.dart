@@ -17,11 +17,11 @@ class DxDrawer extends StatefulWidget {
 }
 
 class _DxDrawerState extends State<DxDrawer> {
-  ItemData? _selectedItem;
+  // ItemData? _selectedItem;
   List<ItemData> menus = [];
 
   void _onItemTapped(ItemData item) {
-    _selectedItem = item;
+    // _selectedItem = item;
     widget.onItemTapped(item);
     // setState(() {});
   }

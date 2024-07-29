@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:savera_erp/shared/responsive.dart';
 import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
-import 'package:savera_erp/ui/utils/size_reziser.dart';
 
 import '../text/dx_text.dart';
 
@@ -37,7 +37,7 @@ class DxCancelButton extends StatelessWidget {
         buttonText,
         style: AppStyles.getTextStyleColor(
           false,
-          getSize(18, context),
+          Responsive.getSize(18, context),
           fontWeight: FontWeight.bold,
           textColor: Colors.white,
         ),
@@ -75,7 +75,7 @@ class DxFlatButton extends StatelessWidget {
         style: TextButton.styleFrom(
           padding: padding,
           textStyle: TextStyle(
-            fontSize: getSize(textSize, context),
+            fontSize: Responsive.getSize(textSize, context),
           ),
           backgroundColor: bgColor,
           shape: RoundedRectangleBorder(
@@ -92,7 +92,7 @@ class DxFlatButton extends StatelessWidget {
           text,
           style: AppStyles.getTextStyleColor(
             false,
-            getSize(18, context),
+            Responsive.getSize(18, context),
             fontWeight: FontWeight.bold,
             textColor: textColor,
           ),
@@ -129,7 +129,7 @@ class DxFlatButtonAccent extends StatelessWidget {
       width: width,
       child: TextButton(
         style: TextButton.styleFrom(
-          backgroundColor: Theme.of(context).colorScheme.secondary,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           shape: RoundedRectangleBorder(
             side: BorderSide(
               color: Colors.green.shade500,
@@ -144,7 +144,7 @@ class DxFlatButtonAccent extends StatelessWidget {
           text,
           style: AppStyles.getTextStyleColor(
             false,
-            getSize(fontSize, context),
+            Responsive.getSize(fontSize, context),
             fontWeight: weight,
             textColor: Colors.white,
           ),
@@ -186,7 +186,7 @@ class DxFlatButtonPrimary extends StatelessWidget {
           text,
           style: AppStyles.getTextStyleColor(
             false,
-            getSize(18, context),
+            Responsive.getSize(18, context),
             fontWeight: FontWeight.bold,
             textColor: Colors.white,
           ),
@@ -225,7 +225,7 @@ class DxFlatButtonWhite extends StatelessWidget {
           text,
           style: AppStyles.getTextStyleColor(
             false,
-            getSize(18, context),
+            Responsive.getSize(18, context),
             fontWeight: FontWeight.bold,
             textColor: Colors.black87,
           ),
@@ -263,7 +263,7 @@ class DxFlatButtonRed extends StatelessWidget {
           text,
           style: AppStyles.getTextStyleColor(
             false,
-            getSize(18, context),
+            Responsive.getSize(18, context),
             fontWeight: FontWeight.bold,
             textColor: Colors.red,
           ),

@@ -7,6 +7,7 @@ import 'package:savera_erp/models/api_response.model.dart';
 import 'package:savera_erp/shared/app_messages.dart';
 import 'package:savera_erp/shared/helpers.dart';
 import 'DioIntercepter.dart';
+import 'package:dio/browser.dart';
 
 enum HttpMethods { get, post, put, delete, byte, bytePost }
 
@@ -17,11 +18,15 @@ class RestClientDio {
   RestClientDio._() {
     _dioObj = Dio(options);
     _dioObj.interceptors.add(DioInterceptor());
-    _dioObj.httpClientAdapter = IOHttpClientAdapter()
-      ..createHttpClient = () {
-        return HttpClient()
-          ..badCertificateCallback = (x509, host, port) => true;
-      };
+    if (kIsWeb) {
+      _dioObj.httpClientAdapter = BrowserHttpClientAdapter();
+    } else {
+      _dioObj.httpClientAdapter = IOHttpClientAdapter()
+        ..createHttpClient = () {
+          return HttpClient()
+            ..badCertificateCallback = (x509, host, port) => true;
+        };
+    }
   }
 
   factory RestClientDio() => _instance;
@@ -116,7 +121,7 @@ class RestClientDio {
         return ApiResponse.failure(AppMessages.serverHavingIssue);
       }
     } on DioException catch (error, stacktrace) {
-      print("dio-exception :: $error");
+      print("dio-exception :: $error \n stacktrace :: $stacktrace");
 
       /// Added extra parameter in email for better understanding of issue for backend developer.
       final errorResp = _ErrorHandler.response(error);

@@ -48,7 +48,7 @@ abstract class RouteMapper {
         path: PgAttendance.routeName,
         name: PgAttendance.routeName,
         pageBuilder: (context, state) {
-          final qpms = state.uri.queryParameters;
+          // final qpms = state.uri.queryParameters;
           return _pageTransition(
             key: state.pageKey,
             child: PgAttendance(),

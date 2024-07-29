@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:savera_erp/services/storage/preferance/preference_handler.dart';
+import 'package:savera_erp/services/storage/preference/preference_handler.dart';
 import 'package:savera_erp/shared/app_info.dart';
 import 'package:savera_erp/shared/device_info.dart';
 

@@ -6,9 +6,15 @@ class DeviceInfo {
   static bool get isDeviceIOS => defaultTargetPlatform == TargetPlatform.iOS;
 
   static String get platformName {
-    return defaultTargetPlatform == TargetPlatform.iOS
-        ? "RM_IOS"
-        : "RM_ANDROID";
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.iOS:
+        return "RM_IOS";
+      case TargetPlatform.android:
+        return "RM_ANDROID";
+      default:
+        // return "RM_WEB";
+        return "RM_ANDROID";
+    }
   }
 
   static getDeviceIMEI() async => "ImeiPlugin.getImei";

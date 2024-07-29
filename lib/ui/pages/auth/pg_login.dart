@@ -37,12 +37,12 @@ class _PgLoginState extends State<PgLogin> {
     loginBloc.stateNotifier.addListener(() {
       final currentState = loginBloc.stateNotifier.value;
       if (currentState is LoginWithResult) {
-        // if (currentState.user != null) {
-        //   RouteHelper.toHomePage(context);
-        // } else if (currentState.errorMsg != null) {
-        //   Helpers.toast(context, msg: currentState.errorMsg!);
-        // }
-        RouteHelper.toHomePage(context);
+        if (currentState.user != null) {
+          RouteHelper.toHomePage(context);
+        } else if (currentState.errorMsg != null) {
+          Helpers.toast(context, msg: currentState.errorMsg!);
+        }
+        // RouteHelper.toHomePage(context);
       }
     });
     super.initState();

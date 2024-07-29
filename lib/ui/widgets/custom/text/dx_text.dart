@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:savera_erp/shared/responsive.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
-import 'package:savera_erp/ui/utils/size_reziser.dart';
 
 class DxTextWhite extends StatelessWidget {
   final String text;
@@ -22,7 +22,7 @@ class DxTextWhite extends StatelessWidget {
       text,
       style: AppStyles.getTextStyleWhite(
         false,
-        getSize(fontSize, context),
+        Responsive.getSize(fontSize, context),
         weight: weight,
       ),
       textAlign: textAlign,
@@ -59,10 +59,10 @@ class DxTextBlack extends StatelessWidget {
       style: bold
           ? AppStyles.getTextStyle(
               bold,
-              getSize(fontSize, context),
+              Responsive.getSize(fontSize, context),
               fontWeight: fontWeight,
             )
-          : AppStyles.getTextStyle(bold, getSize(fontSize, context)),
+          : AppStyles.getTextStyle(bold, Responsive.getSize(fontSize, context)),
       textAlign: textAlign,
     );
   }
@@ -97,7 +97,7 @@ class DxText extends StatelessWidget {
             text,
             style: AppStyles.getTextStrikeThrough(
               bold,
-              getSize(fontSize, context),
+              Responsive.getSize(fontSize, context),
               textColor: textColor,
             ),
             overflow: overflow,
@@ -108,7 +108,7 @@ class DxText extends StatelessWidget {
             text,
             style: AppStyles.getTextStyle(
               bold,
-              getSize(fontSize, context),
+              Responsive.getSize(fontSize, context),
               color: textColor,
             ),
             overflow: overflow,
@@ -139,7 +139,7 @@ class DxTextRed extends StatelessWidget {
       textAlign: textAlign,
       style: AppStyles.getTextStyleRed(
         bold,
-        getSize(size, context),
+        Responsive.getSize(size, context),
       ),
     );
   }
@@ -166,7 +166,7 @@ class DxTextGreen extends StatelessWidget {
       textAlign: textAlign,
       style: AppStyles.getTextStyleGreen(
         bold,
-        getSize(fontSize, context),
+        Responsive.getSize(fontSize, context),
       ),
     );
   }
@@ -192,7 +192,7 @@ class DxTextPrimary extends StatelessWidget {
       text,
       style: AppStyles.getTextStylePrimary(
         bold,
-        getSize(size, context),
+        Responsive.getSize(size, context),
       ),
       textAlign: textAlign,
     );
@@ -226,7 +226,7 @@ class DxReachPrimary extends StatelessWidget {
       text: TextSpan(
         style: AppStyles.getTextStylePrimary(
           false,
-          getSize(textSize, context),
+          Responsive.getSize(textSize, context),
         ),
         children: <TextSpan>[
           TextSpan(

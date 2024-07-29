@@ -70,12 +70,12 @@ class AppPreference {
   //------------------------------------------------- CLEAR ALL ------------------------------------------------------------------
   static Future<void> clearPreference() async {
     // final pref = await _init();
-    await _preferences!.clear();
+    await _preferences?.clear();
   }
 
   //------------------------------------------------- REMOVE ---------------------------------------------------------------------
   static void removePreference(String key) async {
     // final SharedPreferences prefs = await _init();
-    _preferences!.remove(key);
+    _preferences?.remove(key);
   }
 }

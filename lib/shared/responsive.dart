@@ -141,7 +141,7 @@ abstract class Responsive {
       } else if (width > 375 && width < 480) {
         nSize = size * 0.9;
       } else if (width > 480) {
-        nSize = size * 1.1;
+        nSize = size * 1;
       }
     }
     return nSize;

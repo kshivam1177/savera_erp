@@ -4,13 +4,19 @@ A New Web ERP Project for savera
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Open Chrome with security disabled
+``
+open -na Google\ Chrome --args --user-data-dir= --disable-web-security --disable-site-isolation-trials
+``
 
-A few resources to get you started if this is your first Flutter project:
+FLutter run web
+``
+flutter run -d chrome --web-browser-flag "--disable-web-security"
+``
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Flutter web disable web secirity help :
+``
+https://stackoverflow.com/questions/65630743/how-to-solve-flutter-web-api-cors-error-only-with-dart-code
+``
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+##  
