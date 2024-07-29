@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
-import '../app_colors.dart';
 import '../indicator.dart';
 
 class PieChartSample1 extends StatefulWidget {
@@ -27,40 +27,40 @@ class PieChartSample1State extends State {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Indicator(
-                color: AppColors.contentColorBlue,
+                color: AppColors.navyBlue,
                 text: 'One',
                 isSquare: false,
                 size: touchedIndex == 0 ? 18 : 16,
                 textColor: touchedIndex == 0
-                    ? AppColors.mainTextColor1
-                    : AppColors.mainTextColor3,
+                    ? AppColors.white
+                    : AppColors.white.withOpacity(0.5),
               ),
               Indicator(
-                color: AppColors.contentColorYellow,
+                color: AppColors.yellow,
                 text: 'Two',
                 isSquare: false,
                 size: touchedIndex == 1 ? 18 : 16,
                 textColor: touchedIndex == 1
-                    ? AppColors.mainTextColor1
-                    : AppColors.mainTextColor3,
+                    ? AppColors.white
+                    : AppColors.white.withOpacity(0.5),
               ),
               Indicator(
-                color: AppColors.contentColorPink,
+                color: AppColors.pink,
                 text: 'Three',
                 isSquare: false,
                 size: touchedIndex == 2 ? 18 : 16,
                 textColor: touchedIndex == 2
-                    ? AppColors.mainTextColor1
-                    : AppColors.mainTextColor3,
+                    ? AppColors.white
+                    : AppColors.white.withOpacity(0.5),
               ),
               Indicator(
-                color: AppColors.contentColorGreen,
+                color: AppColors.green,
                 text: 'Four',
                 isSquare: false,
                 size: touchedIndex == 3 ? 18 : 16,
                 textColor: touchedIndex == 3
-                    ? AppColors.mainTextColor1
-                    : AppColors.mainTextColor3,
+                    ? AppColors.white
+                    : AppColors.white.withOpacity(0.5),
               ),
             ],
           ),
@@ -107,10 +107,10 @@ class PieChartSample1State extends State {
       4,
       (i) {
         final isTouched = i == touchedIndex;
-        const color0 = AppColors.contentColorBlue;
-        const color1 = AppColors.contentColorYellow;
-        const color2 = AppColors.contentColorPink;
-        const color3 = AppColors.contentColorGreen;
+        const color0 = AppColors.navyBlue;
+        const color1 = AppColors.yellow;
+        const color2 = AppColors.pink;
+        const color3 = AppColors.green;
 
         switch (i) {
           case 0:
@@ -121,10 +121,8 @@ class PieChartSample1State extends State {
               radius: 80,
               titlePositionPercentageOffset: 0.55,
               borderSide: isTouched
-                  ? const BorderSide(
-                      color: AppColors.contentColorWhite, width: 6)
-                  : BorderSide(
-                      color: AppColors.contentColorWhite.withOpacity(0)),
+                  ? const BorderSide(color: AppColors.white, width: 6)
+                  : BorderSide(color: AppColors.white.withOpacity(0)),
             );
           case 1:
             return PieChartSectionData(
@@ -134,10 +132,8 @@ class PieChartSample1State extends State {
               radius: 65,
               titlePositionPercentageOffset: 0.55,
               borderSide: isTouched
-                  ? const BorderSide(
-                      color: AppColors.contentColorWhite, width: 6)
-                  : BorderSide(
-                      color: AppColors.contentColorWhite.withOpacity(0)),
+                  ? const BorderSide(color: AppColors.white, width: 6)
+                  : BorderSide(color: AppColors.white.withOpacity(0)),
             );
           case 2:
             return PieChartSectionData(
@@ -147,10 +143,8 @@ class PieChartSample1State extends State {
               radius: 60,
               titlePositionPercentageOffset: 0.6,
               borderSide: isTouched
-                  ? const BorderSide(
-                      color: AppColors.contentColorWhite, width: 6)
-                  : BorderSide(
-                      color: AppColors.contentColorWhite.withOpacity(0)),
+                  ? const BorderSide(color: AppColors.white, width: 6)
+                  : BorderSide(color: AppColors.white.withOpacity(0)),
             );
           case 3:
             return PieChartSectionData(
@@ -160,10 +154,8 @@ class PieChartSample1State extends State {
               radius: 70,
               titlePositionPercentageOffset: 0.55,
               borderSide: isTouched
-                  ? const BorderSide(
-                      color: AppColors.contentColorWhite, width: 6)
-                  : BorderSide(
-                      color: AppColors.contentColorWhite.withOpacity(0)),
+                  ? const BorderSide(color: AppColors.white, width: 6)
+                  : BorderSide(color: AppColors.white.withOpacity(0)),
             );
           default:
             throw Error();

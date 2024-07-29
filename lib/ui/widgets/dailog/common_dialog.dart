@@ -1,13 +1,12 @@
-//NEW Dialog
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/utils/app_theme.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/utils/dx_responsive.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 const double _padding = 8;
 const double _avatarRadius = 35;
 
-Future commonDialog(
+Future<dynamic> commonDialog(
   BuildContext context,
   String msg, {
   VoidCallback? positiveCallback,
@@ -131,7 +130,7 @@ Future commonDialog(
                         child: OutlinedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all(
-                              materialAccentColor,
+                              AppColors.primary,
                             ),
                           ),
                           onPressed: () {
@@ -171,7 +170,8 @@ Future commonDialog(
                   // ]
                 ),
                 child: CircleAvatar(
-                  backgroundColor: isSuccess ? Colors.green : primaryRed40,
+                  backgroundColor:
+                      isSuccess ? Colors.green : AppColors.red.shade400,
                   radius: 35,
                   child: isSuccess
                       ? const Icon(

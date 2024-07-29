@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../app_colors.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
 class PieChartSample3 extends StatefulWidget {
   const PieChartSample3({super.key});
@@ -58,7 +57,7 @@ class PieChartSample3State extends State {
       switch (i) {
         case 0:
           return PieChartSectionData(
-            color: AppColors.contentColorBlue,
+            color: AppColors.navyBlue,
             value: 40,
             title: '40%',
             radius: radius,
@@ -71,13 +70,13 @@ class PieChartSample3State extends State {
             badgeWidget: _Badge(
               'assets/icons/ophthalmology-svgrepo-com.svg',
               size: widgetSize,
-              borderColor: AppColors.contentColorBlack,
+              borderColor: AppColors.black,
             ),
             badgePositionPercentageOffset: .98,
           );
         case 1:
           return PieChartSectionData(
-            color: AppColors.contentColorYellow,
+            color: AppColors.yellow,
             value: 30,
             title: '30%',
             radius: radius,
@@ -90,13 +89,13 @@ class PieChartSample3State extends State {
             badgeWidget: _Badge(
               'assets/icons/librarian-svgrepo-com.svg',
               size: widgetSize,
-              borderColor: AppColors.contentColorBlack,
+              borderColor: AppColors.black,
             ),
             badgePositionPercentageOffset: .98,
           );
         case 2:
           return PieChartSectionData(
-            color: AppColors.contentColorPurple,
+            color: AppColors.pink,
             value: 16,
             title: '16%',
             radius: radius,
@@ -109,13 +108,13 @@ class PieChartSample3State extends State {
             badgeWidget: _Badge(
               'assets/icons/fitness-svgrepo-com.svg',
               size: widgetSize,
-              borderColor: AppColors.contentColorBlack,
+              borderColor: AppColors.black,
             ),
             badgePositionPercentageOffset: .98,
           );
         case 3:
           return PieChartSectionData(
-            color: AppColors.contentColorGreen,
+            color: AppColors.green,
             value: 15,
             title: '15%',
             radius: radius,
@@ -128,7 +127,7 @@ class PieChartSample3State extends State {
             badgeWidget: _Badge(
               'assets/icons/worker-svgrepo-com.svg',
               size: widgetSize,
-              borderColor: AppColors.contentColorBlack,
+              borderColor: AppColors.black,
             ),
             badgePositionPercentageOffset: .98,
           );
@@ -173,10 +172,10 @@ class _Badge extends StatelessWidget {
       ),
       padding: EdgeInsets.all(size * .15),
       child: Center(
-        // child: SvgPicture.asset(
-        //   svgAsset,
-        // ),
-      ),
+          // child: SvgPicture.asset(
+          //   svgAsset,
+          // ),
+          ),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/app_utilities/app_images.dart';
+import 'package:savera_erp/shared/asset_provider/app_images.dart';
 
 class DxLogo extends StatelessWidget {
   final double? height;

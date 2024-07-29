@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../app_colors.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
 class _LineChart extends StatelessWidget {
   const _LineChart({required this.isShowingMainData});
@@ -181,7 +180,7 @@ class _LineChart extends StatelessWidget {
 
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(
         isCurved: true,
-        color: AppColors.contentColorGreen,
+        color: AppColors.green,
         barWidth: 8,
         isStrokeCapRound: true,
         dotData: const FlDotData(show: false),
@@ -199,13 +198,13 @@ class _LineChart extends StatelessWidget {
 
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
         isCurved: true,
-        color: AppColors.contentColorPink,
+        color: AppColors.pink,
         barWidth: 8,
         isStrokeCapRound: true,
         dotData: const FlDotData(show: false),
         belowBarData: BarAreaData(
           show: false,
-          color: AppColors.contentColorPink.withOpacity(0),
+          color: AppColors.pink.withOpacity(0),
         ),
         spots: const [
           FlSpot(1, 1),
@@ -219,7 +218,7 @@ class _LineChart extends StatelessWidget {
 
   LineChartBarData get lineChartBarData1_3 => LineChartBarData(
         isCurved: true,
-        color: AppColors.contentColorCyan,
+        color: AppColors.skyBlue,
         barWidth: 8,
         isStrokeCapRound: true,
         dotData: const FlDotData(show: false),
@@ -236,7 +235,7 @@ class _LineChart extends StatelessWidget {
   LineChartBarData get lineChartBarData2_1 => LineChartBarData(
         isCurved: true,
         curveSmoothness: 0,
-        color: AppColors.contentColorGreen.withOpacity(0.5),
+        color: AppColors.green.withOpacity(0.5),
         barWidth: 4,
         isStrokeCapRound: true,
         dotData: const FlDotData(show: false),
@@ -254,13 +253,13 @@ class _LineChart extends StatelessWidget {
 
   LineChartBarData get lineChartBarData2_2 => LineChartBarData(
         isCurved: true,
-        color: AppColors.contentColorPink.withOpacity(0.5),
+        color: AppColors.pink.withOpacity(0.5),
         barWidth: 4,
         isStrokeCapRound: true,
         dotData: const FlDotData(show: false),
         belowBarData: BarAreaData(
           show: true,
-          color: AppColors.contentColorPink.withOpacity(0.2),
+          color: AppColors.pink.withOpacity(0.2),
         ),
         spots: const [
           FlSpot(1, 1),
@@ -275,7 +274,7 @@ class _LineChart extends StatelessWidget {
   LineChartBarData get lineChartBarData2_3 => LineChartBarData(
         isCurved: true,
         curveSmoothness: 0,
-        color: AppColors.contentColorCyan.withOpacity(0.5),
+        color: AppColors.skyBlue.withOpacity(0.5),
         barWidth: 2,
         isStrokeCapRound: true,
         dotData: const FlDotData(show: true),

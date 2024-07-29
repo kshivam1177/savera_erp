@@ -1,7 +1,6 @@
  import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../app_colors.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
 class LineChartSample4 extends StatelessWidget {
   LineChartSample4({
@@ -10,11 +9,11 @@ class LineChartSample4 extends StatelessWidget {
     Color? belowLineColor,
     Color? aboveLineColor,
   })  : mainLineColor =
-            mainLineColor ?? AppColors.contentColorYellow.withOpacity(1),
+            mainLineColor ?? AppColors.yellow.withOpacity(1),
         belowLineColor =
-            belowLineColor ?? AppColors.contentColorPink.withOpacity(1),
+            belowLineColor ?? AppColors.pink.withOpacity(1),
         aboveLineColor =
-            aboveLineColor ?? AppColors.contentColorPurple.withOpacity(0.7);
+            aboveLineColor ?? AppColors.navyBlue.withOpacity(0.7);
 
   final Color mainLineColor;
   final Color belowLineColor;
@@ -79,7 +78,7 @@ class LineChartSample4 extends StatelessWidget {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      color: AppColors.mainTextColor3,
+      color: AppColors.navyBlue,
       fontSize: 12,
     );
     return SideTitleWidget(
@@ -170,7 +169,7 @@ class LineChartSample4 extends StatelessWidget {
                 axisNameWidget: const Text(
                   'Value',
                   style: TextStyle(
-                    color: AppColors.mainTextColor2,
+                    color: AppColors.navyBlue,
                   ),
                 ),
                 sideTitles: SideTitles(
@@ -184,7 +183,7 @@ class LineChartSample4 extends StatelessWidget {
             borderData: FlBorderData(
               show: true,
               border: Border.all(
-                color: AppColors.borderColor,
+                color: AppColors.navyBlue.shade200,
               ),
             ),
             gridData: FlGridData(

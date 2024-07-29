@@ -1,8 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
-
-import '../app_colors.dart';
 
 class LineChartSample2 extends StatefulWidget {
   const LineChartSample2({super.key});
@@ -13,12 +12,12 @@ class LineChartSample2 extends StatefulWidget {
 
 class _LineChartSample2State extends State<LineChartSample2> {
   List<Color> gradientColors = [
-    AppColors.contentColorCyan,
-    AppColors.contentColorBlue,
+    AppColors.skyBlue,
+    AppColors.skyBlue.withOpacity(0.5),
   ];
   List<Color> gradientColors1 = [
-    AppColors.contentColorYellow,
-    AppColors.contentColorOrange,
+    AppColors.yellow,
+    AppColors.yellow.withOpacity(0.5),
   ];
 
   bool showAvg = false;
@@ -128,14 +127,14 @@ class _LineChartSample2State extends State<LineChartSample2> {
         horizontalInterval: 1,
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
-          return const FlLine(
-            color: AppColors.mainGridLineColor,
+          return FlLine(
+            color: AppColors.navyBlue.shade200,
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
-          return const FlLine(
-            color: AppColors.mainGridLineColor,
+          return FlLine(
+            color: AppColors.navyBlue.shade200,
             strokeWidth: 1,
           );
         },

@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:savera_erp/app_utilities/location_helpers.dart';
+import 'package:savera_erp/shared/location_helpers.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_button_fab.dart';
 
 class DxMapView extends StatefulWidget {
@@ -88,11 +88,16 @@ class _DxMapViewState extends State<DxMapView> {
 
   void addMarkers(LatLng? movingMarkerPosition) {
     markers.clear();
-    markers.addAll(locations.map((e) {
+    markers.addAll(widget.data.map((e) {
       return Marker(
         markerId: MarkerId(e.hashCode.toString()),
-        position: e,
+        position: e.location,
         icon: BitmapDescriptor.bytes(byteData),
+        consumeTapEvents: e.title.isNotEmpty,
+        infoWindow: InfoWindow(
+          title: e.title,
+          snippet: e.tooltip,
+        ),
       );
     }).toSet());
 

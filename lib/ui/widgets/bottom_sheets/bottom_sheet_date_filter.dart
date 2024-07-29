@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/app_utilities/app_constants.dart';
-import 'package:savera_erp/app_utilities/dx_date_utils.dart';
+import 'package:savera_erp/shared/dx_date_utils.dart';
+import 'package:savera_erp/ui/theme/ui_fonts.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
 
 class DateFilter {
-  DateTime fromDate;
-  DateTime toDate;
+  DateTime from;
+  DateTime to;
 
   DateFilter({
-    required this.fromDate,
-    required this.toDate,
+    required this.from,
+    required this.to,
   });
 }
 
@@ -38,12 +38,12 @@ class _BottomSheetDateFilterState extends State<BottomSheetDateFilter>
       child: Wrap(
         direction: Axis.horizontal,
         children: <Widget>[
-          const ListTile(
+          ListTile(
             title: Text(
               "Apply Date Filter",
               style: TextStyle(
                 color: Colors.black,
-                fontFamily: AppConstants.textSemiBold,
+                fontFamily: AppFonts.textSemiBold,
                 fontSize: 18,
               ),
             ),
@@ -81,7 +81,7 @@ class _BottomSheetDateFilterState extends State<BottomSheetDateFilter>
                         flex: 4,
                         child: Text(
                           "${DxDateUtils.getFormattedDate(
-                            widget.filter.fromDate,
+                            widget.filter.from,
                             isYMD: false,
                             isSlashed: false,
                           )} ",
@@ -94,11 +94,11 @@ class _BottomSheetDateFilterState extends State<BottomSheetDateFilter>
                           onTap: () async {
                             DateTime? selDate = await _selectDate(
                               context,
-                              widget.filter.fromDate,
+                              widget.filter.from,
                             );
                             setState(() {
                               if (selDate != null) {
-                                widget.filter.fromDate = selDate;
+                                widget.filter.from = selDate;
                               }
                             });
                           },
@@ -155,7 +155,7 @@ class _BottomSheetDateFilterState extends State<BottomSheetDateFilter>
                         flex: 4,
                         child: Text(
                           "${DxDateUtils.getFormattedDate(
-                            widget.filter.toDate,
+                            widget.filter.to,
                             isYMD: false,
                             isSlashed: false,
                           )} ",
@@ -168,11 +168,11 @@ class _BottomSheetDateFilterState extends State<BottomSheetDateFilter>
                           onTap: () async {
                             DateTime? selDate = await _selectDate(
                               context,
-                              widget.filter.toDate,
+                              widget.filter.to,
                             );
                             setState(() {
                               if (selDate != null) {
-                                widget.filter.toDate = selDate;
+                                widget.filter.to = selDate;
                               }
                             });
                           },

@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../app_colors.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
 class LineChartSample3 extends StatefulWidget {
   LineChartSample3({
@@ -16,22 +15,19 @@ class LineChartSample3 extends StatefulWidget {
     Color? averageLineColor,
     Color? tooltipBgColor,
     Color? tooltipTextColor,
-  })  : lineColor = lineColor ?? AppColors.contentColorRed,
+  })  : lineColor = lineColor ?? AppColors.red,
         indicatorLineColor =
-            indicatorLineColor ?? AppColors.contentColorYellow.withOpacity(0.2),
+            indicatorLineColor ?? AppColors.yellow.withOpacity(0.2),
         indicatorTouchedLineColor =
-            indicatorTouchedLineColor ?? AppColors.contentColorYellow,
-        indicatorSpotStrokeColor = indicatorSpotStrokeColor ??
-            AppColors.contentColorYellow.withOpacity(0.5),
+            indicatorTouchedLineColor ?? AppColors.yellow,
+        indicatorSpotStrokeColor =
+            indicatorSpotStrokeColor ?? AppColors.yellow.withOpacity(0.5),
         indicatorTouchedSpotStrokeColor =
-            indicatorTouchedSpotStrokeColor ?? AppColors.contentColorYellow,
-        bottomTextColor =
-            bottomTextColor ?? AppColors.contentColorYellow.withOpacity(0.2),
-        bottomTouchedTextColor =
-            bottomTouchedTextColor ?? AppColors.contentColorYellow,
-        averageLineColor =
-            averageLineColor ?? AppColors.contentColorGreen.withOpacity(0.8),
-        tooltipBgColor = tooltipBgColor ?? AppColors.contentColorGreen,
+            indicatorTouchedSpotStrokeColor ?? AppColors.yellow,
+        bottomTextColor = bottomTextColor ?? AppColors.yellow.withOpacity(0.2),
+        bottomTouchedTextColor = bottomTouchedTextColor ?? AppColors.yellow,
+        averageLineColor = averageLineColor ?? AppColors.green.withOpacity(0.8),
+        tooltipBgColor = tooltipBgColor ?? AppColors.green,
         tooltipTextColor = tooltipTextColor ?? Colors.black;
 
   final Color lineColor;
@@ -71,7 +67,7 @@ class _LineChartSample3State extends State<LineChartSample3> {
       return Container();
     }
     final style = TextStyle(
-      color: AppColors.mainTextColor1.withOpacity(0.5),
+      color: AppColors.black.withOpacity(0.5),
       fontSize: 10,
     );
     String text;
@@ -145,7 +141,7 @@ class _LineChartSample3State extends State<LineChartSample3> {
             const Text(
               ' and ',
               style: TextStyle(
-                color: AppColors.mainTextColor1,
+                color: AppColors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
@@ -358,7 +354,7 @@ class _LineChartSample3State extends State<LineChartSample3> {
                 borderData: FlBorderData(
                   show: true,
                   border: Border.all(
-                    color: AppColors.borderColor,
+                    color: AppColors.navyBlue.shade200,
                   ),
                 ),
                 gridData: FlGridData(
@@ -370,12 +366,12 @@ class _LineChartSample3State extends State<LineChartSample3> {
                   getDrawingHorizontalLine: (value) {
                     if (value == 0) {
                       return const FlLine(
-                        color: AppColors.contentColorOrange,
+                        color: AppColors.orange,
                         strokeWidth: 2,
                       );
                     } else {
-                      return const FlLine(
-                        color: AppColors.mainGridLineColor,
+                      return   FlLine(
+                        color: AppColors.navyBlue.shade200,
                         strokeWidth: 0.5,
                       );
                     }
@@ -387,8 +383,8 @@ class _LineChartSample3State extends State<LineChartSample3> {
                         strokeWidth: 10,
                       );
                     } else {
-                      return const FlLine(
-                        color: AppColors.mainGridLineColor,
+                      return FlLine(
+                        color: AppColors.navyBlue.shade200,
                         strokeWidth: 0.5,
                       );
                     }

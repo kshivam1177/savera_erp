@@ -45,6 +45,8 @@ dependencies:
   toastification: ^2.0.0
   fl_chart: ^0.68.0
   google_maps_flutter: ^2.7.0
+  permission_handler: ^11.3.1
+  lottie: ^3.1.0
 #  pluto_menu_bar: ^3.0.1
 
 
@@ -66,16 +68,19 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+
   assets:
     - assets/images/
+    - assets/lottie/
 
   fonts:
-    - family: MontserratRegular
+    - family: ProximaNovaRegular
       fonts:
-        - asset: assets/fonts/Montserrat-Regular.ttf
-    - family: MontserratSemiBold
+        - asset: assets/fonts/ProximaNovaRegular.otf
+    - family: ProximaNovaSemiBold
       fonts:
-        - asset: assets/fonts/Montserrat-SemiBold.ttf
-    - family: MontserratBold
+        - asset: assets/fonts/ProximaNovaSemibold.otf
+    - family: ProximaNovaBold
       fonts:
-        - asset: assets/fonts/Montserrat-Bold.ttf
+        - asset: assets/fonts/ProximaNovaBold.otf
+

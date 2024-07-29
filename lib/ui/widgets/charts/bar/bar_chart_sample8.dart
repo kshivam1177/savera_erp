@@ -2,14 +2,14 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
-import '../app_colors.dart';
 
 class BarChartSample8 extends StatefulWidget {
   BarChartSample8({super.key});
 
-  final Color barBackgroundColor = AppColors.contentColorWhite.withOpacity(0.3);
-  final Color barColor = AppColors.contentColorWhite;
+  final Color barBackgroundColor = AppColors.white.withOpacity(0.3);
+  final Color barColor = AppColors.white;
 
   @override
   State<StatefulWidget> createState() => BarChartSample1State();

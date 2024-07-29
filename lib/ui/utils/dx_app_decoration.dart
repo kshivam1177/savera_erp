@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
-import 'app_theme.dart';
+import '../theme/ui_fonts.dart';
 
 InputDecoration dxTextFieldDecoration(
   BuildContext context, {
@@ -21,8 +22,8 @@ InputDecoration dxTextFieldDecoration(
   bool showLabel = true,
   String? errorText,
 }) {
-  borderColor ??= borderSideColor;
-  focusColor ??= borderSideFocusedColor;
+  borderColor ??= AppColors.black.shade100;
+  focusColor ??= AppColors.primary;
   // final _defaultBorderWidth = 1.2;
   const focusedBorderWidth = 1.7;
   // borderColor = Colors.green;
@@ -52,10 +53,11 @@ InputDecoration dxTextFieldDecoration(
     alignLabelWithHint: true,
     filled: isFilled,
     fillColor: fillColor,
-    contentPadding: roundPadding ?? const EdgeInsets.symmetric(
-            vertical: 8,
-            horizontal: 15.0,
-          ),
+    contentPadding: roundPadding ??
+        const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 15.0,
+        ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
       borderSide: BorderSide(
@@ -128,12 +130,12 @@ class AppStyles {
     Color color = Colors.black,
   }) =>
       TextStyle(
-          // fontFamily: AppFonts.textRegular,
-          fontWeight: isSemiBold ? FontWeight.w600 : fontWeight,
-          color: color,
-          fontSize: fontSize,
-          fontFamily:
-              isSemiBold ? AppFonts.textSemiBold : AppFonts.textRegular);
+        // fontFamily: AppFonts.textRegular,
+        fontWeight: isSemiBold ? FontWeight.w600 : fontWeight,
+        color: color,
+        fontSize: fontSize,
+        fontFamily: isSemiBold ? AppFonts.textSemiBold : AppFonts.textRegular,
+      );
 
   static TextStyle getTextStrikeThrough(
     bool isSemiBold,
@@ -165,7 +167,7 @@ class AppStyles {
       TextStyle(
         // fontFamily: AppFonts.textRegular,
         fontWeight: isSemiBold ? FontWeight.w800 : FontWeight.w500,
-        color: materialPrimaryColor,
+        color: AppColors.primary,
         fontSize: fontSize,
       );
 
@@ -173,7 +175,7 @@ class AppStyles {
       TextStyle(
         // fontFamily: AppFonts.textRegular,
         fontWeight: isSemiBold ? FontWeight.w800 : FontWeight.w500,
-        color: materialAccentColor,
+        color: AppColors.accent,
         fontSize: fontSize,
       );
 
@@ -210,19 +212,23 @@ const foodShadowColor = Color(0X95E9EBF0);
 const foodColorGray = Color(0xFFFAFAFA);
 const foodShadowColors = Color(0XFFE2E2E2);
 
-BoxDecoration gradientBoxDecoration(
-    {double radius = 8.0,
-    Color color = Colors.transparent,
-    Color gradientColor2 = Colors.white,
-    Color gradientColor1 = Colors.white,
-    var showShadow = false}) {
+BoxDecoration gradientBoxDecoration({
+  double radius = 8.0,
+  Color color = Colors.transparent,
+  Color gradientColor2 = Colors.white,
+  Color gradientColor1 = Colors.white,
+  var showShadow = false,
+}) {
   return BoxDecoration(
     gradient: LinearGradient(
         begin: Alignment.topRight,
         end: Alignment.bottomLeft,
         colors: [gradientColor1, gradientColor2]),
     boxShadow: showShadow
-        ? [const BoxShadow(color: foodShadowColor, blurRadius: 10, spreadRadius: 2)]
+        ? [
+            const BoxShadow(
+                color: foodShadowColor, blurRadius: 10, spreadRadius: 2)
+          ]
         : [const BoxShadow(color: Colors.transparent)],
     border: Border.all(color: color),
     borderRadius: BorderRadius.all(Radius.circular(radius)),
@@ -232,64 +238,82 @@ BoxDecoration gradientBoxDecoration(
 var shadowColorGlobal = Colors.black12;
 
 class AppDecoration {
-  BoxDecoration boxDecoration(
-      {double radius = 2,
-      Color color = Colors.transparent,
-      Color bgColor = Colors.white,
-      var showShadow = false}) {
+  BoxDecoration boxDecoration({
+    double radius = 2,
+    Color color = Colors.transparent,
+    Color bgColor = Colors.white,
+    var showShadow = false,
+  }) {
     return BoxDecoration(
       color: bgColor,
       boxShadow: showShadow
           ? [
               BoxShadow(
-                  color: shadowColorGlobal, blurRadius: 5, spreadRadius: 1)
+                color: shadowColorGlobal,
+                blurRadius: 5,
+                spreadRadius: 1,
+              )
             ]
           : [const BoxShadow(color: Colors.transparent)],
       border: Border.all(color: color),
-      borderRadius: BorderRadius.all(Radius.circular(radius)),
+      borderRadius: BorderRadius.all(
+        Radius.circular(radius),
+      ),
     );
   }
 
   static getInputDecoration(String labelHint) => InputDecoration(
-      labelText: labelHint,
-      alignLabelWithHint: true,
-      contentPadding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-      border: const OutlineInputBorder(borderSide: BorderSide(width: 1.4)),
-      focusedBorder:
-          const OutlineInputBorder(borderSide: BorderSide(width: 1.6)));
+        labelText: labelHint,
+        alignLabelWithHint: true,
+        contentPadding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(width: 1.4),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(width: 1.6),
+        ),
+      );
 
   static getInputDecorationNoLine(String labelHint) => InputDecoration(
-      labelText: labelHint,
-      alignLabelWithHint: true,
-      contentPadding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-      border: InputBorder.none,
-      focusedBorder: InputBorder.none);
+        labelText: labelHint,
+        alignLabelWithHint: true,
+        contentPadding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+        border: InputBorder.none,
+        focusedBorder: InputBorder.none,
+      );
 
   static getOutLineBoxDecoration([
     Color color = Colors.black,
   ]) =>
-      BoxDecoration(border: Border.all(color: color));
+      BoxDecoration(
+        border: Border.all(color: color),
+      );
 
   static getBoxGradientDecoration() => BoxDecoration(
-      // Box decoration takes a gradient
-      gradient: LinearGradient(
+        // Box decoration takes a gradient
+        gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.green.shade50, Colors.white]));
+          colors: [Colors.green.shade50, Colors.white],
+        ),
+      );
 
   static getBoxRoundDecoration({Color bColor = Colors.black45}) =>
       BoxDecoration(
-          border: Border.all(width: 1, color: bColor),
-          borderRadius: BorderRadius.circular(4),
-          color: Colors.white);
+        border: Border.all(width: 1, color: bColor),
+        borderRadius: BorderRadius.circular(4),
+        color: Colors.white,
+      );
 
-  static getRoundRectangleDecoration() =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(4));
+  static getRoundRectangleDecoration() => RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      );
 
   static getRoundRectangleDecorationColor({Color borderColor = Colors.black}) =>
       RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
-          side: BorderSide(color: borderColor));
+        borderRadius: BorderRadius.circular(4),
+        side: BorderSide(color: borderColor),
+      );
 
   static getInputDecorationPlain(String labelHint) => InputDecoration(
         labelText: labelHint,

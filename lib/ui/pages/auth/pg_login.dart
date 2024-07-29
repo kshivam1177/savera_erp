@@ -2,11 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:savera_erp/app_utilities/app_images.dart';
-import 'package:savera_erp/app_utilities/app_info.dart';
-import 'package:savera_erp/app_utilities/helpers.dart';
 import 'package:savera_erp/blocs/auth/login/login_notifier.dart';
 import 'package:savera_erp/route/route_helper.dart';
+import 'package:savera_erp/shared/app_info.dart';
+import 'package:savera_erp/shared/asset_provider/app_images.dart';
+import 'package:savera_erp/shared/helpers.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_buttons.dart';
 import 'package:savera_erp/ui/widgets/custom/input/dx_input_fields.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';

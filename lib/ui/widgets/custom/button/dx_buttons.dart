@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/utils/app_theme.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
 import 'package:savera_erp/ui/utils/size_reziser.dart';
 
@@ -22,7 +22,7 @@ class DxCancelButton extends StatelessWidget {
     return TextButton(
       style: TextButton.styleFrom(
         minimumSize: const Size(48.0, 48.0),
-        backgroundColor: primaryRed,
+        backgroundColor: AppColors.red,
         shape: RoundedRectangleBorder(
           side: const BorderSide(
             color: Colors.red,
@@ -174,7 +174,7 @@ class DxFlatButtonPrimary extends StatelessWidget {
           backgroundColor: Theme.of(context).primaryColor,
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              color: primaryColor,
+              color: AppColors.primary,
               width: 1,
               style: BorderStyle.solid,
             ),

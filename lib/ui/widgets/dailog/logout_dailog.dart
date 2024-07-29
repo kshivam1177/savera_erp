@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/local_storage/preference_handler.dart';
 import 'package:savera_erp/route/route_helper.dart';
+import 'package:savera_erp/services/storage/preferance/preference_handler.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
-
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog({super.key});
@@ -36,7 +35,6 @@ class LogoutDialog extends StatelessWidget {
             fontSize: 18,
           ),
           onPressed: () async {
-
             await PrefHandler.clearPref();
             // await PrefHandler.setUserPic(AppImages.defaultUserBs64);
             // Navigator.of(context).pop();

@@ -2,7 +2,7 @@ class AuthResult {
   final int loginId;
   final int userId;
   final String userName;
-  final String activeStatus;
+  final String status;
   final UserType userType;
   final String token;
 
@@ -11,7 +11,7 @@ class AuthResult {
     required this.userId,
     required this.userName,
     required this.userType,
-    required this.activeStatus,
+    required this.status,
     required this.token,
   });
 
@@ -22,7 +22,7 @@ class AuthResult {
       "name": "Guest",
       "user_name": "Guest",
       "user_type": {"id": 0, "name": "Guest"},
-      "active_status": "",
+      "status": "",
       "token": "",
     });
   }
@@ -33,7 +33,7 @@ class AuthResult {
       userId: int.parse("${map['user_id']}"),
       userName: map['user_name'],
       userType: UserType.fromMap(map['user_type']),
-      activeStatus: map['active_status'],
+      status: map['status'],
       token: map['token'],
     );
   }
@@ -44,7 +44,7 @@ class AuthResult {
       'user_id': userId,
       'user_name': userName,
       'user_type': userType.toMap(),
-      'active_status': activeStatus,
+      'status': status,
       'token': token,
     };
   }
@@ -54,7 +54,7 @@ class AuthResult {
     int? userId,
     String? name,
     String? userName,
-    String? activeStatus,
+    String? status,
     String? token,
     UserType? userType,
   }) {
@@ -63,7 +63,7 @@ class AuthResult {
       userId: userId ?? this.userId,
       userName: userName ?? this.userName,
       userType: userType ?? this.userType,
-      activeStatus: activeStatus ?? this.activeStatus,
+      status: status ?? this.status,
       token: token ?? this.token,
     );
   }

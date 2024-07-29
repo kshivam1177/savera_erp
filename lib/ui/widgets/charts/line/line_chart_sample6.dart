@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../app_colors.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
 // ignore: must_be_immutable
 class LineChartSample6 extends StatelessWidget {
@@ -11,12 +10,10 @@ class LineChartSample6 extends StatelessWidget {
     Color? line1Color2,
     Color? line2Color1,
     Color? line2Color2,
-  })  : line1Color1 = line1Color1 ?? AppColors.contentColorOrange,
-        line1Color2 =
-            line1Color2 ?? AppColors.contentColorOrange.withOpacity(0.60),
-        line2Color1 =
-            line2Color1 ?? AppColors.contentColorBlue.withOpacity(0.60),
-        line2Color2 = line2Color2 ?? AppColors.contentColorBlue {
+  })  : line1Color1 = line1Color1 ?? AppColors.orange,
+        line1Color2 = line1Color2 ?? AppColors.orange.withOpacity(0.60),
+        line2Color1 = line2Color1 ?? AppColors.navyBlue.withOpacity(0.60),
+        line2Color2 = line2Color2 ?? AppColors.navyBlue {
     minSpotX = spots.first.x;
     maxSpotX = spots.first.x;
     minSpotY = spots.first.y;
@@ -109,7 +106,7 @@ class LineChartSample6 extends StatelessWidget {
     }
     const style = TextStyle(
       fontWeight: FontWeight.bold,
-      color: AppColors.mainTextColor2,
+      color: AppColors.black,
     );
     return SideTitleWidget(
       axisSide: meta.axisSide,
@@ -263,9 +260,9 @@ class LineChartSample6 extends StatelessWidget {
             ),
             borderData: FlBorderData(
               show: true,
-              border: const Border(
-                left: BorderSide(color: AppColors.borderColor),
-                top: BorderSide(color: AppColors.borderColor),
+              border: Border(
+                left: BorderSide(color: AppColors.navyBlue.shade200),
+                top: BorderSide(color: AppColors.navyBlue.shade200),
                 bottom: BorderSide(color: Colors.transparent),
                 right: BorderSide(color: Colors.transparent),
               ),

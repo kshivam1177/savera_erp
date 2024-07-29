@@ -3,25 +3,24 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
-
-import '../app_colors.dart';
 
 class BarChartSample1 extends StatefulWidget {
   BarChartSample1({super.key});
 
   List<Color> get availableColors => const <Color>[
-        AppColors.contentColorPurple,
-        AppColors.contentColorYellow,
-        AppColors.contentColorBlue,
-        AppColors.contentColorOrange,
-        AppColors.contentColorPink,
-        AppColors.contentColorRed,
+        AppColors.navyBlue,
+        AppColors.yellow,
+        AppColors.skyBlue,
+        AppColors.orange,
+        AppColors.pink,
+        AppColors.red,
       ];
 
   final Color barBackgroundColor = Colors.grey.withOpacity(0.3);
-  final Color barColor = AppColors.contentColorBlue;
-  final Color touchedBarColor = AppColors.contentColorYellow;
+  final Color barColor = AppColors.navyBlue.shade500;
+  final Color touchedBarColor = AppColors.yellow;
 
   @override
   State<StatefulWidget> createState() => BarChartSample1State();
@@ -57,13 +56,13 @@ class BarChartSample1State extends State<BarChartSample1> {
                   DxText(
                     isPlaying ? "Click to Pause" : "Click to Play",
                     fontSize: 16,
-                    textColor: AppColors.itemsBackground,
+                    textColor: AppColors.skyBlue,
                     bold: true,
                   ),
                   IconButton(
                     icon: Icon(
                       isPlaying ? Icons.pause : Icons.play_arrow,
-                      color: AppColors.itemsBackground,
+                      color: AppColors.skyBlue,
                       size: 30,
                     ),
                     onPressed: () {
@@ -89,7 +88,7 @@ class BarChartSample1State extends State<BarChartSample1> {
     double y, {
     bool isTouched = false,
     Color? barColor,
-    double width = 12,
+    double width = 8,
     List<int> showTooltips = const [],
   }) {
     barColor ??= widget.barColor;
@@ -173,9 +172,9 @@ class BarChartSample1State extends State<BarChartSample1> {
             return BarTooltipItem(
               '$weekDay\n',
               const TextStyle(
-                color: Colors.black,
+                color: Colors.blue,
                 fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontSize: 14,
               ),
               children: <TextSpan>[
                 TextSpan(
@@ -233,9 +232,9 @@ class BarChartSample1State extends State<BarChartSample1> {
 
   Widget getTitles(double value, TitleMeta meta) {
     const style = TextStyle(
-      color: Colors.black,
+      color: AppColors.navyBlue,
       fontWeight: FontWeight.bold,
-      fontSize: 14,
+      fontSize: 12,
     );
     Widget text;
     switch (value.toInt()) {

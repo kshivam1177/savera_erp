@@ -2,20 +2,20 @@ import 'dart:math' as math;
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
-import '../app_colors.dart';
 
 class BarChartSample7 extends StatefulWidget {
   BarChartSample7({super.key});
 
   final shadowColor = const Color(0xFFCCCCCC);
   final dataList = [
-    const _BarData(AppColors.contentColorYellow, 18, 18),
-    const _BarData(AppColors.contentColorGreen, 17, 8),
-    const _BarData(AppColors.contentColorOrange, 10, 15),
-    const _BarData(AppColors.contentColorPink, 2.5, 5),
-    const _BarData(AppColors.contentColorBlue, 2, 2.5),
-    const _BarData(AppColors.contentColorRed, 2, 2),
+    const _BarData(AppColors.yellow, 18, 18),
+    const _BarData(AppColors.green, 17, 8),
+    const _BarData(AppColors.orange, 10, 15),
+    const _BarData(AppColors.pink, 2.5, 5),
+    const _BarData(AppColors.navyBlue, 2, 2.5),
+    const _BarData(AppColors.red, 2, 2),
   ];
 
   @override
@@ -62,7 +62,7 @@ class _BarChartSample7State extends State<BarChartSample7> {
               show: true,
               border: Border.symmetric(
                 horizontal: BorderSide(
-                  color: AppColors.borderColor.withOpacity(0.2),
+                  color: AppColors.accent.shade500.withOpacity(0.2),
                 ),
               ),
             ),
@@ -104,7 +104,7 @@ class _BarChartSample7State extends State<BarChartSample7> {
               show: true,
               drawVerticalLine: false,
               getDrawingHorizontalLine: (value) => FlLine(
-                color: AppColors.borderColor.withOpacity(0.2),
+                color: AppColors.accent.shade500.withOpacity(0.2),
                 strokeWidth: 1,
               ),
             ),

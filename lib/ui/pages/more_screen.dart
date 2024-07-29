@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/app_utilities/app_images.dart';
-import 'package:savera_erp/app_utilities/helpers.dart';
-import 'package:savera_erp/local_storage/preference_handler.dart';
 import 'package:savera_erp/models/auth_result.model.dart';
-import 'package:savera_erp/ui/utils/app_theme.dart';
+import 'package:savera_erp/services/storage/preferance/preference_handler.dart';
+import 'package:savera_erp/shared/helpers.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 import 'package:savera_erp/ui/widgets/dailog/logout_dailog.dart';
@@ -49,7 +48,7 @@ class _MoreScreenState extends State<MoreScreen> {
           Card(
             margin: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 8),
             clipBehavior: Clip.antiAlias,
-            color: materialPrimaryColor,
+            color: AppColors.primary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(0),
             ),
@@ -75,7 +74,7 @@ class _MoreScreenState extends State<MoreScreen> {
                             color: Colors.white,
                             image: DecorationImage(
                               fit: BoxFit.fill,
-                              image: ImgProvider.getImg(""),
+                              image: NetworkImage(""),
                             ),
                           ),
                         ),

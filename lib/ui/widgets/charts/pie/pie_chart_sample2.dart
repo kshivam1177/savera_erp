@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
 
-import '../app_colors.dart';
 import '../indicator.dart';
 
 class PieChartSample2 extends StatefulWidget {
@@ -51,12 +51,12 @@ class PieChart2State extends State {
               ),
             ),
           ),
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Indicator(
-                color: AppColors.contentColorBlue,
+                color: AppColors.navyBlue.shade500,
                 text: 'First',
                 isSquare: false,
               ),
@@ -64,7 +64,7 @@ class PieChart2State extends State {
                 height: 4,
               ),
               Indicator(
-                color: AppColors.contentColorYellow,
+                color: AppColors.yellow,
                 text: 'Second',
                 isSquare: false,
               ),
@@ -72,7 +72,7 @@ class PieChart2State extends State {
                 height: 4,
               ),
               Indicator(
-                color: AppColors.contentColorPurple,
+                color: AppColors.pink,
                 text: 'Third',
                 isSquare: false,
               ),
@@ -80,7 +80,7 @@ class PieChart2State extends State {
                 height: 4,
               ),
               Indicator(
-                color: AppColors.contentColorGreen,
+                color: AppColors.green,
                 text: 'Fourth',
                 isSquare: false,
               ),
@@ -104,50 +104,50 @@ class PieChart2State extends State {
       switch (i) {
         case 0:
           return PieChartSectionData(
-            color: AppColors.contentColorBlue,
+            color: AppColors.navyBlue,
             value: 40,
             title: '40%',
             radius: radius,
             titleStyle: AppStyles.getTextStyle(
               true,
               fontSize,
-              color: AppColors.mainTextColor1,
+              color: AppColors.white,
             ),
           );
         case 1:
           return PieChartSectionData(
-            color: AppColors.contentColorYellow,
+            color: AppColors.yellow,
             value: 30,
             title: '30%',
             radius: radius,
             titleStyle: AppStyles.getTextStyle(
               true,
               fontSize,
-              color: AppColors.mainTextColor1,
+              color: AppColors.white,
             ),
           );
         case 2:
           return PieChartSectionData(
-            color: AppColors.contentColorPurple,
+            color: AppColors.pink,
             value: 15,
             title: '15%',
             radius: radius,
             titleStyle: AppStyles.getTextStyle(
               true,
               fontSize,
-              color: AppColors.mainTextColor1,
+              color: AppColors.white,
             ),
           );
         case 3:
           return PieChartSectionData(
-            color: AppColors.contentColorGreen,
+            color: AppColors.green,
             value: 15,
             title: '15%',
             radius: radius,
             titleStyle: AppStyles.getTextStyle(
               true,
               fontSize,
-              color: AppColors.mainTextColor1,
+              color: AppColors.white,
             ),
           );
         default:

@@ -1,16 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:savera_erp/app_utilities/helpers.dart';
 import 'package:savera_erp/blocs/attendance/attendance_cubit.dart';
 import 'package:savera_erp/route/route_helper.dart';
+import 'package:savera_erp/shared/helpers.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
+import 'package:savera_erp/ui/widgets/custom/button/dx_button_fab.dart';
 import 'package:savera_erp/ui/widgets/custom/table/dx_custom_table.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 class PgAttendance extends StatefulWidget {
   static const String routeName = '/attendance';
+  final bool isSummaryView;
 
-  const PgAttendance({super.key});
+  const PgAttendance({
+    this.isSummaryView = false,
+    super.key,
+  });
 
   @override
   State<PgAttendance> createState() => _PgAttendanceState();
@@ -18,47 +23,51 @@ class PgAttendance extends StatefulWidget {
 
 class _PgAttendanceState extends State<PgAttendance> {
   final AttendanceCubit attendanceCubit = AttendanceCubit();
-  final List<DxDataTableCell<String>> columns = [
-    DxDataTableCell(flex: 1, value: "SRN"),
-    DxDataTableCell(flex: 4, value: "Name"),
-    DxDataTableCell(flex: 3, value: "Designation"),
-    DxDataTableCell(flex: 3, value: "Punch In"),
-    DxDataTableCell(flex: 3, value: "Punch Out"),
-    DxDataTableCell(flex: 3, value: "Punch Status"),
-    DxDataTableCell(flex: 2, value: "Action")
-  ];
+  final List<DxDataTableCell<String>> columns = [];
 
   @override
   void initState() {
     attendanceCubit.getAll();
+    columns.addAll([
+      DxDataTableCell(flex: 1, value: "SRN"),
+      DxDataTableCell(flex: 4, value: "Name"),
+      if (!widget.isSummaryView) DxDataTableCell(flex: 3, value: "Designation"),
+      DxDataTableCell(flex: 3, value: "Punch In"),
+      if (!widget.isSummaryView) DxDataTableCell(flex: 3, value: "Punch Out"),
+      if (!widget.isSummaryView)
+        DxDataTableCell(flex: 3, value: "Punch Status"),
+      DxDataTableCell(flex: 2, value: "Action")
+    ]);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: DxText(
-          'Attendance',
-          fontSize: 18,
-          bold: true,
-        ),
-        backgroundColor: Colors.white,
-        elevation: 1,
-        leading: null,
-        actions: [
-          IconButton(
-            icon: Icon(
-              CupertinoIcons.search,
-              color: Colors.black,
+      appBar: widget.isSummaryView
+          ? null
+          : AppBar(
+              centerTitle: false,
+              title: DxText(
+                'Attendance',
+                fontSize: 18,
+                bold: true,
+              ),
+              backgroundColor: Colors.white,
+              elevation: 1,
+              leading: null,
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    CupertinoIcons.search,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    Helpers.toast(context, msg: "Let me search for you");
+                  },
+                ),
+              ],
             ),
-            onPressed: () {
-              Helpers.toast(context, msg: "Let me search for you");
-            },
-          ),
-        ],
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: DxCustomTable<String>(
@@ -68,11 +77,11 @@ class _PgAttendanceState extends State<PgAttendance> {
             return [
               "${i + 1}",
               "Name Value Here ${i + 1}",
-              "Relationship Manager",
+              if (!widget.isSummaryView) "Relationship Manager",
               "${i % 2 == 0 ? DateTime.now().toString() : "N/A"}",
-              "N/A",
+              if (!widget.isSummaryView) "N/A",
               "PUNCHED-IN",
-              "status 2"
+              if (!widget.isSummaryView) "status 2"
             ];
           }),
           buildCell: (value, rowIndex, columnIndex) {
@@ -83,7 +92,7 @@ class _PgAttendanceState extends State<PgAttendance> {
                 children: [
                   InkWell(
                     child: SizedBox(
-                      width: 45,
+                      width: widget.isSummaryView ? 30 : 45,
                       child: Icon(
                         CupertinoIcons.eye,
                         size: 15,
@@ -91,26 +100,27 @@ class _PgAttendanceState extends State<PgAttendance> {
                     ),
                     onTap: () {
                       showAdaptiveDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: DxText("View", bold: true, fontSize: 18),
-                              content: DxText("Viewing details"),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text("Close"),
-                                ),
-                              ],
-                            );
-                          });
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: DxText("View", bold: true, fontSize: 18),
+                            content: DxText("Viewing details"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("Close"),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     },
                   ),
                   InkWell(
                     child: SizedBox(
-                      width: 45,
+                      width: widget.isSummaryView ? 30 : 45,
                       child: Icon(
                         CupertinoIcons.map_pin_ellipse,
                         size: 15,
@@ -133,6 +143,39 @@ class _PgAttendanceState extends State<PgAttendance> {
           },
         ),
       ),
+      bottomNavigationBar: !widget.isSummaryView
+          ? null
+          : BottomAppBar(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DxTextBlack(
+                      "View Attendance Summary in Detail",
+                      bold: true,
+                      fontSize: 16,
+                    ),
+                    SizedBox(
+                      height: 35,
+                      width: 130,
+                      child: DxFabExtended(
+                        onPressed: () {
+                          RouteHelper.toAttendanceList(context);
+                        },
+                        text: 'Detail View > ',
+                        backgroundColor: AppColors.primary,
+                        radius: 25,
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 }

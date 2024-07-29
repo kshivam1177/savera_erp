@@ -39,9 +39,13 @@ class _PgMapViewState extends State<PgMapView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DxMapView(
-        data: locations
-            .map((e) => DxMapData(location: e, title: '', tooltip: ''))
-            .toList(),
+        data: locations.map((e) {
+          return DxMapData(
+            location: e,
+            title: 'title ${e.toString()}',
+            tooltip: 'tooltip ${e.toString()}',
+          );
+        }).toList(),
       ),
     );
   }

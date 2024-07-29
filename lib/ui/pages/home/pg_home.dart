@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:savera_erp/app_utilities/helpers.dart';
 import 'package:savera_erp/blocs/home/home_cubit.dart';
 import 'package:savera_erp/route/route_helper.dart';
+import 'package:savera_erp/shared/helpers.dart';
 import 'package:savera_erp/ui/pages/home/dashboard_summary/dashboard_summary.dart';
 import 'package:savera_erp/ui/pages/home/drawer/DxDrawer.dart';
 import 'package:savera_erp/ui/pages/home/home_app_bar.dart';
+import 'package:toastification/toastification.dart';
 
 class PgHome extends StatefulWidget {
   static const String routeName = '/home';
@@ -40,7 +40,11 @@ class PgHomeState extends State<PgHome> {
             RouteHelper.toAny(context, item.route);
           } catch (e) {
             print(e);
-            Helpers.toast(context, msg: item.title);
+            Helpers.toast(
+              context,
+              msg: "Work in progress : ${item.title}",
+              type: ToastificationType.info,
+            );
           }
         },
       ),

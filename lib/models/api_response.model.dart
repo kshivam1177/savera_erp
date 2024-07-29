@@ -1,34 +1,40 @@
+import 'package:savera_erp/shared/app_messages.dart';
 
-import 'package:savera_erp/app_utilities/app_messages.dart';
+enum TxnStatus {
+  SUCCESS,
+  FAILED,
+  UPDATE_REQUIRED,
+  PARAM_MISSING,
+  MEDIA_TYPE_NOT_SUPPORTED,
+  ACCOUNT_DELETED,
+  ACCOUNT_DELETED_REQUEST,
+  INVALID_REQUEST_HEADER;
 
-enum StatusDescriptor {
-  success,
-  update_required,
-  param_missing,
-  media_type_not_supported,
-  account_deleted,
-  account_deleted_request,
-  common_error
+  bool get isFailed => this == TxnStatus.FAILED;
+
+  bool get success => this == TxnStatus.SUCCESS;
+
+  bool get updateRequired => this == TxnStatus.UPDATE_REQUIRED;
+
+  bool get accountDeleted => this == TxnStatus.ACCOUNT_DELETED;
 }
 
 class ApiResponse<T> {
   T? data;
-  bool isSuccess;
-  StatusDescriptor statusDescriptor;
+  TxnStatus status;
   String msg;
   String? trace;
 
   ApiResponse({
-    required this.isSuccess,
-    this.data,
+    required this.status,
     required this.msg,
-    this.statusDescriptor = StatusDescriptor.success,
+    this.data,
     this.trace,
   });
 
   factory ApiResponse.success(T data, {String msg = ""}) {
     return ApiResponse<T>(
-      isSuccess: true,
+      status: TxnStatus.SUCCESS,
       msg: msg,
       data: data,
     );
@@ -36,7 +42,7 @@ class ApiResponse<T> {
 
   factory ApiResponse.failure(String reason, [String? trace = null]) {
     return ApiResponse<T>(
-      isSuccess: false,
+      status: TxnStatus.FAILED,
       msg: reason,
       trace: trace,
     );
@@ -51,8 +57,6 @@ class ApiResponse<T> {
   }
 
   factory ApiResponse.fromResponse(ApiResponse response) {
-    return ApiResponse.failure(response.msg)
-      ..statusDescriptor = response.statusDescriptor
-      ..isSuccess = response.isSuccess;
+    return ApiResponse.failure(response.msg)..status = response.status;
   }
 }

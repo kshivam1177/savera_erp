@@ -2,8 +2,7 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../app_colors.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
 // ignore: must_be_immutable
 class LineChartSample9 extends StatelessWidget {
@@ -18,7 +17,7 @@ class LineChartSample9 extends StatelessWidget {
       return Container();
     }
     final style = TextStyle(
-      color: AppColors.contentColorBlue,
+      color: AppColors.navyBlue,
       fontWeight: FontWeight.bold,
       fontSize: min(18, 18 * chartWidth / 300),
     );
@@ -31,7 +30,7 @@ class LineChartSample9 extends StatelessWidget {
 
   Widget leftTitleWidgets(double value, TitleMeta meta, double chartWidth) {
     final style = TextStyle(
-      color: AppColors.contentColorYellow,
+      color: AppColors.yellow,
       fontWeight: FontWeight.bold,
       fontSize: min(18, 18 * chartWidth / 300),
     );
@@ -81,7 +80,7 @@ class LineChartSample9 extends StatelessWidget {
                 ),
                 lineBarsData: [
                   LineChartBarData(
-                    color: AppColors.contentColorPink,
+                    color: AppColors.pink,
                     spots: spots,
                     isCurved: true,
                     isStrokeCapRound: true,
@@ -131,12 +130,12 @@ class LineChartSample9 extends StatelessWidget {
                     return value.toInt() == 0;
                   },
                   getDrawingHorizontalLine: (_) => FlLine(
-                    color: AppColors.contentColorBlue.withOpacity(1),
+                    color: AppColors.navyBlue.withOpacity(1),
                     dashArray: [8, 2],
                     strokeWidth: 0.8,
                   ),
                   getDrawingVerticalLine: (_) => FlLine(
-                    color: AppColors.contentColorYellow.withOpacity(1),
+                    color: AppColors.yellow.withOpacity(1),
                     dashArray: [8, 2],
                     strokeWidth: 0.8,
                   ),

@@ -13,46 +13,45 @@ Returns a negative value if this DateTime isBefore other. It returns 0 if it isA
     return d1.compareTo(d2) == 0;
   }
 
-  //Use
-  static DateTime? cnvtToDateObject(
-    String dateString, {
-    bool isDcrDate = false,
-  }) {
-    //dcr data case => month/day/year
-    //non dcr date case => day/month/year
-    //timeStamp case =>  "2021-04-30T00:00:00"
-    bool isTimeStamp = dateString.contains("T");
-    dateString = dateString.split("T").first;
+  static DateTime? getDateTimeFromString(String dateString) {
+    // Example format: "2024-06-30 14:30:00"
+    try {
+      // Split the date-time string if it contains both date and time parts
+      List<String> parts = dateString.split(' ');
 
-    int monthPos = 1;
-    int dayPos = 0;
-    int yearPos = 2;
+      // Extract date and time components
+      List<String> dateParts = parts[0].split('-');
+      int year = int.parse(dateParts[0]);
+      int month = int.parse(dateParts[1]);
+      int day = int.parse(dateParts[2]);
 
-    int day, month, year;
+      int hour = 0;
+      int minute = 0;
+      int second = 0;
 
-    if (dateString.isNotEmpty && !isTimeStamp) {
-      if (dateString.contains("/")) {
-        List<String> splitted = dateString.split("/");
-        year = int.parse(splitted[yearPos]);
-        month = int.parse(splitted[monthPos]);
-        day = int.parse(splitted[dayPos]);
-      } else {
-        //expected
-        List<String> splitted = dateString.split("-");
-        year = int.parse(splitted[yearPos]);
-        month = int.parse(splitted[monthPos]);
-        day = int.parse(splitted[dayPos]);
+      // Check if there is a time part
+      if (parts.length > 1) {
+        List<String> timeParts = parts[1].split(':');
+        hour = int.parse(timeParts[0]);
+        minute = int.parse(timeParts[1]);
+        second = int.parse(timeParts[2]);
       }
-      return DateTime(year, month, day);
-    } else if (isTimeStamp) {
-      List<String> splitted = dateString.split("-");
-      year = int.parse(splitted[0]);
-      month = int.parse(splitted[1]);
-      day = int.parse(splitted[2]);
-      return DateTime(year, month, day);
-    } else {
-      return null;
+
+      // Create and return DateTime object
+      return DateTime(year, month, day, hour, minute, second);
+    } catch (e) {
+      // Handle any errors such as invalid format
+      print('Error parsing date-time string: $e');
+      return null; // Or throw an exception based on your application logic
     }
+  }
+
+  static String getDateTimeString(DateTime dateTime) {
+    return dateTime.toString().split(".").first;
+  }
+
+  static String getDateString(DateTime dateTime) {
+    return dateTime.toString().split(" ").first;
   }
 
   static String getFormattedDate(
@@ -103,5 +102,57 @@ Returns a negative value if this DateTime isBefore other. It returns 0 if it isA
   static DateTime currDate() {
     final now = DateTime.now();
     return DateTime(now.year, now.month, now.day);
+  }
+
+  static String getMonthName(
+    int month, {
+    bool short = false,
+  }) {
+    String name = "";
+    switch (month) {
+      case 1:
+        name = "January";
+        break;
+      case 2:
+        name = "February";
+        break;
+      case 3:
+        name = "March";
+        break;
+      case 4:
+        name = "April";
+        break;
+      case 5:
+        name = "March";
+        break;
+      case 6:
+        name = "June";
+        break;
+      case 7:
+        name = "July";
+        break;
+      case 8:
+        name = "August";
+        break;
+      case 9:
+        name = "September";
+        break;
+      case 10:
+        name = "October";
+        break;
+      case 11:
+        name = "November";
+        break;
+      case 12:
+        name = "December";
+        break;
+      default:
+        name = "";
+        break;
+    }
+    if (short && name.isNotEmpty) {
+      return name.substring(0, 3);
+    }
+    return name;
   }
 }

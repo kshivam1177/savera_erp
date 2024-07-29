@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:savera_erp/app_utilities/app_images.dart';
-import 'package:savera_erp/ui/utils/app_theme.dart';
+import 'package:savera_erp/shared/asset_provider/app_images.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 class ErrorPage extends StatelessWidget {
@@ -69,7 +69,7 @@ class ErrorPage extends StatelessWidget {
             const SizedBox(height: 10),
             MaterialButton(
               onPressed: onPressed,
-              color: materialAccentColor,
+              color: AppColors.primary,
               child: const DxText(
                 "Retry",
                 textColor: Colors.white,

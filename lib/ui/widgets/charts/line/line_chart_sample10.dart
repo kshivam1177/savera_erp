@@ -3,14 +3,13 @@ import 'dart:math' as math;
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../app_colors.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
 class LineChartSample10 extends StatefulWidget {
   const LineChartSample10({super.key});
 
-  final Color sinColor = AppColors.contentColorBlue;
-  final Color cosColor = AppColors.contentColorPink;
+  final Color sinColor = AppColors.navyBlue;
+  final Color cosColor = AppColors.pink;
 
   @override
   State<LineChartSample10> createState() => _LineChartSample10State();
@@ -52,7 +51,7 @@ class _LineChartSample10State extends State<LineChartSample10> {
               Text(
                 'x: ${xValue.toStringAsFixed(1)}',
                 style: const TextStyle(
-                  color: AppColors.mainTextColor2,
+                  color: AppColors.green,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),

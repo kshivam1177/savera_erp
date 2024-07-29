@@ -1,14 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
-import '../app_colors.dart';
 
 class BarChartSample4 extends StatefulWidget {
   BarChartSample4({super.key});
 
-  final Color dark = AppColors.contentColorCyan;
-  final Color normal = AppColors.contentColorCyan;
-  final Color light = AppColors.contentColorCyan;
+  final Color dark = AppColors.skyBlue;
+  final Color normal = AppColors.skyBlue;
+  final Color light = AppColors.skyBlue;
 
   @override
   State<StatefulWidget> createState() => BarChartSample4State();
@@ -103,7 +103,7 @@ class BarChartSample4State extends State<BarChartSample4> {
                   show: true,
                   checkToShowHorizontalLine: (value) => value % 10 == 0,
                   getDrawingHorizontalLine: (value) => FlLine(
-                    color: AppColors.borderColor.withOpacity(0.1),
+                    color: AppColors.accent.shade500.withOpacity(0.1),
                     strokeWidth: 1,
                   ),
                   drawVerticalLine: false,

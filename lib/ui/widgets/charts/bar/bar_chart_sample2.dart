@@ -1,15 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
-
-import '../app_colors.dart';
 
 class BarChartSample2 extends StatefulWidget {
   BarChartSample2({super.key});
 
-  final Color leftBarColor = AppColors.contentColorYellow;
-  final Color rightBarColor = AppColors.contentColorRed;
-  final Color avgColor = AppColors.contentColorOrange;
+  final Color leftBarColor = AppColors.yellow;
+  final Color rightBarColor = AppColors.red;
+  final Color avgColor = AppColors.orange;
 
   @override
   State<StatefulWidget> createState() => BarChartSample2State();
@@ -60,7 +59,7 @@ class BarChartSample2State extends State<BarChartSample2> {
           children: <Widget>[
             Align(
               alignment: Alignment.topRight,
-              child: const DxText('Chart Title'),
+              child: const DxText("Xyz Report's bar chart"),
             ),
             const SizedBox(
               height: 38,
@@ -161,9 +160,9 @@ class BarChartSample2State extends State<BarChartSample2> {
 
   Widget leftTitles(double value, TitleMeta meta) {
     const style = TextStyle(
-      color: Color(0xff7589a2),
+      color: AppColors.navyBlue,
       fontWeight: FontWeight.bold,
-      fontSize: 14,
+      fontSize: 12,
     );
     String text;
     if (value == 0) {
@@ -188,9 +187,9 @@ class BarChartSample2State extends State<BarChartSample2> {
     final Widget text = Text(
       titles[value.toInt()],
       style: const TextStyle(
-        color: Color(0xff7589a2),
+        color: AppColors.navyBlue,
         fontWeight: FontWeight.bold,
-        fontSize: 14,
+        fontSize: 12,
       ),
     );
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:savera_erp/ui/pages/attendance/pg_attendance.dart';
 import 'package:savera_erp/ui/pages/home/dashboard_summary/grid_data.dart';
 import 'package:savera_erp/ui/widgets/dx_layout_builder.dart';
 
@@ -53,6 +54,12 @@ class _DashboardSummaryState extends State<DashboardSummary> {
           SizedBox(
             height: height,
             width: widget,
+            child: Card(child: PgAttendance()),
+            // child: Card(child: GridData()),
+          ),
+          SizedBox(
+            height: height,
+            width: widget,
             child: Card(child: PieChartSample2()),
           ),
           SizedBox(
@@ -69,11 +76,6 @@ class _DashboardSummaryState extends State<DashboardSummary> {
             height: height,
             width: widget,
             child: Card(child: BarChartSample3()),
-          ),
-          SizedBox(
-            height: height,
-            width: widget,
-            child: Card(child: GridData()),
           ),
           SizedBox(
             height: height,
@@ -115,12 +117,12 @@ class _DashboardSummaryState extends State<DashboardSummary> {
                 SizedBox(
                   height: height,
                   width: widget,
-                  child: Card(child: BarChartSample3()),
+                  child: Card(child: GridData()),
                 ),
                 SizedBox(
                   height: height,
                   width: widget,
-                  child: Card(child: GridData()),
+                  child: Card(child: BarChartSample3()),
                 ),
               ],
             ),
@@ -176,12 +178,12 @@ class _DashboardSummaryState extends State<DashboardSummary> {
                 SizedBox(
                   height: height,
                   width: widget,
-                  child: Card(child: BarChartSample3()),
+                  child: Card(child: GridData()),
                 ),
                 SizedBox(
                   height: height,
                   width: widget,
-                  child: Card(child: GridData()),
+                  child: Card(child: BarChartSample3()),
                 ),
               ],
             ),
@@ -221,6 +223,14 @@ class _DashboardSummaryState extends State<DashboardSummary> {
                 height: height,
                 width: widget,
                 child: Card(
+                  child: PgAttendance(isSummaryView: true,),
+                  elevation: 0,
+                ),
+              ),
+              SizedBox(
+                height: height,
+                width: widget,
+                child: Card(
                   child: PieChartSample2(),
                   elevation: 0,
                 ),
@@ -230,14 +240,6 @@ class _DashboardSummaryState extends State<DashboardSummary> {
                 width: widget,
                 child: Card(
                   child: LineChartSample2(),
-                  elevation: 0,
-                ),
-              ),
-              SizedBox(
-                height: height,
-                width: widget,
-                child: Card(
-                  child: GridData(),
                   elevation: 0,
                 ),
               ),

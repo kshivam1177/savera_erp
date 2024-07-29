@@ -1,7 +1,6 @@
- import 'package:fl_chart/fl_chart.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../app_colors.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 
 class LineChartSample5 extends StatefulWidget {
   const LineChartSample5({
@@ -10,10 +9,10 @@ class LineChartSample5 extends StatefulWidget {
     Color? gradientColor2,
     Color? gradientColor3,
     Color? indicatorStrokeColor,
-  })  : gradientColor1 = gradientColor1 ?? AppColors.contentColorBlue,
-        gradientColor2 = gradientColor2 ?? AppColors.contentColorPink,
-        gradientColor3 = gradientColor3 ?? AppColors.contentColorRed,
-        indicatorStrokeColor = indicatorStrokeColor ?? AppColors.mainTextColor1;
+  })  : gradientColor1 = gradientColor1 ?? AppColors.navyBlue,
+        gradientColor2 = gradientColor2 ?? AppColors.pink,
+        gradientColor3 = gradientColor3 ?? AppColors.red,
+        indicatorStrokeColor = indicatorStrokeColor ?? AppColors.primary;
 
   final Color gradientColor1;
   final Color gradientColor2;
@@ -40,7 +39,7 @@ class _LineChartSample5State extends State<LineChartSample5> {
   Widget bottomTitleWidgets(double value, TitleMeta meta, double chartWidth) {
     final style = TextStyle(
       fontWeight: FontWeight.bold,
-      color: AppColors.contentColorPink,
+      color: AppColors.pink,
       fontFamily: 'Digital',
       fontSize: 18 * chartWidth / 500,
     );
@@ -245,7 +244,7 @@ class _LineChartSample5State extends State<LineChartSample5> {
               borderData: FlBorderData(
                 show: true,
                 border: Border.all(
-                  color: AppColors.borderColor,
+                  color: AppColors.navyBlue.shade200,
                 ),
               ),
             ),
