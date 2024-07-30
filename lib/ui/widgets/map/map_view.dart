@@ -10,10 +10,12 @@ import 'package:savera_erp/ui/widgets/custom/button/dx_button_fab.dart';
 
 class DxMapView extends StatefulWidget {
   final List<DxMapData> data;
+  final String title;
   final bool maxFeature = false;
 
   const DxMapView({
     required this.data,
+    required this.title,
     super.key,
   });
 
@@ -220,6 +222,33 @@ class _DxMapViewState extends State<DxMapView> {
                 onMapCreated: (GoogleMapController controller) {
                   _mapController.complete(controller);
                 },
+              ),
+              Visibility(
+                visible: widget.title.isNotEmpty,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 2,
+                          offset: const Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.title,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    )
+                  ),
+                ),
               ),
               if (_dataLoader.isCompleted == false ||
                   _mapController.isCompleted == false)

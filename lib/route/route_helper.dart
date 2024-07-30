@@ -49,14 +49,20 @@ abstract class RouteHelper {
 
   static void toMapView(
     BuildContext context, {
-    required int attendanceId,
+    required int empId,
+    required int routePlanId,
+    required DateTime fromDate,
+    required DateTime toDate,
     required String empName,
   }) {
     context.goNamed(
       PgMapView.routeName,
       queryParameters: {
-        "attendanceId": attendanceId.toString(),
+        "routePlanId": routePlanId.toString(),
         "empName": empName,
+        "empId": empId.toString(),
+        "fromDate": fromDate.toIso8601String(),
+        "toDate": toDate.toIso8601String(),
       },
     );
   }

@@ -1,6 +1,14 @@
 import 'dart:core';
 
 class DxDateUtils {
+  static DateTime getStartOfDay(DateTime date) {
+    return DateTime(date.year, date.month, date.day, 0, 0, 0);
+  }
+
+  static DateTime getEndOfDay(DateTime date) {
+    return DateTime(date.year, date.month, date.day, 23, 59, 59);
+  }
+
   static bool isSameDate(DateTime date1, DateTime date2) {
     /*
      * Compares this DateTime object to other, returning zero if the values are equal.

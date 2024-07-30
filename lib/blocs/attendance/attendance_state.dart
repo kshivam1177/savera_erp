@@ -1,25 +1,24 @@
-part of 'attendance_cubit.dart';
+part of 'attendance_bloc.dart';
 
 @immutable
 abstract class AttendanceState {}
 
 class AttendanceInitial extends AttendanceState {}
 
-class AttendanceLoaded extends AttendanceState {
-  final List<dynamic>? items;
+class RmListAttendanceLoaded extends AttendanceState {
+  final List<RmListAttendanceItem> items;
 
-  AttendanceLoaded({this.items});
+  RmListAttendanceLoaded({required this.items});
+}
+
+class RmLocationsLoaded extends AttendanceState {
+  final List<LocationItem> locations;
+
+  RmLocationsLoaded({required this.locations});
 }
 
 class AttendanceError extends AttendanceState {
   final String error;
 
   AttendanceError(this.error);
-}
-
-class AttendanceWalletError extends AttendanceState {
-  final String error;
-  final AuthResult userModel;
-
-  AttendanceWalletError(this.userModel, this.error);
 }

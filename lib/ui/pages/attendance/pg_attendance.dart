@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:savera_erp/blocs/attendance/attendance_cubit.dart';
+import 'package:savera_erp/blocs/attendance/attendance_bloc.dart';
+import 'package:savera_erp/models/attendance/rm_list_attendance_item.dart';
 import 'package:savera_erp/route/route_helper.dart';
+import 'package:savera_erp/shared/dx_date_utils.dart';
 import 'package:savera_erp/shared/helpers.dart';
+import 'package:savera_erp/ui/pages/attendance/attendance_detail.dart';
 import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_button_fab.dart';
 import 'package:savera_erp/ui/widgets/custom/table/dx_custom_table.dart';
@@ -22,22 +25,13 @@ class PgAttendance extends StatefulWidget {
 }
 
 class _PgAttendanceState extends State<PgAttendance> {
-  final AttendanceCubit attendanceCubit = AttendanceCubit();
+  final AttendanceBloc attendanceCubit = AttendanceBloc();
   final List<DxDataTableCell<String>> columns = [];
+  DateTime selectedDate = DateTime.now();
 
   @override
   void initState() {
-    attendanceCubit.getAll();
-    columns.addAll([
-      DxDataTableCell(flex: 1, value: "SRN"),
-      DxDataTableCell(flex: 4, value: "Name"),
-      if (!widget.isSummaryView) DxDataTableCell(flex: 3, value: "Designation"),
-      DxDataTableCell(flex: 3, value: "Punch In"),
-      if (!widget.isSummaryView) DxDataTableCell(flex: 3, value: "Punch Out"),
-      if (!widget.isSummaryView)
-        DxDataTableCell(flex: 3, value: "Punch Status"),
-      DxDataTableCell(flex: 2, value: "Action")
-    ]);
+    attendanceCubit.getAll(date: selectedDate);
     super.initState();
   }
 
@@ -68,81 +62,110 @@ class _PgAttendanceState extends State<PgAttendance> {
                 ),
               ],
             ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: DxCustomTable<String>(
-          scrollableAfter: 0,
-          columnDefinition: columns,
-          data: List.generate(5000, (i) {
-            return [
-              "${i + 1}",
-              "Name Value Here ${i + 1}",
-              if (!widget.isSummaryView) "Relationship Manager",
-              "${i % 2 == 0 ? DateTime.now().toString() : "N/A"}",
-              if (!widget.isSummaryView) "N/A",
-              "PUNCHED-IN",
-              if (!widget.isSummaryView) "status 2"
-            ];
-          }),
-          buildCell: (value, rowIndex, columnIndex) {
-            if (columns[columnIndex].value == "Action")
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  InkWell(
-                    child: SizedBox(
-                      width: widget.isSummaryView ? 30 : 45,
-                      child: Icon(
-                        CupertinoIcons.eye,
-                        size: 15,
-                      ),
-                    ),
-                    onTap: () {
-                      showAdaptiveDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: DxText("View", bold: true, fontSize: 18),
-                            content: DxText("Viewing details"),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text("Close"),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                  ),
-                  InkWell(
-                    child: SizedBox(
-                      width: widget.isSummaryView ? 30 : 45,
-                      child: Icon(
-                        CupertinoIcons.map_pin_ellipse,
-                        size: 15,
-                        color: Colors.green,
-                      ),
-                    ),
-                    onTap: () {
-                      // todo: change map api key
-                      RouteHelper.toMapView(
-                        context,
-                        attendanceId: 1,
-                        empName: "Name Value Here 1",
-                      );
-                    },
-                  ),
-                ],
-              );
+      body: ValueListenableBuilder<AttendanceState>(
+          valueListenable: attendanceCubit.rmListNotifier,
+          builder: (context, value, child) {
+            if (value is AttendanceInitial) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (value is AttendanceError) {
+              return Center(child: DxText(value.error));
+            }
+            final state = value as RmListAttendanceLoaded;
+            columns.clear();
+            columns.addAll([
+              DxDataTableCell(flex: 1, value: "Id"),
+              DxDataTableCell(flex: 4, value: "Name"),
+              if (!widget.isSummaryView)
+                DxDataTableCell(flex: 3, value: "Designation"),
+              DxDataTableCell(flex: 3, value: "Punch In"),
+              DxDataTableCell(flex: 3, value: "Punch Out"),
+              DxDataTableCell(flex: 2, value: "Action")
+            ]);
 
-            return DxText(value);
-          },
-        ),
-      ),
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: DxCustomTable<String>(
+                scrollableAfter: 0,
+                columnDefinition: columns,
+                data: state.items.map((e) {
+                  return [
+                    "${e.staffId}",
+                    e.staffName,
+                    if (!widget.isSummaryView) e.staffDesignation,
+                    e.punchInDate,
+                    e.punchOutDate,
+                    ""
+                  ];
+                }).toList(),
+                buildCell: (value, rowIndex, columnIndex) {
+                  if (columns[columnIndex].value == "Action")
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          child: SizedBox(
+                            width: widget.isSummaryView ? 30 : 45,
+                            child: Icon(
+                              CupertinoIcons.eye,
+                              size: 15,
+                            ),
+                          ),
+                          onTap: () {
+                            showAdaptiveDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: DxText(
+                                    "Details of ${state.items[rowIndex].staffName}",
+                                    bold: true,
+                                    fontSize: 18,
+                                  ),
+                                  content: AttendanceDetail(
+                                    item: state.items[rowIndex],
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text("Close"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        ),
+                        InkWell(
+                          child: SizedBox(
+                            width: widget.isSummaryView ? 30 : 45,
+                            child: Icon(
+                              CupertinoIcons.map_pin_ellipse,
+                              size: 15,
+                              color: Colors.green,
+                            ),
+                          ),
+                          onTap: () {
+                            RouteHelper.toMapView(
+                              context,
+                              empId: state.items[rowIndex].staffId,
+                              fromDate: DxDateUtils.getStartOfDay(selectedDate),
+                              toDate: DxDateUtils.getEndOfDay(selectedDate),
+                              routePlanId: state.items[rowIndex].routePlanId,
+                              empName: state.items[rowIndex].staffName,
+                            );
+                          },
+                        ),
+                      ],
+                    );
+
+                  return DxText(value);
+                },
+              ),
+            );
+          }),
       bottomNavigationBar: !widget.isSummaryView
           ? null
           : BottomAppBar(

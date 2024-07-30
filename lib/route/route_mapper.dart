@@ -63,7 +63,10 @@ abstract class RouteMapper {
           return _pageTransition(
             key: state.pageKey,
             child: PgMapView(
-              empId: int.parse("${qpms["attendanceId"]}"),
+              empId: int.parse("${qpms["empId"]}"),
+              fromDate: DateTime.parse("${qpms["fromDate"]}"),
+              toDate: DateTime.parse("${qpms["toDate"]}"),
+              routePlanId: int.parse("${qpms["routePlanId"]}"),
               empName: "${qpms["empName"]}",
             ),
           );

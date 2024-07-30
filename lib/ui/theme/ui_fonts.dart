@@ -1,5 +1,5 @@
 abstract class AppFonts {
-  static const String textRegular = 'ProximaNovaRegular';
-  static const String textBold = 'ProximaNovaBold';
-  static const String textSemiBold = 'ProximaNovaSemiBold';
+  static const String textRegular = 'AppFontThin';
+  static const String textBold = 'AppFontSemiBold';
+  static const String textSemiBold = 'AppFontRegular';
 }

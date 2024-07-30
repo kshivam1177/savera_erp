@@ -74,13 +74,13 @@ flutter:
     - assets/lottie/
 
   fonts:
-    - family: ProximaNovaRegular
+    - family: AppFontRegular
       fonts:
-        - asset: assets/fonts/ProximaNovaRegular.otf
-    - family: ProximaNovaSemiBold
+        - asset: assets/fonts/Roboto-Regular.ttf
+    - family: AppFontSemiBold
       fonts:
-        - asset: assets/fonts/ProximaNovaSemibold.otf
-    - family: ProximaNovaBold
+        - asset: assets/fonts/Roboto-Medium.ttf
+    - family: AppFontThin
       fonts:
-        - asset: assets/fonts/ProximaNovaBold.otf
+        - asset: assets/fonts/Roboto-Light.ttf
 
