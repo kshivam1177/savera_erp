@@ -1,18 +1,21 @@
 import 'package:flutter/widgets.dart';
 
-import '../custom/text/dx_text.dart';
+import 'text/dx_text.dart';
 
 @immutable
 class DxCenterText extends StatelessWidget {
-  final String? displayText;
+  final String text;
 
-  const DxCenterText({super.key, this.displayText = "Record not found"});
+  const DxCenterText({
+    super.key,
+    this.text = "Record not found",
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: DxText(
-        displayText!,
+        text,
         fontSize: 18,
       ),
     );

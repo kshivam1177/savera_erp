@@ -74,13 +74,18 @@ flutter:
     - assets/lottie/
 
   fonts:
-    - family: AppFontRegular
-      fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
-    - family: AppFontSemiBold
-      fonts:
-        - asset: assets/fonts/Roboto-Medium.ttf
     - family: AppFontThin
       fonts:
-        - asset: assets/fonts/Roboto-Light.ttf
+        - asset: assets/fonts/Montserrat-Light.ttf
 
+    - family: AppFontRegular
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+
+    - family: AppFontSemiBold
+      fonts:
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+
+    - family: AppFontBold
+      fonts:
+        - asset: assets/fonts/Montserrat-Bold.ttf

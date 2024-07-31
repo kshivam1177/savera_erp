@@ -76,7 +76,6 @@ abstract class Responsive {
 
     double scaleFactor = MediaQuery.of(context).textScaleFactor;
 
-
     // old approch
     // if (width <= 320) {
     //   nSize = size *  0.7;
@@ -122,7 +121,6 @@ abstract class Responsive {
     //     nSize = size * 1.1;
     //   }
     // }
-
     if (scaleFactor > 1) {
       if (width <= 320) {
         nSize = size * 0.5;

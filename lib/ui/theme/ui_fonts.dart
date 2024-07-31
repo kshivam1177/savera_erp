@@ -1,5 +1,6 @@
 abstract class AppFonts {
-  static const String textRegular = 'AppFontThin';
-  static const String textBold = 'AppFontSemiBold';
-  static const String textSemiBold = 'AppFontRegular';
+  static const String thin = 'AppFontThin';
+  static const String regular = 'AppFontRegular';
+  static const String bold = 'AppFontBold';
+  static const String semiBold = 'AppFontSemiBold';
 }

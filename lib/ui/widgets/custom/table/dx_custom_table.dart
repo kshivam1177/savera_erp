@@ -8,12 +8,16 @@ class DxCustomTable<T> extends StatefulWidget {
     required this.data,
     required this.buildCell,
     this.scrollableAfter = -1,
+    this.searchQuery,
+    this.searchFilter,
   });
 
   final List<DxDataTableCell<String>> columnDefinition;
   final List<List<T>> data;
   final Widget Function(T, int, int) buildCell;
   final int scrollableAfter;
+  final ValueNotifier<String>? searchQuery;
+  final bool Function(List<T>, int)? searchFilter;
 
   @override
   State<DxCustomTable<T>> createState() => _DxCustomTableState<T>();
@@ -21,9 +25,27 @@ class DxCustomTable<T> extends StatefulWidget {
 
 class _DxCustomTableState<T> extends State<DxCustomTable<T>> {
   final ScrollController controller = ScrollController();
+  List<List<T>> filteredData = [];
 
   @override
   void initState() {
+    filteredData = widget.data;
+    if (widget.searchFilter != null) {
+      widget.searchQuery?.addListener(() {
+        List<List<T>> copyItems = List.from(widget.data);
+        filteredData = [];
+        if (widget.searchQuery!.value.isNotEmpty) {
+          for (int i = 0; i < copyItems.length; i++) {
+            if (widget.searchFilter!(copyItems[i], i)) {
+              filteredData.add(copyItems[i]);
+            }
+          }
+        } else {
+          filteredData = copyItems;
+        }
+        setState(() {});
+      });
+    }
     super.initState();
   }
 
@@ -34,6 +56,7 @@ class _DxCustomTableState<T> extends State<DxCustomTable<T>> {
       child: Column(
         children: [
           DxDataTableRow<String>(
+            key: ValueKey(filteredData.hashCode),
             columns: widget.columnDefinition,
             isHeader: true,
             controller: controller,
@@ -42,14 +65,15 @@ class _DxCustomTableState<T> extends State<DxCustomTable<T>> {
               return DxText(
                 data,
                 bold: true,
+                fontSize: 14,
               );
             },
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: widget.data.length,
+              itemCount: filteredData.length,
               itemBuilder: (context, rowIndex) {
-                final rowItems = widget.data[rowIndex];
+                final rowItems = filteredData[rowIndex];
                 return DxDataTableRow<T>(
                   controller: controller,
                   cellPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),

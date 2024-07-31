@@ -4,7 +4,8 @@ class RadioItem extends StatelessWidget {
   final RadioModel? radioModel;
   final double roundedBorderRadius;
 
-  const RadioItem({super.key,
+  const RadioItem({
+    super.key,
     this.radioModel,
     this.roundedBorderRadius = 35,
   });

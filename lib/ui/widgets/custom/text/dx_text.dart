@@ -11,7 +11,7 @@ class DxTextWhite extends StatelessWidget {
   const DxTextWhite(
     this.text, {
     super.key,
-    this.fontSize = 16,
+    this.fontSize = 14,
     this.textAlign,
     this.weight,
   });
@@ -46,7 +46,7 @@ class DxTextBlack extends StatelessWidget {
     this.maxLine = 1,
     this.overflow = TextOverflow.ellipsis,
     this.bold = false,
-    this.fontSize = 16,
+    this.fontSize = 14,
     this.fontWeight = FontWeight.w600,
   });
 
@@ -84,7 +84,7 @@ class DxText extends StatelessWidget {
     this.bold = false,
     this.maxLines = 1,
     this.textAlign,
-    this.fontSize = 16,
+    this.fontSize = 14,
     this.lineThrough = false,
     this.overflow = TextOverflow.ellipsis,
     this.textColor = Colors.black,
@@ -128,7 +128,7 @@ class DxTextRed extends StatelessWidget {
     this.text, {
     super.key,
     this.bold = false,
-    this.size = 16,
+    this.size = 14,
     this.textAlign,
   });
 
@@ -155,7 +155,7 @@ class DxTextGreen extends StatelessWidget {
     this.text, {
     super.key,
     this.bold = false,
-    this.fontSize = 16,
+    this.fontSize = 14,
     this.textAlign,
   });
 
@@ -182,7 +182,7 @@ class DxTextPrimary extends StatelessWidget {
     this.text, {
     super.key,
     this.bold = false,
-    this.size = 16,
+    this.size = 14,
     this.textAlign = TextAlign.left,
   });
 
@@ -211,8 +211,8 @@ class DxReachPrimary extends StatelessWidget {
   const DxReachPrimary(
     this.text, {
     super.key,
-    this.textSize = 17,
-    this.subTextSize = 14,
+    this.textSize = 14,
+    this.subTextSize = 12,
     this.textAlign = TextAlign.left,
     this.subText = "",
     this.boldText = true,

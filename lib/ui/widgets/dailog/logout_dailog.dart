@@ -12,19 +12,19 @@ class LogoutDialog extends StatelessWidget {
       title: const DxTextBlack(
         "Logout Confirmation !",
         bold: true,
-        fontSize: 18,
+        fontSize: 16,
       ),
       content: const DxTextBlack(
         "Are you sure you want to log out?",
         bold: false,
-        fontSize: 16,
+        fontSize: 14,
         maxLine: 4,
       ),
       actions: <Widget>[
         TextButton(
           child: const DxText(
             "Cancel",
-            fontSize: 18,
+            fontSize: 14,
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
@@ -32,7 +32,7 @@ class LogoutDialog extends StatelessWidget {
         TextButton(
           child: const DxTextGreen(
             "Logout",
-            fontSize: 18,
+            fontSize: 14,
           ),
           onPressed: () async {
             await PrefHandler.clearPref();

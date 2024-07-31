@@ -43,7 +43,7 @@ class _BottomSheetDateFilterState extends State<BottomSheetDateFilter>
               "Apply Date Filter",
               style: TextStyle(
                 color: Colors.black,
-                fontFamily: AppFonts.textSemiBold,
+                fontFamily: AppFonts.semiBold,
                 fontSize: 18,
               ),
             ),

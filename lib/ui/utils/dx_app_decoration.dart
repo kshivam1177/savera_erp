@@ -134,7 +134,7 @@ class AppStyles {
         fontWeight: isSemiBold ? FontWeight.w600 : fontWeight,
         color: color,
         fontSize: fontSize,
-        fontFamily: isSemiBold ? AppFonts.textSemiBold : AppFonts.textRegular,
+        fontFamily: isSemiBold ? AppFonts.semiBold : AppFonts.regular,
       );
 
   static TextStyle getTextStrikeThrough(
