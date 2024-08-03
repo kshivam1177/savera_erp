@@ -22,9 +22,11 @@ class PgHome extends StatefulWidget {
 }
 
 class PgHomeState extends State<PgHome> {
+  List<ItemData> menus = [];
+
   @override
   void initState() {
-    HomeCubit().loadLocalBasicData();
+    menus = HomeCubit().getMenus();
     super.initState();
   }
 
@@ -35,7 +37,8 @@ class PgHomeState extends State<PgHome> {
       appBar: HomeAppBar(),
       body: DashboardSummary(),
       drawer: DxDrawer(
-        onItemTapped: (item) {
+        menus: menus,
+        onItemTapped: (groupId, item) {
           try {
             RouteHelper.toAny(context, item.route);
           } catch (e) {

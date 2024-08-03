@@ -37,16 +37,25 @@ class LocationHelpers {
     }
   }
 
-  static double calculateDistance(LatLng loc1, LatLng loc2) {
-    var p = 0.017453292519943295;
-    var c = cos;
-    var a = 0.5 -
-        c((loc2.latitude - loc1.latitude) * p) / 2 +
-        c(loc1.latitude * p) *
-            c(loc2.latitude * p) *
-            (1 - c((loc2.longitude - loc1.longitude) * p)) /
+  static double calculateDistance(
+    LatLng loc1,
+    LatLng loc2, {
+    bool round = false,
+  }) {
+    var cosFun = cos;
+    double p = 0.017453292519943295;
+    double a = 0.5 -
+        cosFun((loc2.latitude - loc1.latitude) * p) / 2 +
+        cosFun(loc1.latitude * p) *
+            cosFun(loc2.latitude * p) *
+            (1 - cosFun((loc2.longitude - loc1.longitude) * p)) /
             2;
     double originalDistance = 12742 * asin(sqrt(a));
-    return roundDistance(originalDistance, decimalPlaces: 2);
+
+    // $originalDistance => is in kilometers
+    if (round) {
+      return roundDistance(originalDistance, decimalPlaces: 2);
+    }
+    return originalDistance;
   }
 }

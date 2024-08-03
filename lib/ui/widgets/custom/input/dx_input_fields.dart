@@ -22,6 +22,8 @@ class DxInputText extends StatefulWidget {
   final Icon? prefixIcon;
   final bool showDefaultPrefixIcon;
   final double? hintTextSize;
+  final double? textSize;
+  final double? borderWidth;
   final bool autofocus;
   final bool obscureText;
   final bool isPreSelectedTextMode;
@@ -34,6 +36,8 @@ class DxInputText extends StatefulWidget {
     required this.controller,
     this.onClick,
     this.hintTextSize,
+    this.textSize,
+    this.borderWidth,
     this.onChanged,
     this.readOnly = false,
     this.sufixIcon,
@@ -135,7 +139,8 @@ class _DxInputTextState extends State<DxInputText> {
                   hintTextSize: widget.hintTextSize,
                   showDefaultPrefixIcon: widget.showDefaultPrefixIcon,
                   hint: widget.hintText,
-                  textSize: 14,
+                  textSize: widget.textSize ?? 16,
+                  borderWidth: widget.borderWidth ?? 1.2,
                   radius: 3,
                   prefixIcon: widget.prefixIcon,
                   suffixIcon: widget.sufixIcon,

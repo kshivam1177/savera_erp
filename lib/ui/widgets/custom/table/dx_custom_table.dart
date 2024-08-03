@@ -14,7 +14,7 @@ class DxCustomTable<T> extends StatefulWidget {
 
   final List<DxDataTableCell<String>> columnDefinition;
   final List<List<T>> data;
-  final Widget Function(T, int, int) buildCell;
+  final DxCellView Function(T, int, int) buildCell;
   final int scrollableAfter;
   final ValueNotifier<String>? searchQuery;
   final bool Function(List<T>, int)? searchFilter;
@@ -62,10 +62,12 @@ class _DxCustomTableState<T> extends State<DxCustomTable<T>> {
             controller: controller,
             cellPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
             buildCell: (data, index) {
-              return DxText(
-                data,
-                bold: true,
-                fontSize: 14,
+              return DxCellView(
+                child: DxText(
+                  data,
+                  bold: true,
+                  fontSize: 14,
+                ),
               );
             },
           ),
@@ -99,7 +101,7 @@ class _DxCustomTableState<T> extends State<DxCustomTable<T>> {
 
 class DxDataTableRow<T> extends StatelessWidget {
   final List<DxDataTableCell<T>> columns;
-  final Widget Function(T, int) buildCell;
+  final DxCellView Function(T, int) buildCell;
   final EdgeInsets cellPadding;
   final bool isHeader;
   final ScrollController controller;
@@ -123,11 +125,12 @@ class DxDataTableRow<T> extends StatelessWidget {
   }
 
   Widget getCellView(DxDataTableCell<T> cellData, int index) {
+    final cellView = buildCell(cellData.value, index);
     return Expanded(
       flex: cellData.flex,
       child: Container(
-        child: buildCell(cellData.value, index),
-        padding: cellPadding,
+        child: cellView.child,
+        padding: isHeader ? cellPadding : cellView.padding ?? cellPadding,
         decoration: BoxDecoration(
           color: isHeader ? Colors.blue.shade50 : Colors.transparent,
           border: Border.all(
@@ -147,5 +150,15 @@ class DxDataTableCell<T> {
   const DxDataTableCell({
     required this.flex,
     required this.value,
+  });
+}
+
+class DxCellView {
+  final Widget child;
+  final EdgeInsets? padding;
+
+  const DxCellView({
+    required this.child,
+    this.padding,
   });
 }

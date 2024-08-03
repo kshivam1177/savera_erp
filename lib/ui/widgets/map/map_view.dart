@@ -43,6 +43,8 @@ class _DxMapViewState extends State<DxMapView> {
   late Uint8List byteData;
   late bool animating = false;
 
+  late double traveledDistance = 0;
+
   final List<LatLng> locations = [];
 
   Future<Uint8List> _createYellowDotIcon() async {
@@ -65,6 +67,15 @@ class _DxMapViewState extends State<DxMapView> {
   @override
   void initState() {
     locations.addAll(widget.data.map((e) => e.location).toList());
+
+    traveledDistance = 0;
+    for (int i = 0; i < locations.length - 1; i++) {
+      traveledDistance += LocationHelpers.calculateDistance(
+        locations[i],
+        locations[i + 1],
+        round: false,
+      );
+    }
 
     markerPosition = locations.first;
     pos1 = locations.first;
@@ -118,7 +129,11 @@ class _DxMapViewState extends State<DxMapView> {
   void animation() {
     final LatLng latLng = locations[animateIndex];
     i = 0;
-    double distance = LocationHelpers.calculateDistance(markerPosition, latLng);
+    double distance = LocationHelpers.calculateDistance(
+      markerPosition,
+      latLng,
+      round: true,
+    );
     numDeltas = LocationHelpers.calculateNumberOfDeltas(distance);
 
     deltaLat = (latLng.latitude - markerPosition.latitude) / numDeltas;
@@ -240,13 +255,31 @@ class _DxMapViewState extends State<DxMapView> {
                         ),
                       ],
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.title,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    )
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 3,
+                            horizontal: 8,
+                          ),
+                          child: Text(
+                            widget.title,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 3,
+                            horizontal: 8,
+                          ),
+                          child: Text(
+                            "Total Travel Distance: ${traveledDistance.toStringAsFixed(2)} km",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

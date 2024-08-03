@@ -1,9 +1,7 @@
 import 'package:savera_erp/models/api_response.model.dart';
 import 'package:savera_erp/models/attendance/rm_list_attendance_item.dart';
-import 'package:savera_erp/models/auth_result.model.dart';
 import 'package:savera_erp/services/rest_client/app_urls.dart';
 import 'package:savera_erp/services/rest_client/rest_client_dio.dart';
-import 'package:savera_erp/services/storage/preference/preference_handler.dart';
 import 'package:savera_erp/shared/dx_date_utils.dart';
 import 'package:savera_erp/shared/helpers.dart';
 

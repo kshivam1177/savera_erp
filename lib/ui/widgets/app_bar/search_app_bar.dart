@@ -61,6 +61,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: false,
       backgroundColor: isSearching ? Colors.white : colorScheme.primary,
       // brightness: isSearching ? Brightness.light : Brightness.dark,
       elevation: isSearching ? 4 : widget.elevation,

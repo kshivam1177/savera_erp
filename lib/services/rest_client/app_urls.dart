@@ -15,6 +15,10 @@ class AppUrls {
     return '${_baseURL}app-rm/attendance/get-rm-list-for-attendance';
   }
 
+  static String get getRmListForMobileLogin {
+    return '${_baseURL}erp/staff/get-rm-list?is-mobile-login=true';
+  }
+
   static String get getLocations {
     return '${_baseURL}app-rm/route-plan/get-locations';
   }

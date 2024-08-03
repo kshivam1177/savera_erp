@@ -24,14 +24,7 @@ InputDecoration dxTextFieldDecoration(
 }) {
   borderColor ??= AppColors.black.shade100;
   focusColor ??= AppColors.primary;
-  // final _defaultBorderWidth = 1.2;
-  const focusedBorderWidth = 1.7;
-  // borderColor = Colors.green;
-  // focusColor = Colors.red;
-  //Color errorBorder = Colors.red;
-
-  //borderColor = Colors.red;
-  //borderColor = (errorText != null && errorText.isNotEmpty ? Colors.red : borderColor);
+  double focusedBorderWidth = borderWidth * 1.5;
   return InputDecoration(
     prefixIcon: prefixIcon != null || showDefaultPrefixIcon
         ? SizedBox(
@@ -175,7 +168,7 @@ class AppStyles {
       TextStyle(
         // fontFamily: AppFonts.textRegular,
         fontWeight: isSemiBold ? FontWeight.w800 : FontWeight.w500,
-        color: AppColors.accent,
+        color: AppColors.green,
         fontSize: fontSize,
       );
 

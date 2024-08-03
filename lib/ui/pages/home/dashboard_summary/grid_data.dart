@@ -24,7 +24,7 @@ class GridData extends StatelessWidget {
         ];
       }),
       buildCell: (value, rowIndex, columnIndex) {
-        return DxText(value);
+        return DxCellView(child: DxText(value));
       },
     );
   }

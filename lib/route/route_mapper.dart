@@ -71,6 +71,16 @@ abstract class RouteMapper {
             ),
           );
         },
+      ),
+      GoRoute(
+        path: PgRM.routeName,
+        name: PgRM.routeName,
+        pageBuilder: (context, state) {
+          return _pageTransition(
+            key: state.pageKey,
+            child: PgRM(),
+          );
+        },
       )
     ],
   );

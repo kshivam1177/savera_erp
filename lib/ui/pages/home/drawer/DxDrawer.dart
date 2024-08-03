@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:savera_erp/ui/pages/attendance/pg_attendance.dart';
 import 'package:savera_erp/ui/widgets/custom/dx_logo.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 class DxDrawer extends StatefulWidget {
-  final ValueChanged<ItemData> onItemTapped;
+  final void Function(int, ItemData) onItemTapped;
+  final List<ItemData> menus;
 
   const DxDrawer({
+    required this.menus,
     required this.onItemTapped,
     super.key,
   });
@@ -17,84 +17,8 @@ class DxDrawer extends StatefulWidget {
 }
 
 class _DxDrawerState extends State<DxDrawer> {
-  // ItemData? _selectedItem;
-  List<ItemData> menus = [];
-
-  void _onItemTapped(ItemData item) {
-    // _selectedItem = item;
-    widget.onItemTapped(item);
-    // setState(() {});
-  }
-
   @override
   void initState() {
-    menus = [
-      ItemData(
-        title: 'Home',
-        route: '/home',
-        leading: Icon(CupertinoIcons.home, size: 20),
-        onTap: (item) {
-          _onItemTapped(item);
-          Navigator.pop(context);
-        },
-      ),
-      ItemData(
-        title: 'Attendance',
-        route: PgAttendance.routeName,
-        leading: Icon(CupertinoIcons.checkmark_rectangle, size: 20),
-        onTap: (item) {
-          _onItemTapped(item);
-          Navigator.pop(context);
-        },
-      ),
-      ItemData(
-        title: 'Tracking',
-        route: '/tracking',
-        leading: Icon(Icons.location_on_outlined, size: 25),
-        onTap: (item) {
-          _onItemTapped(item);
-          Navigator.pop(context);
-        },
-      ),
-      ItemData(
-        title: 'Profile',
-        route: '/profile',
-        leading: Icon(CupertinoIcons.person, size: 20),
-        onTap: (item) {
-          _onItemTapped(item);
-          Navigator.pop(context);
-        },
-      ),
-      ItemData(
-        title: 'Settings',
-        route: '/settings',
-        leading: Icon(CupertinoIcons.settings, size: 20),
-        onTap: (item) {
-          _onItemTapped(item);
-          Navigator.pop(context);
-        },
-        items: [
-          ItemData(
-            title: 'General',
-            route: '/settings/general',
-            leading: Icon(CupertinoIcons.square_grid_2x2, size: 20),
-            onTap: (item) {
-              _onItemTapped(item);
-              Navigator.pop(context);
-            },
-          ),
-          ItemData(
-            title: 'Tracking',
-            route: '/settings/tracking',
-            leading: Icon(CupertinoIcons.location, size: 20),
-            onTap: (item) {
-              _onItemTapped(item);
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      )
-    ];
     super.initState();
   }
 
@@ -136,8 +60,11 @@ class _DxDrawerState extends State<DxDrawer> {
                 padding: EdgeInsets.zero,
                 children: [
                   ItemsGroup(
+                    id: 0,
+                    onTapped: widget.onItemTapped,
                     items: [
                       ItemData(
+                        id: 0,
                         title: 'Welcome Shivam',
                         route: '',
                       ),
@@ -146,7 +73,9 @@ class _DxDrawerState extends State<DxDrawer> {
                   ),
                   SizedBox(height: 10),
                   ItemsGroup(
-                    items: menus,
+                    id: 1,
+                    onTapped: widget.onItemTapped,
+                    items: widget.menus,
                     borderColor: Colors.grey.shade300,
                   ),
                 ],
@@ -168,10 +97,14 @@ class ItemsGroup extends StatelessWidget {
   final Color borderColor;
   final double borderRadius;
   final double borderWidth;
+  final int id;
+  final void Function(int, ItemData)? onTapped;
 
   const ItemsGroup({
     super.key,
     required this.items,
+    required this.id,
+    required this.onTapped,
     this.borderColor = Colors.grey,
     this.borderRadius = 10,
     this.borderWidth = 0.7,
@@ -185,7 +118,12 @@ class ItemsGroup extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       child: Column(
-        children: items.map((e) => ItemView(item: e)).toList(),
+        children: items.map((e) {
+          return ItemView(
+            item: e,
+            onTapped: (item) => onTapped?.call(id, item),
+          );
+        }).toList(),
       ),
       decoration: BoxDecoration(
         border: Border.all(
@@ -200,8 +138,13 @@ class ItemsGroup extends StatelessWidget {
 
 class ItemView extends StatelessWidget {
   final ItemData item;
+  final ValueChanged<ItemData> onTapped;
 
-  const ItemView({super.key, required this.item});
+  const ItemView({
+    super.key,
+    required this.item,
+    required this.onTapped,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -215,13 +158,16 @@ class ItemView extends StatelessWidget {
         children: item.items.map((e) {
           return Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: ItemView(item: e),
+            child: ItemView(
+              item: e,
+              onTapped: onTapped,
+            ),
           );
         }).toList(),
       );
     return ListTile(
       title: DxText(item.title),
-      onTap: item.onTap == null ? null : () => item.onTap!.call(item),
+      onTap: () => onTapped.call(item),
       leading: item.leading,
       trailing: item.trailing,
     );
@@ -233,15 +179,15 @@ class ItemData {
   final Widget? trailing;
   final String title;
   final String route;
-  final ValueSetter<ItemData>? onTap;
   final List<ItemData> items;
+  final int id;
 
   ItemData({
+    required this.id,
     required this.title,
     required this.route,
     this.leading,
     this.trailing,
-    this.onTap,
     this.items = const [],
   });
 }

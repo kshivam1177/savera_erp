@@ -4,11 +4,9 @@ import 'package:savera_erp/blocs/attendance/attendance_bloc.dart';
 import 'package:savera_erp/models/attendance/rm_list_attendance_item.dart';
 import 'package:savera_erp/route/route_helper.dart';
 import 'package:savera_erp/shared/dx_date_utils.dart';
-import 'package:savera_erp/shared/helpers.dart';
 import 'package:savera_erp/ui/pages/attendance/attendance_detail.dart';
 import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/app_bar/search_app_bar.dart';
-import 'package:savera_erp/ui/widgets/bottom_sheets/bottom_sheet_date_filter.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_button_fab.dart';
 import 'package:savera_erp/ui/widgets/custom/date_filter.dart';
 import 'package:savera_erp/ui/widgets/custom/dx_center_text.dart';
@@ -110,21 +108,24 @@ class _PgAttendanceState extends State<PgAttendance> {
               }).toList(),
               buildCell: (value, rowIndex, columnIndex) {
                 if (columns[columnIndex].value == "Action")
-                  return widget.isSummaryView
-                      ? FittedBox(
-                          child: _AttendanceActionItems(
+                  return DxCellView(
+                    child: widget.isSummaryView
+                        ? FittedBox(
+                            child: _AttendanceActionItems(
+                              isSummaryView: widget.isSummaryView,
+                              item: state.items[rowIndex],
+                              dateTime: selectedDate,
+                            ),
+                          )
+                        : _AttendanceActionItems(
                             isSummaryView: widget.isSummaryView,
                             item: state.items[rowIndex],
                             dateTime: selectedDate,
                           ),
-                        )
-                      : _AttendanceActionItems(
-                          isSummaryView: widget.isSummaryView,
-                          item: state.items[rowIndex],
-                          dateTime: selectedDate,
-                        );
+                    padding: EdgeInsets.zero,
+                  );
 
-                return DxText(value, fontSize: 14);
+                return DxCellView(child: DxText(value, fontSize: 14));
               },
             ),
           );
