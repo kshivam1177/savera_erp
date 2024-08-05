@@ -38,7 +38,7 @@ class RmListLoginItem {
       staffLocation: json['staff_location'],
       staffDesignation: json['staff_designation'],
       joinDate: json['join_date'],
-      staffPhone: json['staff_phone'],
+      staffPhone: "${json['staff_phone']}",
       userTypeId: json['user_type_id'],
       userTypeName: json['user_type_name'],
       loginUserName: json['login_user_name'] ?? "",
