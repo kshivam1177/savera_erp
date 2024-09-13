@@ -40,6 +40,7 @@ class PgHomeState extends State<PgHome> {
         menus: menus,
         onItemTapped: (groupId, item) {
           try {
+            Navigator.of(context).pop();
             RouteHelper.toAny(context, item.route);
           } catch (e) {
             print(e);

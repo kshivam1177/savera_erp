@@ -31,8 +31,8 @@ class _PgLoginState extends State<PgLogin> {
   @override
   void initState() {
     if (kDebugMode) {
-      userName.text = "kshivam1177";
-      password.text = "123456789";
+      userName.text = "fastrack";
+      password.text = "fast@track";
     }
     loginBloc.stateNotifier.addListener(() {
       final currentState = loginBloc.stateNotifier.value;
@@ -120,14 +120,20 @@ class _LoginBody extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 1,
-                    child: loginBody(
-                      context,
-                      padding: EdgeInsets.only(
-                        left: 80.0,
-                        right: 80.0,
-                        top: 100,
-                        bottom: 100,
-                      ),
+                    child: Stack(
+                      children: [
+                        loginBody(
+                          context,
+                          padding: EdgeInsets.only(
+                            left: 80.0,
+                            right: 80.0,
+                            top: 100,
+                            bottom: 100,
+                          ),
+                        ),
+                        if (isLoading)
+                          Center(child: const CircularProgressIndicator()),
+                      ],
                     ),
                   ),
                 ],
@@ -143,14 +149,20 @@ class _LoginBody extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 1,
-                    child: loginBody(
-                      context,
-                      padding: EdgeInsets.only(
-                        left: 150.0,
-                        right: 150.0,
-                        top: 100,
-                        bottom: 100,
-                      ),
+                    child: Stack(
+                      children: [
+                        loginBody(
+                          context,
+                          padding: EdgeInsets.only(
+                            left: 150.0,
+                            right: 150.0,
+                            top: 100,
+                            bottom: 100,
+                          ),
+                        ),
+                        if (isLoading)
+                          Center(child: const CircularProgressIndicator()),
+                      ],
                     ),
                   ),
                 ],
@@ -249,15 +261,13 @@ class _LoginBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 15.0),
-                DxOutlineButton(
-                  "  Forgot Password ?  ",
-                  onPressed: () {
-                    Helpers.toast(context, msg: "Forgot Password Clicked");
-                  },
-                  size: const Size(double.minPositive, 38),
-                  textColor: Theme.of(context).colorScheme.secondary,
-                ),
-                const SizedBox(height: 45.0),
+                // DxOutlineButton(
+                //   "  Forgot Password ?  ",
+                //   onPressed: () => handleForgotPassword(context),
+                //   size: const Size(double.minPositive, 38),
+                //   textColor: Theme.of(context).colorScheme.secondary,
+                // ),
+                // const SizedBox(height: 45.0),
               ],
             ),
           ),
@@ -274,4 +284,76 @@ class _LoginBody extends StatelessWidget {
       ),
     );
   }
+
+  // Future<void> handleForgotPassword(BuildContext context) async {
+  //   showAdaptiveDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         title: DxText(
+  //           "Forgot Password?",
+  //           bold: true,
+  //           fontSize: 16,
+  //         ),
+  //         content: Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             const DxText(
+  //               "Please enter your user name, we will send you an password reset otp to your registered phone number.",
+  //               fontSize: 14,
+  //             ),
+  //             const SizedBox(height: 10),
+  //             DxFlatButtonAccent(
+  //               text: "OK",
+  //               onPressed: () {
+  //                 Navigator.of(context).pop();
+  //               },
+  //             ),
+  //           ],
+  //         ),
+  //         actions: [
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: DxTextRed("Cancel"),
+  //           ),
+  //           ValueListenableBuilder<RMCreateState>(
+  //             valueListenable: widget.bloc.rmCreateNotifier,
+  //             builder: (context, value, _) {
+  //               return TextButton(
+  //                 onPressed: value is RMCreating
+  //                     ? null
+  //                     : () {
+  //                         widget.bloc.markMobileUserInactive(
+  //                           context,
+  //                           widget.item,
+  //                         );
+  //                       },
+  //                 child: value is RMCreating
+  //                     ? Container(
+  //                         height: 20,
+  //                         width: 20,
+  //                         color: AppColors.white.withOpacity(0.6),
+  //                         padding: EdgeInsets.all(2),
+  //                         margin: EdgeInsets.symmetric(horizontal: 20),
+  //                         child: Center(
+  //                           child: CircularProgressIndicator(
+  //                             strokeWidth: 2,
+  //                           ),
+  //                         ),
+  //                       )
+  //                     : DxTextGreen(
+  //                         widget.item.loginInactiveOn.isNotEmpty
+  //                             ? "Set Active"
+  //                             : "Set InActive",
+  //                       ),
+  //               );
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 }

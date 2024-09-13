@@ -1,43 +1,17 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class DeviceInfo {
   static bool get isDeviceIOS => defaultTargetPlatform == TargetPlatform.iOS;
 
   static String get platformName {
+    if (kIsWeb) return "WEB_ERP";
     switch (defaultTargetPlatform) {
       case TargetPlatform.iOS:
-        return "RM_IOS";
       case TargetPlatform.android:
-        return "RM_ANDROID";
+        return "APP_ERP";
       default:
-        // return "RM_WEB";
-        return "RM_ANDROID";
+        return "WEB_ERP";
     }
-  }
-
-  static getDeviceIMEI() async => "ImeiPlugin.getImei";
-
-  static Future<String> getDeviceName() async {
-    String receivedDeviceName = "";
-    if (Platform.isAndroid) {
-      // final osDetails = await UtilsChannel().getOsDetail();
-      // if (osDetails.containsKey("device")) {
-      //   receivedDeviceName += osDetails["device"];
-      // }
-      // if (osDetails.containsKey("brand")) {
-      //   receivedDeviceName += osDetails["brand"];
-      // }
-      // if (osDetails.containsKey("brandModel")) {
-      //   receivedDeviceName += osDetails["brandModel"];
-      // }
-      // if (osDetails.containsKey("brandManufacturer")) {
-      //   receivedDeviceName += osDetails["brandManufacturer"];
-      // }
-    }
-
-    debugPrint('[ Running on Device : $receivedDeviceName ]');
-    return receivedDeviceName;
   }
 }

@@ -1,11 +1,15 @@
 class AppUrls {
-  static String get _baseURL => "http://223.235.64.210:9091/erp-api-v1/";
+  static String get _baseURL => "https://saverainterio.in/erp-api-v1/";
 
   //-------------------------------------- actual urls --------------------------------------
 
   static String get mediaUpload => "${_baseURL}main/media/upload";
 
   static String get login => "${_baseURL}main/auth/login";
+
+  static String get createUser => "${_baseURL}main/auth/register-user";
+
+  static String get setInactive => "${_baseURL}main/auth/toggle-active-inactive";
 
   static String get getUser => '${_baseURL}main/auth/get-user';
 

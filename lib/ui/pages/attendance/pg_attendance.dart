@@ -46,7 +46,7 @@ class _PgAttendanceState extends State<PgAttendance> {
           : SearchAppBar(
               title: "Attendance",
               hintText: "Search staff by name...",
-              showBackButton: false,
+              // showBackButton: false,
               actionBtns: [
                 DatePicker(
                   onSelected: (date) {
@@ -177,7 +177,6 @@ class _AttendanceActionItems extends StatelessWidget {
     required this.isSummaryView,
     required this.item,
     required this.dateTime,
-    super.key,
   });
 
   @override

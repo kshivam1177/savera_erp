@@ -34,7 +34,7 @@ Future<dynamic> commonDialog(
   //         ],
   //       ),
   //     );
-  return showDialog<bool>(
+  return showAdaptiveDialog<bool>(
     context: context,
     barrierDismissible: false,
     builder: (BuildContext dialogContext) {
@@ -50,11 +50,12 @@ Future<dynamic> commonDialog(
           children: <Widget>[
             Container(
               height: 280,
+              width: isInLandscape ? 400 : null,
               padding: const EdgeInsets.only(
                 left: _padding,
                 top: _avatarRadius + (_padding * 2),
                 right: _padding,
-                bottom: 4,
+                bottom: _padding,
               ),
               margin: EdgeInsets.only(
                 top: _avatarRadius,
@@ -123,9 +124,7 @@ Future<dynamic> commonDialog(
                             },
                           ),
                         ),
-                      const SizedBox(
-                        width: 2,
-                      ),
+                      const SizedBox(width: 2),
                       Expanded(
                         child: OutlinedButton(
                           style: ButtonStyle(

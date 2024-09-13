@@ -12,7 +12,7 @@ abstract class RouteHelper {
     String route, {
     Map<String, String>? args,
   }) {
-    context.goNamed(
+    context.pushNamed(
       route,
       queryParameters: args ?? {},
     );
@@ -26,7 +26,7 @@ abstract class RouteHelper {
   }
 
   static void toHomePage(BuildContext context) {
-    context.goNamed(
+    context.pushNamed(
       PgHome.routeName,
       queryParameters: {
         "arg1": "queryValue",
@@ -37,7 +37,7 @@ abstract class RouteHelper {
   }
 
   static void toAttendanceList(BuildContext context) {
-    context.goNamed(
+    context.pushNamed(
       PgAttendance.routeName,
       queryParameters: {
         "arg1": "queryValue",
@@ -55,7 +55,7 @@ abstract class RouteHelper {
     required DateTime toDate,
     required String empName,
   }) {
-    context.goNamed(
+    context.pushNamed(
       PgMapView.routeName,
       queryParameters: {
         "routePlanId": routePlanId.toString(),

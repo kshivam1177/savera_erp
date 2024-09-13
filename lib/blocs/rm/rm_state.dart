@@ -16,3 +16,39 @@ class RMError extends RMState {
 
   RMError(this.error);
 }
+
+abstract class RMCreateState {}
+
+class RMCreateInitial extends RMCreateState {
+  RMCreateInitial();
+}
+
+class RMCreating extends RMCreateState {
+  final int rowId;
+
+  RMCreating(this.rowId);
+}
+
+class RMCreated extends RMCreateState {
+  final int rowId;
+  final String msg;
+  final bool isCreated;
+
+  RMCreated(
+    this.rowId, {
+    required this.msg,
+    required this.isCreated,
+  });
+}
+
+class RMMarkedInactive extends RMCreateState {
+  final int rowId;
+  final String msg;
+  final bool isInactive;
+
+  RMMarkedInactive(
+    this.rowId, {
+    required this.msg,
+    required this.isInactive,
+  });
+}
