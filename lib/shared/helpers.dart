@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -141,5 +142,20 @@ abstract class Helpers {
 //   refreshBackgroundColor: Colors.yellow,
 // ),
     );
+  }
+
+  static String toBase64(String text) {
+    Codec<String, String> stringToBase64 = utf8.fuse(base64);
+    return stringToBase64.encode(text);
+  }
+
+  static String? fromBase64(String? text) {
+    try {
+      if (text == null) return null;
+      Codec<String, String> stringToBase64 = utf8.fuse(base64);
+      return stringToBase64.decode(text);
+    } catch (e) {
+      return null;
+    }
   }
 }

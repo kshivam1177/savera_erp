@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:savera_erp/shared/responsive.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/theme/custom_app_theme.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
@@ -17,7 +18,6 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool showBackButton;
   final double elevation;
   final List<Widget>? actionBtns;
-  final ColorScheme? colorScheme;
 
   const SearchAppBar({
     required this.title,
@@ -30,7 +30,6 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.elevation = 0.5,
     this.subTitle,
     this.actionBtns,
-    this.colorScheme,
     this.hintText,
     super.key,
   });
@@ -45,7 +44,6 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _SearchAppBarState extends State<SearchAppBar> {
   late double fontSize = 14;
   late bool isSearching = false;
-  late ColorScheme colorScheme;
 
   void resetBackToNormal() => setState(() {
         widget.onBtnClick!(false);
@@ -54,7 +52,6 @@ class _SearchAppBarState extends State<SearchAppBar> {
 
   @override
   void initState() {
-    colorScheme = widget.colorScheme ?? CustomAppTheme.searchSchema;
     super.initState();
   }
 
@@ -62,14 +59,16 @@ class _SearchAppBarState extends State<SearchAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: false,
-      backgroundColor: isSearching ? Colors.white : colorScheme.primary,
+      backgroundColor: Colors.white,
+      // backgroundColor: isSearching ? Colors.white : colorScheme.primary,
       // brightness: isSearching ? Brightness.light : Brightness.dark,
       elevation: isSearching ? 4 : widget.elevation,
+      iconTheme: IconThemeData(color: Colors.black),
       leading: widget.showBackButton
           ? IconButton(
               icon: Icon(
                 Icons.arrow_back,
-                color: isSearching ? Colors.black : colorScheme.secondary,
+                color: Colors.black,
               ),
               onPressed: () => Navigator.pop(context),
             )
@@ -99,10 +98,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
               if (widget.actionBtns != null && !isSearching)
                 ...widget.actionBtns!,
             ]
-          : widget.showSearchIcon
-              ? [searching()]
-              : null,
-      // bottom: widget.bottom,
+          : widget.actionBtns,
     );
   }
 
@@ -116,6 +112,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DxText(title, fontSize: fontSize, bold: true),
+              SizedBox(height: 3),
               DxText(subTitle, fontSize: fontSize * 0.8)
             ],
           );
@@ -130,7 +127,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
         : IconButton(
             icon: Icon(
               Icons.search,
-              color: colorScheme.secondary,
+              color: AppColors.black,
             ),
             onPressed: () {
               setState(() => isSearching = !isSearching);
@@ -145,7 +142,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
     return IconButton(
         icon: Icon(
           Icons.refresh,
-          color: colorScheme.secondary,
+          color: AppColors.black,
         ),
         onPressed: () {
           setState(() {

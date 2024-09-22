@@ -12,7 +12,7 @@ class CustomAppTheme {
 
   static ThemeData defaultTheme = ThemeData(
     useMaterial3: false,
-    primaryColor: Colors.grey.shade800,
+    primaryColor: AppColors.primary,
     fontFamily: AppFonts.semiBold,
     textTheme: TextTheme(
       titleMedium: TextStyle(

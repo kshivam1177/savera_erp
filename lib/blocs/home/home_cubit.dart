@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:savera_erp/models/auth_result.model.dart';
 import 'package:savera_erp/ui/pages/attendance/pg_attendance.dart';
 import 'package:savera_erp/ui/pages/home/drawer/DxDrawer.dart';
+import 'package:savera_erp/ui/pages/reports/tracking/pg_tracking_report.dart';
 import 'package:savera_erp/ui/pages/rm/pg_rm.dart';
 
 part 'home_state.dart';
@@ -28,31 +29,31 @@ class HomeCubit {
         id: 1003,
       ),
       ItemData(
-        title: 'Profile',
-        route: '/profile',
-        leading: Icon(CupertinoIcons.person, size: 20),
+        title: 'Tracking Report',
+        route: PgTrackingReport.routeName,
+        leading: Icon(CupertinoIcons.list_number, size: 20),
         id: 1004,
       ),
-      ItemData(
-        title: 'Settings',
-        route: '/settings',
-        leading: Icon(CupertinoIcons.settings, size: 20),
-        id: 1005,
-        items: [
-          ItemData(
-            title: 'General',
-            route: '/settings/general',
-            leading: Icon(CupertinoIcons.square_grid_2x2, size: 20),
-            id: 10051,
-          ),
-          ItemData(
-            title: 'Tracking',
-            route: '/settings/tracking',
-            leading: Icon(CupertinoIcons.location, size: 20),
-            id: 10052,
-          ),
-        ],
-      )
+      // ItemData(
+      //   title: 'Settings',
+      //   route: '/settings',
+      //   leading: Icon(CupertinoIcons.list_number, size: 20),
+      //   id: 1005,
+      //   items: [
+      //     ItemData(
+      //       title: 'General',
+      //       route: '/settings/general',
+      //       leading: Icon(CupertinoIcons.square_grid_2x2, size: 20),
+      //       id: 10051,
+      //     ),
+      //     ItemData(
+      //       title: 'Tracking',
+      //       route: '/settings/tracking',
+      //       leading: Icon(CupertinoIcons.location, size: 20),
+      //       id: 10052,
+      //     ),
+      //   ],
+      // )
     ];
   }
 

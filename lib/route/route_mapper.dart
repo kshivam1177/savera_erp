@@ -81,7 +81,35 @@ abstract class RouteMapper {
             child: PgRM(),
           );
         },
-      )
+      ),
+      GoRoute(
+          path: PgTrackingReport.routeName,
+          name: PgTrackingReport.routeName,
+          pageBuilder: (context, state) {
+            return _pageTransition(
+              key: state.pageKey,
+              child: PgTrackingReport(),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: PgTrackingDetail.routeName,
+              name: PgTrackingDetail.routeName,
+              pageBuilder: (context, detState) {
+                final qpms = detState.uri.queryParameters["qpms"];
+                final qpmsDecoded = jsonDecode(
+                  Helpers.fromBase64(qpms) ?? "{}",
+                );
+                return _pageTransition(
+                  key: detState.pageKey,
+                  child: PgTrackingDetail(
+                    row: VisitTrackingItem.fromMap(qpmsDecoded["tracking_row"]),
+                    filter: DateRangeFilter.fromMap(qpmsDecoded["date_filter"]),
+                  ),
+                );
+              },
+            ),
+          ])
     ],
   );
 

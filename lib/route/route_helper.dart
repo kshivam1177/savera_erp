@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:savera_erp/models/reports/from_date_to_date.dart';
+import 'package:savera_erp/models/reports/tracking_report/tracking_report_item.dart';
+import 'package:savera_erp/shared/helpers.dart';
 import 'package:savera_erp/ui/pages/attendance/pg_attendance.dart';
 import 'package:savera_erp/ui/pages/auth/pg_login.dart';
 import 'package:savera_erp/ui/pages/home/pg_home.dart';
 import 'package:savera_erp/ui/pages/pg_map_view.dart';
+import 'package:savera_erp/ui/pages/reports/tracking/pg_tracking_detail.dart';
 
 abstract class RouteHelper {
   static void toAny(
@@ -64,6 +70,21 @@ abstract class RouteHelper {
         "fromDate": fromDate.toIso8601String(),
         "toDate": toDate.toIso8601String(),
       },
+    );
+  }
+
+  static void toTrackingDetail(
+    BuildContext context, {
+    required VisitTrackingItem row,
+    required DateRangeFilter filter,
+  }) {
+    final qpms = {
+      "tracking_row": row.toMap(),
+      "date_filter": filter.toMap(),
+    };
+    context.pushNamed(
+      PgTrackingDetail.routeName,
+      queryParameters: {"qpms": Helpers.toBase64(jsonEncode(qpms))},
     );
   }
 }

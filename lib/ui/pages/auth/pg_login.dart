@@ -32,7 +32,7 @@ class _PgLoginState extends State<PgLogin> {
   void initState() {
     if (kDebugMode) {
       userName.text = "fastrack";
-      password.text = "fast@track";
+      password.text = "fast@@track";
     }
     loginBloc.stateNotifier.addListener(() {
       final currentState = loginBloc.stateNotifier.value;

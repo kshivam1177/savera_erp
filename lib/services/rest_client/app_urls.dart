@@ -9,7 +9,8 @@ class AppUrls {
 
   static String get createUser => "${_baseURL}main/auth/register-user";
 
-  static String get setInactive => "${_baseURL}main/auth/toggle-active-inactive";
+  static String get setInactive =>
+      "${_baseURL}main/auth/toggle-active-inactive";
 
   static String get getUser => '${_baseURL}main/auth/get-user';
 
@@ -29,5 +30,13 @@ class AppUrls {
 
   static String get targetSummary {
     return '${_baseURL}app-rm/target-summary/monthly-summary';
+  }
+
+  static String get getRmWiseVisits {
+    return '${_baseURL}app-rm/route-plan/get-rm-wise-visits';
+  }
+
+  static String get getRmVisitsDetail {
+    return '${_baseURL}app-rm/route-plan/get-rm-visits';
   }
 }
