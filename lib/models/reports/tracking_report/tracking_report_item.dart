@@ -29,3 +29,32 @@ class VisitTrackingItem {
     };
   }
 }
+
+class VisitTrackingDetailItem {
+  final int routePlanId;
+  final String date;
+  final int visitCount;
+  final double travelledKm;
+  final String punchedOut;
+  final String punchedIn;
+
+  VisitTrackingDetailItem({
+    required this.routePlanId,
+    required this.date,
+    required this.visitCount,
+    required this.travelledKm,
+    required this.punchedOut,
+    required this.punchedIn,
+  });
+
+  factory VisitTrackingDetailItem.fromMap(Map<String, dynamic> json) {
+    return VisitTrackingDetailItem(
+      routePlanId: json['route_plan_id'],
+      date: json['date'],
+      visitCount: json['visit_count'],
+      travelledKm: json['travelled_km'],
+      punchedOut: json['punched_out'],
+      punchedIn: json['punched_in'],
+    );
+  }
+}

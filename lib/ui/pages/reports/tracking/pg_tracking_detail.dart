@@ -98,11 +98,12 @@ class _PgTrackingDetailState extends State<PgTrackingDetail> {
           }
           columns.clear();
           columns.addAll([
-            DxDataTableCell(flex: 1, value: "Id"),
-            DxDataTableCell(flex: 4, value: "Name"),
-            DxDataTableCell(flex: 2, value: "Designation"),
-            DxDataTableCell(flex: 2, value: "Travelled Km"),
-            DxDataTableCell(flex: 2, value: "Action")
+            DxDataTableCell(flex: 1, value: "Plan Id"),
+            DxDataTableCell(flex: 4, value: "Date"),
+            DxDataTableCell(flex: 1, value: "Visit Count"),
+            DxDataTableCell(flex: 1, value: "Travelled (Km)"),
+            DxDataTableCell(flex: 3, value: "Punched In"),
+            DxDataTableCell(flex: 3, value: "Punched Out"),
           ]);
 
           return Padding(
@@ -116,10 +117,12 @@ class _PgTrackingDetailState extends State<PgTrackingDetail> {
               },
               data: state.data.map((e) {
                 return [
-                  "${e.staffId}",
-                  e.staffName,
-                  e.staffDesignation,
+                  "${e.routePlanId}",
+                  e.date,
+                  e.visitCount.toString(),
                   e.travelledKm.toStringAsFixed(2),
+                  e.punchedIn,
+                  e.punchedOut,
                 ];
               }).toList(),
               buildCell: (value, rowIndex, columnIndex) {

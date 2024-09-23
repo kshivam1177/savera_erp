@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:savera_erp/shared/responsive.dart';
 import 'package:savera_erp/ui/theme/app_colors.dart';
-import 'package:savera_erp/ui/theme/custom_app_theme.dart';
 import 'package:savera_erp/ui/utils/dx_app_decoration.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 

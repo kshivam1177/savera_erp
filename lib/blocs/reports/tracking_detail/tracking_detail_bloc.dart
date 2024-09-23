@@ -31,7 +31,7 @@ class TrackingDetailBloc {
   }
 
   void openFilter() {
-    List<VisitTrackingItem> data = [];
+    List<VisitTrackingDetailItem> data = [];
     if (trackingDetailNotifier.value is TrackingDetailLoaded) {
       data = (trackingDetailNotifier.value as TrackingDetailLoaded).data;
     }

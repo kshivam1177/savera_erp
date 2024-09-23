@@ -6,7 +6,7 @@ abstract class TrackingDetailState {}
 class TrackingDetailLoading extends TrackingDetailState {}
 
 class TrackingDetailLoaded extends TrackingDetailState {
-  final List<VisitTrackingItem> data;
+  final List<VisitTrackingDetailItem> data;
   final DateRangeFilter filter;
   final bool showFilter;
 

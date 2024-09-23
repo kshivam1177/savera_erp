@@ -41,7 +41,7 @@ class TrackingReportRepo {
     }
   }
 
-  Future<ApiResponse<List<VisitTrackingItem>>> getRmVisitsDetail(
+  Future<ApiResponse<List<VisitTrackingDetailItem>>> getRmVisitsDetail(
     DateRangeFilter filter,
     int empId,
   ) async {
@@ -65,9 +65,9 @@ class TrackingReportRepo {
       );
 
       if (result.status.success) {
-        final items = result.data!["rm-list"] as List<dynamic>;
+        final items = result.data!["visits"] as List<dynamic>;
         return ApiResponse.success(
-          items.map((e) => VisitTrackingItem.fromMap(e)).toList(),
+          items.map((e) => VisitTrackingDetailItem.fromMap(e)).toList(),
         );
       } else {
         return ApiResponse.fromResponse(result);

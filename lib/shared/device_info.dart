@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class DeviceInfo {
   static bool get isDeviceIOS => defaultTargetPlatform == TargetPlatform.iOS;
