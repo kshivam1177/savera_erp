@@ -209,7 +209,7 @@ class _DashboardSummaryState extends State<DashboardSummary> {
   }
 
   Widget getDesktopView(BuildContext context, Size size) {
-    double height = size.height * 0.45;
+    double height = size.height * 0.44;
     double widget = size.width * 0.32;
 
     return Container(

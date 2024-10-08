@@ -202,7 +202,7 @@ class _DxMapViewState extends State<DxMapView> {
     final GoogleMapController controller = await _mapController.future;
     await controller.animateCamera(
       CameraUpdate.newCameraPosition(
-        CameraPosition(target: latLng, zoom: 15),
+        CameraPosition(target: latLng),
       ),
     );
   }

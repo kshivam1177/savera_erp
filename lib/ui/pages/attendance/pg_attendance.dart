@@ -139,10 +139,13 @@ class _PgAttendanceState extends State<PgAttendance> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    DxTextBlack(
-                      "View Attendance Summary in Detail",
-                      bold: true,
-                      fontSize: 14,
+                    Expanded(
+                      flex: 1,
+                      child: DxTextBlack(
+                        "View Attendance Summary in Detail",
+                        bold: true,
+                        fontSize: 12,
+                      ),
                     ),
                     SizedBox(
                       height: 35,
@@ -156,7 +159,7 @@ class _PgAttendanceState extends State<PgAttendance> {
                         radius: 25,
                         textStyle: TextStyle(
                           color: Colors.white,
-                          fontSize: 12,
+                          fontSize: 10,
                         ),
                       ),
                     ),

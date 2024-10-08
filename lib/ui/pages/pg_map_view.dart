@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:savera_erp/blocs/attendance/attendance_bloc.dart';
+import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 import 'package:savera_erp/ui/widgets/map/map_view.dart';
 
 class PgMapView extends StatefulWidget {
@@ -60,6 +61,9 @@ class _PgMapViewState extends State<PgMapView> {
               return Center(child: CircularProgressIndicator());
             }
             final locations = (value as RmLocationsLoaded).locations;
+            if (locations.isEmpty) {
+              return Center(child: DxText("No location found"));
+            }
             return DxMapView(
               title: widget.empName,
               data: locations.map((e) {

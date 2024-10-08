@@ -21,9 +21,6 @@ class AuthRepo {
 
         final user = AuthResult.fromMap(loginData.data!);
 
-        await PrefHandler.setUserId(user.userId);
-        await PrefHandler.setLoginId(user.loginId);
-        await PrefHandler.setAuthResult(user);
         return ApiResponse.success(user);
       } else {
         return ApiResponse.fromResponse(loginData);

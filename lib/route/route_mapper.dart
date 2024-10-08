@@ -4,15 +4,19 @@ abstract class RouteMapper {
   static final GoRouter _router = GoRouter(
     routes: <RouteBase>[
       GoRoute(
+        path: PgHome.routeName,
+        name: PgHome.routeName,
+        pageBuilder: (context, state) {
+          return _pageTransition(key: state.pageKey, child: PgHome());
+        },
+      ),
+      GoRoute(
         path: '/',
         name: "/",
-        // builder: (BuildContext context, GoRouterState state) {
-        //   return PgLogin();
-        // },
         pageBuilder: (context, state) {
           return _pageTransition(
             key: state.pageKey,
-            child: PgLogin(),
+            child: PgHome(),
           );
         },
       ),
@@ -26,21 +30,6 @@ abstract class RouteMapper {
           return _pageTransition(
             key: state.pageKey,
             child: PgLogin(),
-          );
-        },
-      ),
-      GoRoute(
-        path: PgHome.routeName,
-        name: PgHome.routeName,
-        // builder: (BuildContext context, GoRouterState state) {
-        //   final qpms = state.uri.queryParameters;
-        //   return PgHome(arg1: qpms["arg1"] ?? "");
-        // },
-        pageBuilder: (context, state) {
-          final qpms = state.uri.queryParameters;
-          return _pageTransition(
-            key: state.pageKey,
-            child: PgHome(arg1: qpms["arg1"] ?? ""),
           );
         },
       ),
