@@ -13,12 +13,20 @@ import 'package:savera_erp/ui/pages/pg_map_view.dart';
 import 'package:savera_erp/ui/pages/reports/tracking/pg_tracking_detail.dart';
 
 abstract class RouteHelper {
+  static void pop<T>(BuildContext context, [T? data]) {
+    if (context.canPop()) {
+      context.pop(data);
+    } else {
+      Navigator.pop(context);
+    }
+  }
+
   static void toAny(
     BuildContext context,
     String route, {
     Map<String, String>? args,
   }) {
-    context.pushNamed(
+    context.goNamed(
       route,
       queryParameters: args ?? {},
     );
@@ -32,7 +40,7 @@ abstract class RouteHelper {
   }
 
   static void toHomePage(BuildContext context) {
-    context.pushNamed(
+    context.goNamed(
       PgHome.routeName,
       queryParameters: {
         "arg1": "queryValue",
@@ -43,7 +51,7 @@ abstract class RouteHelper {
   }
 
   static void toAttendanceList(BuildContext context) {
-    context.pushNamed(
+    context.goNamed(
       PgAttendance.routeName,
       queryParameters: {
         "arg1": "queryValue",
@@ -61,7 +69,7 @@ abstract class RouteHelper {
     required DateTime toDate,
     required String empName,
   }) {
-    context.pushNamed(
+    context.goNamed(
       PgMapView.routeName,
       queryParameters: {
         "routePlanId": routePlanId.toString(),
@@ -82,7 +90,7 @@ abstract class RouteHelper {
       "tracking_row": row.toMap(),
       "date_filter": filter.toMap(),
     };
-    context.pushNamed(
+    context.goNamed(
       PgTrackingDetail.routeName,
       queryParameters: {"qpms": Helpers.toBase64(jsonEncode(qpms))},
     );

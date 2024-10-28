@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 import 'core_initlizers.dart';
 import 'main_app.dart';
 

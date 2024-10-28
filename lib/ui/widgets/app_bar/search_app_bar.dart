@@ -58,20 +58,23 @@ class _SearchAppBarState extends State<SearchAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: false,
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       // backgroundColor: isSearching ? Colors.white : colorScheme.primary,
       // brightness: isSearching ? Brightness.light : Brightness.dark,
       elevation: isSearching ? 4 : widget.elevation,
       iconTheme: IconThemeData(color: Colors.black),
-      leading: widget.showBackButton
-          ? IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
-              onPressed: () => Navigator.pop(context),
-            )
-          : null,
+      // leading: widget.showBackButton
+      //     ? IconButton(
+      //         icon: Icon(
+      //           Icons.arrow_back,
+      //           color: Colors.black,
+      //         ),
+      //         onPressed: () => RouteHelper.pop(context),
+      //         // onPressed: () => Navigator.pop(context),
+      //       )
+      //     : null,
+      leading: null,
       title: isSearching
           ? TextField(
               autofocus: true,

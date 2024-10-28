@@ -72,34 +72,44 @@ abstract class RouteMapper {
         },
       ),
       GoRoute(
-          path: PgTrackingReport.routeName,
-          name: PgTrackingReport.routeName,
-          pageBuilder: (context, state) {
-            return _pageTransition(
-              key: state.pageKey,
-              child: PgTrackingReport(),
-            );
-          },
-          routes: [
-            GoRoute(
-              path: PgTrackingDetail.routeName,
-              name: PgTrackingDetail.routeName,
-              pageBuilder: (context, detState) {
-                final qpms = detState.uri.queryParameters["qpms"];
-                final qpmsDecoded = jsonDecode(
-                  Helpers.fromBase64(qpms) ?? "{}",
-                );
-                return _pageTransition(
-                  key: detState.pageKey,
-                  child: PgTrackingDetail(
-                    row: VisitTrackingItem.fromMap(qpmsDecoded["tracking_row"]),
-                    filter: DateRangeFilter.fromMap(qpmsDecoded["date_filter"]),
-                  ),
-                );
-              },
+        path: PgTrackingReport.routeName,
+        name: PgTrackingReport.routeName,
+        pageBuilder: (context, state) {
+          return _pageTransition(
+            key: state.pageKey,
+            child: PgTrackingReport(),
+          );
+        },
+      ),
+      GoRoute(
+        path: PgTrackingDetail.routeName,
+        name: PgTrackingDetail.routeName,
+        pageBuilder: (context, detState) {
+          final qpms = detState.uri.queryParameters["qpms"];
+          final qpmsDecoded = jsonDecode(
+            Helpers.fromBase64(qpms) ?? "{}",
+          );
+          return _pageTransition(
+            key: detState.pageKey,
+            child: PgTrackingDetail(
+              row: VisitTrackingItem.fromMap(qpmsDecoded["tracking_row"]),
+              filter: DateRangeFilter.fromMap(qpmsDecoded["date_filter"]),
             ),
-          ])
+          );
+        },
+      ),
     ],
+    redirect: (BuildContext context, GoRouterState state) async {
+      final bool loggedIn = await PrefHandler.isLoggedIn();
+      if (!loggedIn) {
+        return PgLogin.routeName;
+      }
+      // if ([PgHome.routeName, PgLogin.routeName]
+      //     .any((e) => e == state.matchedLocation)) {
+      //   return PgHome.routeName;
+      // }
+      return PgHome.routeName;
+    },
   );
 
   static CustomTransitionPage _pageTransition({

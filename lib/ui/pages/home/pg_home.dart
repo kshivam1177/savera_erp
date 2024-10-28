@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:savera_erp/blocs/home/home_cubit.dart';
 import 'package:savera_erp/route/route_helper.dart';
-import 'package:savera_erp/services/storage/preference/preference_handler.dart';
 import 'package:savera_erp/shared/helpers.dart';
 import 'package:savera_erp/ui/pages/home/dashboard_summary/dashboard_summary.dart';
 import 'package:savera_erp/ui/pages/home/drawer/DxDrawer.dart';
@@ -20,34 +19,25 @@ class PgHome extends StatefulWidget {
 
 class PgHomeState extends State<PgHome> {
   List<ItemData> menus = [];
-  bool checkingForLogin = true;
+  // bool checkingForLogin = true;
 
   @override
   void initState() {
     menus = HomeCubit().getMenus();
-
-    PrefHandler.isLoggedIn().then((value) {
-      checkingForLogin = false;
-      if (!value) {
-        RouteHelper.toLoginPage(context);
-        return;
-      }
-      setState(() {});
-    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (checkingForLogin) {
-      return Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(
-            color: AppColors.primary,
-          ),
-        ),
-      );
-    }
+    // if (checkingForLogin) {
+    //   return Scaffold(
+    //     body: Center(
+    //       child: CircularProgressIndicator(
+    //         color: AppColors.primary,
+    //       ),
+    //     ),
+    //   );
+    // }
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: HomeAppBar(),
@@ -56,7 +46,7 @@ class PgHomeState extends State<PgHome> {
         menus: menus,
         onItemTapped: (groupId, item) {
           try {
-            Navigator.of(context).pop();
+            RouteHelper.pop(context);
             RouteHelper.toAny(context, item.route);
           } catch (e) {
             print(e);

@@ -222,11 +222,11 @@ class _DxMapViewState extends State<DxMapView> {
                 myLocationEnabled: true,
                 myLocationButtonEnabled: true,
                 compassEnabled: true,
-                zoomControlsEnabled: false,
+                zoomControlsEnabled: true,
                 zoomGesturesEnabled: true,
                 scrollGesturesEnabled: true,
                 mapType: MapType.normal,
-                minMaxZoomPreference: MinMaxZoomPreference(10, 17),
+                minMaxZoomPreference: MinMaxZoomPreference(7, 22),
                 initialCameraPosition: CameraPosition(
                   target: locations[0],
                   zoom: 15,

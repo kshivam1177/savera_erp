@@ -54,27 +54,34 @@ class _PgMapViewState extends State<PgMapView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0,
+        elevation: 0,
+      ),
       body: ValueListenableBuilder<AttendanceState>(
-          valueListenable: bloc.locationNotifier,
-          builder: (context, value, _) {
-            if (value is AttendanceInitial) {
-              return Center(child: CircularProgressIndicator());
-            }
-            final locations = (value as RmLocationsLoaded).locations;
-            if (locations.isEmpty) {
-              return Center(child: DxText("No location found"));
-            }
-            return DxMapView(
-              title: widget.empName,
-              data: locations.map((e) {
-                return DxMapData(
-                  location: LatLng(e.latitude, e.longitude),
-                  title: e.createdOn.split("T").first + " " + e.platform,
-                  tooltip: e.address,
-                );
-              }).toList(),
-            );
-          }),
+        valueListenable: bloc.locationNotifier,
+        builder: (context, value, _) {
+          if (value is AttendanceInitial) {
+            return Center(child: CircularProgressIndicator());
+          }
+          final locations = (value as RmLocationsLoaded).locations;
+          if (locations.isEmpty) {
+            return Center(child: DxText("No location found"));
+          }
+          return DxMapView(
+            title: widget.empName,
+            data: locations.map((e) {
+              return DxMapData(
+                location: LatLng(e.latitude, e.longitude),
+                title: e.createdOn.replaceAll("T", " ").split(".").first +
+                    " " +
+                    e.platform,
+                tooltip: e.address,
+              );
+            }).toList(),
+          );
+        },
+      ),
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:savera_erp/blocs/reports/tracking/tracking_report_bloc.dart';
 import 'package:savera_erp/route/route_helper.dart';
-import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/app_bar/search_app_bar.dart';
 import 'package:savera_erp/ui/widgets/bottom_sheets/bottom_sheet_date_filter.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_icon_button.dart';
@@ -97,7 +96,7 @@ class _PgTrackingReportState extends State<PgTrackingReport> {
             DxDataTableCell(flex: 4, value: "Name"),
             DxDataTableCell(flex: 2, value: "Designation"),
             DxDataTableCell(flex: 2, value: "Travelled Km"),
-            DxDataTableCell(flex: 2, value: "Action")
+            DxDataTableCell(flex: 1, value: "Action")
           ]);
 
           return Padding(
@@ -123,11 +122,7 @@ class _PgTrackingReportState extends State<PgTrackingReport> {
                   return DxCellView(
                     child: DxIconButton(
                       tooltip: "Click to view details",
-                      icon: Icon(
-                        CupertinoIcons.location,
-                        color: AppColors.navyBlue,
-                        size: 20,
-                      ),
+                      icon: DxTextPrimary("Visits", size: 14),
                       onTap: () {
                         RouteHelper.toTrackingDetail(
                           context,

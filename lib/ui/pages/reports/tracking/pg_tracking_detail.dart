@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:savera_erp/blocs/reports/tracking_detail/tracking_detail_bloc.dart';
 import 'package:savera_erp/models/reports/from_date_to_date.dart';
 import 'package:savera_erp/models/reports/tracking_report/tracking_report_item.dart';
+import 'package:savera_erp/route/route_helper.dart';
+import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/app_bar/search_app_bar.dart';
 import 'package:savera_erp/ui/widgets/bottom_sheets/bottom_sheet_date_filter.dart';
+import 'package:savera_erp/ui/widgets/custom/button/dx_icon_button.dart';
 import 'package:savera_erp/ui/widgets/custom/dx_center_text.dart';
 import 'package:savera_erp/ui/widgets/custom/table/dx_custom_table.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
 class PgTrackingDetail extends StatefulWidget {
-  static const String routeName = 'tracking-detail';
+  static const String routeName = '/tracking-detail';
   final DateRangeFilter filter;
   final VisitTrackingItem row;
 
@@ -104,6 +107,7 @@ class _PgTrackingDetailState extends State<PgTrackingDetail> {
             DxDataTableCell(flex: 1, value: "Travelled (Km)"),
             DxDataTableCell(flex: 3, value: "Punched In"),
             DxDataTableCell(flex: 3, value: "Punched Out"),
+            DxDataTableCell(flex: 1, value: "Visits"),
           ]);
 
           return Padding(
@@ -123,12 +127,36 @@ class _PgTrackingDetailState extends State<PgTrackingDetail> {
                   e.travelledKm.toStringAsFixed(2),
                   e.punchedIn,
                   e.punchedOut,
+                  "Visits"
                 ];
               }).toList(),
               buildCell: (value, rowIndex, columnIndex) {
-                return DxCellView(
-                  child: DxText(value, fontSize: 14),
-                );
+                if (columnIndex < 6) {
+                  return DxCellView(
+                    child: DxText(value, fontSize: 14),
+                  );
+                } else {
+                  return DxCellView(
+                    child: DxIconButton(
+                      tooltip: "View on Map",
+                      icon: Icon(
+                        CupertinoIcons.location,
+                        color: AppColors.navyBlue,
+                        size: 20,
+                      ),
+                      onTap: () {
+                        RouteHelper.toMapView(
+                          context,
+                          empId: widget.row.staffId,
+                          empName: widget.row.staffName,
+                          fromDate: widget.filter.from,
+                          toDate: widget.filter.to,
+                          routePlanId: state.data[rowIndex].routePlanId,
+                        );
+                      },
+                    ),
+                  );
+                }
               },
             ),
           );
