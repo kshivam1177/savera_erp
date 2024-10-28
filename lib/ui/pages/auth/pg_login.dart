@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:savera_erp/blocs/auth/login/login_notifier.dart';
+import 'package:savera_erp/blocs/auth/login/login_bloc.dart';
 import 'package:savera_erp/route/route_helper.dart';
 import 'package:savera_erp/shared/app_info.dart';
 import 'package:savera_erp/shared/asset_provider/app_images.dart';
@@ -285,75 +284,4 @@ class _LoginBody extends StatelessWidget {
     );
   }
 
-  // Future<void> handleForgotPassword(BuildContext context) async {
-  //   showAdaptiveDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return AlertDialog(
-  //         title: DxText(
-  //           "Forgot Password?",
-  //           bold: true,
-  //           fontSize: 16,
-  //         ),
-  //         content: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             const DxText(
-  //               "Please enter your user name, we will send you an password reset otp to your registered phone number.",
-  //               fontSize: 14,
-  //             ),
-  //             const SizedBox(height: 10),
-  //             DxFlatButtonAccent(
-  //               text: "OK",
-  //               onPressed: () {
-  //                 Navigator.of(context).pop();
-  //               },
-  //             ),
-  //           ],
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () {
-  //               Navigator.of(context).pop();
-  //             },
-  //             child: DxTextRed("Cancel"),
-  //           ),
-  //           ValueListenableBuilder<RMCreateState>(
-  //             valueListenable: widget.bloc.rmCreateNotifier,
-  //             builder: (context, value, _) {
-  //               return TextButton(
-  //                 onPressed: value is RMCreating
-  //                     ? null
-  //                     : () {
-  //                         widget.bloc.markMobileUserInactive(
-  //                           context,
-  //                           widget.item,
-  //                         );
-  //                       },
-  //                 child: value is RMCreating
-  //                     ? Container(
-  //                         height: 20,
-  //                         width: 20,
-  //                         color: AppColors.white.withOpacity(0.6),
-  //                         padding: EdgeInsets.all(2),
-  //                         margin: EdgeInsets.symmetric(horizontal: 20),
-  //                         child: Center(
-  //                           child: CircularProgressIndicator(
-  //                             strokeWidth: 2,
-  //                           ),
-  //                         ),
-  //                       )
-  //                     : DxTextGreen(
-  //                         widget.item.loginInactiveOn.isNotEmpty
-  //                             ? "Set Active"
-  //                             : "Set InActive",
-  //                       ),
-  //               );
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 }

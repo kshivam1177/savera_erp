@@ -104,11 +104,13 @@ abstract class RouteMapper {
       if (!loggedIn) {
         return PgLogin.routeName;
       }
-      // if ([PgHome.routeName, PgLogin.routeName]
-      //     .any((e) => e == state.matchedLocation)) {
-      //   return PgHome.routeName;
-      // }
-      return PgHome.routeName;
+      if ([PgHome.routeName, PgLogin.routeName]
+          .any((e) => e == state.pageKey.value)) {
+        print("here>> ${state.pageKey.value}");
+        return PgHome.routeName;
+      }
+      print("here:>> null");
+      return null;
     },
   );
 

@@ -1,9 +1,9 @@
-part of 'home_cubit.dart';
+part of 'home_bloc.dart';
 
 @immutable
 abstract class HomeState {}
 
-class Homeinitial extends HomeState {}
+class HomeInitial extends HomeState {}
 
 class HomeLoaded extends HomeState {
   final AuthResult? userModel;

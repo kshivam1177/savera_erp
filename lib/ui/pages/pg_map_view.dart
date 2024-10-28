@@ -68,15 +68,16 @@ class _PgMapViewState extends State<PgMapView> {
           if (locations.isEmpty) {
             return Center(child: DxText("No location found"));
           }
+          int count = 0;
           return DxMapView(
             title: widget.empName,
             data: locations.map((e) {
+              count++;
               return DxMapData(
                 location: LatLng(e.latitude, e.longitude),
-                title: e.createdOn.replaceAll("T", " ").split(".").first +
-                    " " +
-                    e.platform,
-                tooltip: e.address,
+                title:
+                    "$count - ${e.createdOn.replaceAll("T", " ").split(".").first}",
+                tooltip: e.platform,
               );
             }).toList(),
           );
