@@ -4,7 +4,7 @@ import 'package:savera_erp/services/rest_client/app_urls.dart';
 import 'package:savera_erp/services/rest_client/rest_client_dio.dart';
 import 'package:savera_erp/shared/helpers.dart';
 
-class AuthRepo {
+class AuthenticationRepo {
   Future<ApiResponse<AuthResult>> doLogin({
     required String username,
     required String password,

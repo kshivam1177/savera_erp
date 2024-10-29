@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
-import 'package:flutter/foundation.dart';
 import 'package:savera_erp/models/api_response.dart';
+import 'package:savera_erp/services/rest_client/DioIntercepter.dart';
+import 'package:savera_erp/services/rest_client/adapter/http_adapter.dart';
 import 'package:savera_erp/shared/app_messages.dart';
 import 'package:savera_erp/shared/helpers.dart';
-import 'DioIntercepter.dart';
-import 'package:dio/browser.dart';
 
 enum HttpMethods { get, post, put, delete, byte, bytePost }
 
@@ -18,15 +14,7 @@ class RestClientDio {
   RestClientDio._() {
     _dioObj = Dio(options);
     _dioObj.interceptors.add(DioInterceptor());
-    if (kIsWeb) {
-      _dioObj.httpClientAdapter = BrowserHttpClientAdapter();
-    } else {
-      _dioObj.httpClientAdapter = IOHttpClientAdapter()
-        ..createHttpClient = () {
-          return HttpClient()
-            ..badCertificateCallback = (x509, host, port) => true;
-        };
-    }
+    _dioObj.httpClientAdapter = DioAdapter.getAdapter();
   }
 
   factory RestClientDio() => _instance;
@@ -92,9 +80,9 @@ class RestClientDio {
       /// Added check if response or response.data coming null in 200m success.
       if (response?.statusCode == 200 && response?.data != null) {
         final resultData = Map<String, dynamic>.from(response!.data);
-        if (kDebugMode) {
-          print("response_data: $resultData");
-        }
+        // if (kDebugMode) {
+        //   print("response_data: $resultData");
+        // }
         final status = Helpers.enumFromString(
               TxnStatus.values,
               resultData["status"].toString(),
