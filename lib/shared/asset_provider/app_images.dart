@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class AppImages {
   static String sadBoyURL = "assets/images/happy_boy.png";
@@ -29,24 +28,7 @@ class AppImages {
 }
 
 extension StringImgExtenstion on String {
-  Widget buildLottie({
-    double? height,
-    double? width,
-    bool repeat = false,
-  }) {
-    if (startsWith("http")) {
-      return Lottie.network(
-        this,
-        repeat: repeat,
-        height: height,
-      );
-    }
-    return Lottie.asset(
-      this,
-      repeat: repeat,
-      height: height,
-    );
-  }
+
 
   ImageProvider<Object> get toImageProvider {
     if (this.startsWith("http://") || this.startsWith("https://")) {

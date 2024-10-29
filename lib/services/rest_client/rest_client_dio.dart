@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
-import 'package:savera_erp/models/api_response.model.dart';
+import 'package:savera_erp/models/api_response.dart';
 import 'package:savera_erp/shared/app_messages.dart';
 import 'package:savera_erp/shared/helpers.dart';
 import 'DioIntercepter.dart';

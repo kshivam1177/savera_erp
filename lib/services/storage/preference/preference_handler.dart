@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:savera_erp/models/auth_result.model.dart';
+import 'package:savera_erp/models/auth_result.dart';
 import 'package:savera_erp/shared/dx_date_utils.dart';
 
 import 'app_preferences.dart';

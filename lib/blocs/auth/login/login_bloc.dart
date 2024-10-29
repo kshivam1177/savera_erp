@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:savera_erp/blocs/auth/auth_repo.dart';
-import 'package:savera_erp/models/auth_result.model.dart';
+import 'package:savera_erp/models/auth_result.dart';
 import 'package:savera_erp/services/storage/preference/preference_handler.dart';
 
 part 'login_state.dart';

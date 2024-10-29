@@ -1,4 +1,4 @@
-import 'package:savera_erp/models/api_response.model.dart';
+import 'package:savera_erp/models/api_response.dart';
 import 'package:savera_erp/models/attendance/rm_list_attendance_item.dart';
 import 'package:savera_erp/services/rest_client/app_urls.dart';
 import 'package:savera_erp/services/rest_client/rest_client_dio.dart';

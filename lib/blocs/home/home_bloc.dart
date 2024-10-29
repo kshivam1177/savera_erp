@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:savera_erp/models/auth_result.model.dart';
+import 'package:savera_erp/models/auth_result.dart';
 import 'package:savera_erp/ui/pages/attendance/pg_attendance.dart';
 import 'package:savera_erp/ui/pages/home/drawer/DxDrawer.dart';
 import 'package:savera_erp/ui/pages/reports/tracking/pg_tracking_report.dart';

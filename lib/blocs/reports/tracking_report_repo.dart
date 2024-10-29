@@ -1,4 +1,4 @@
-import 'package:savera_erp/models/api_response.model.dart';
+import 'package:savera_erp/models/api_response.dart';
 import 'package:savera_erp/models/reports/from_date_to_date.dart';
 import 'package:savera_erp/models/reports/tracking_report/tracking_report_item.dart';
 import 'package:savera_erp/services/rest_client/app_urls.dart';
