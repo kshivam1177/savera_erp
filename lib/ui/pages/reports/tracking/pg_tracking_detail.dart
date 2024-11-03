@@ -9,6 +9,7 @@ import 'package:savera_erp/ui/widgets/app_bar/search_app_bar.dart';
 import 'package:savera_erp/ui/widgets/bottom_sheets/bottom_sheet_date_filter.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_icon_button.dart';
 import 'package:savera_erp/ui/widgets/custom/dx_center_text.dart';
+import 'package:savera_erp/ui/widgets/custom/dx_tool_tip.dart';
 import 'package:savera_erp/ui/widgets/custom/table/dx_custom_table.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
@@ -101,7 +102,7 @@ class _PgTrackingDetailState extends State<PgTrackingDetail> {
           }
           columns.clear();
           columns.addAll([
-            DxDataTableCell(flex: 1, value: "Plan Id"),
+            DxDataTableCell(flex: 1, value: "SRN"),
             DxDataTableCell(flex: 4, value: "Date"),
             DxDataTableCell(flex: 1, value: "Visit Count"),
             DxDataTableCell(flex: 1, value: "Travelled (Km)"),
@@ -119,9 +120,10 @@ class _PgTrackingDetailState extends State<PgTrackingDetail> {
               searchFilter: (data, index) {
                 return data[1].toLowerCase().contains(searchQuery.value);
               },
-              data: state.data.map((e) {
+              data: List.generate(state.data.length, (index) {
+                final e = state.data[index];
                 return [
-                  "${e.routePlanId}",
+                  "${index + 1}",
                   e.date,
                   e.visitCount.toString(),
                   e.travelledKm.toStringAsFixed(2),
@@ -133,7 +135,13 @@ class _PgTrackingDetailState extends State<PgTrackingDetail> {
               buildCell: (value, rowIndex, columnIndex) {
                 if (columnIndex < 6) {
                   return DxCellView(
-                    child: DxText(value, fontSize: 14),
+                    child: columnIndex == 0
+                        ? DxToolTip(
+                            tooltip:
+                                "Plan Id:${state.data[rowIndex].routePlanId}",
+                            child: DxText(value, fontSize: 14),
+                          )
+                        : DxText(value, fontSize: 14),
                   );
                 } else {
                   return DxCellView(

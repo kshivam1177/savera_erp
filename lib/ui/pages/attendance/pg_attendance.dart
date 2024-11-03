@@ -8,8 +8,10 @@ import 'package:savera_erp/ui/pages/attendance/attendance_detail.dart';
 import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/app_bar/search_app_bar.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_button_fab.dart';
+import 'package:savera_erp/ui/widgets/custom/button/dx_icon_button.dart';
 import 'package:savera_erp/ui/widgets/custom/date_filter.dart';
 import 'package:savera_erp/ui/widgets/custom/dx_center_text.dart';
+import 'package:savera_erp/ui/widgets/custom/dx_tool_tip.dart';
 import 'package:savera_erp/ui/widgets/custom/table/dx_custom_table.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 
@@ -78,7 +80,7 @@ class _PgAttendanceState extends State<PgAttendance> {
           }
           columns.clear();
           columns.addAll([
-            DxDataTableCell(flex: 1, value: "Id"),
+            DxDataTableCell(flex: 1, value: "SRN"),
             DxDataTableCell(flex: 4, value: "Name"),
             if (!widget.isSummaryView)
               DxDataTableCell(flex: 3, value: "Designation"),
@@ -96,36 +98,36 @@ class _PgAttendanceState extends State<PgAttendance> {
               searchFilter: (data, index) {
                 return data[1].toLowerCase().contains(searchQuery.value);
               },
-              data: state.items.map((e) {
+              data: List.generate(state.items.length, (index) {
+                final e = state.items[index];
                 return [
-                  "${e.staffId}",
+                  "${index + 1}",
                   e.staffName,
                   if (!widget.isSummaryView) e.staffDesignation,
                   e.punchInDate,
                   e.punchOutDate,
                   ""
                 ];
-              }).toList(),
+              }),
               buildCell: (value, rowIndex, columnIndex) {
-                if (columns[columnIndex].value == "Action")
+                if (columns[columnIndex].value == "Action") {
                   return DxCellView(
-                    child: widget.isSummaryView
-                        ? FittedBox(
-                            child: _AttendanceActionItems(
-                              isSummaryView: widget.isSummaryView,
-                              item: state.items[rowIndex],
-                              dateTime: selectedDate,
-                            ),
-                          )
-                        : _AttendanceActionItems(
-                            isSummaryView: widget.isSummaryView,
-                            item: state.items[rowIndex],
-                            dateTime: selectedDate,
-                          ),
-                    padding: EdgeInsets.zero,
+                    child: _AttendanceActionItems(
+                      isSummaryView: widget.isSummaryView,
+                      item: state.items[rowIndex],
+                      dateTime: selectedDate,
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 4),
                   );
-
-                return DxCellView(child: DxText(value, fontSize: 14));
+                }
+                return DxCellView(
+                  child: DxToolTip(
+                    tooltip: columnIndex == 0
+                        ? "Staff Id:${state.items[rowIndex].staffId}"
+                        : "$value",
+                    child: DxText(value, fontSize: 14),
+                  ),
+                );
               },
             ),
           );
@@ -187,15 +189,14 @@ class _AttendanceActionItems extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        InkWell(
-          child: SizedBox(
-            width: isSummaryView ? 30 : 45,
-            child: Icon(
-              CupertinoIcons.eye,
-              size: 15,
-            ),
+        DxIconButton(
+          icon: Icon(
+            CupertinoIcons.eye,
+            size: 20,
           ),
+          tooltip: "Details of ${item.staffName}",
           onTap: () {
             showAdaptiveDialog(
               context: context,
@@ -220,15 +221,13 @@ class _AttendanceActionItems extends StatelessWidget {
             );
           },
         ),
-        InkWell(
-          child: SizedBox(
-            width: isSummaryView ? 30 : 45,
-            child: Icon(
-              CupertinoIcons.map_pin_ellipse,
-              size: 15,
-              color: Colors.green,
-            ),
+        DxIconButton(
+          icon: Icon(
+            CupertinoIcons.location,
+            color: AppColors.navyBlue,
+            size: 20,
           ),
+          tooltip: "View on Map",
           onTap: () {
             RouteHelper.toMapView(
               context,

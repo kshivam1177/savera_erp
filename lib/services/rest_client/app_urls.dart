@@ -1,5 +1,6 @@
 class AppUrls {
-  static String get _baseURL => "https://saverainterio.in/erp-api-v1/";
+  // static String get _baseURL => "https://saverainterio.in/erp-api-v1/";
+  static String get _baseURL => "localhost/erp-api-v1/";
 
   //-------------------------------------- actual urls --------------------------------------
 

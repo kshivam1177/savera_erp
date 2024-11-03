@@ -7,6 +7,7 @@ import 'package:savera_erp/ui/theme/app_colors.dart';
 import 'package:savera_erp/ui/widgets/app_bar/search_app_bar.dart';
 import 'package:savera_erp/ui/widgets/custom/button/dx_icon_button.dart';
 import 'package:savera_erp/ui/widgets/custom/dx_center_text.dart';
+import 'package:savera_erp/ui/widgets/custom/dx_tool_tip.dart';
 import 'package:savera_erp/ui/widgets/custom/table/dx_custom_table.dart';
 import 'package:savera_erp/ui/widgets/custom/text/dx_text.dart';
 import 'package:savera_erp/ui/widgets/dailog/common_dialog.dart';
@@ -62,7 +63,7 @@ class _PgRMState extends State<PgRM> {
           }
           columns.clear();
           columns.addAll([
-            DxDataTableCell(flex: 1, value: "Id"),
+            DxDataTableCell(flex: 1, value: "SRN"),
             DxDataTableCell(flex: 4, value: "Name"),
             DxDataTableCell(flex: 2, value: "Phone"),
             DxDataTableCell(flex: 2, value: "Join Date"),
@@ -81,9 +82,10 @@ class _PgRMState extends State<PgRM> {
               searchFilter: (data, index) {
                 return data[1].toLowerCase().contains(searchQuery.value);
               },
-              data: state.data.map((e) {
+              data: List.generate(state.data.length, (index) {
+                final e = state.data[index];
                 return [
-                  "${e.staffId}",
+                  "${index + 1}",
                   e.staffName,
                   e.staffPhone,
                   e.joinDate,
@@ -103,7 +105,12 @@ class _PgRMState extends State<PgRM> {
                     padding: EdgeInsets.symmetric(vertical: 4),
                   );
                 return DxCellView(
-                  child: DxText(value, fontSize: 14),
+                  child: DxToolTip(
+                    tooltip: columnIndex == 0
+                        ? "Staff Id:${state.data[rowIndex].staffId}"
+                        : "$value",
+                    child: DxText(value, fontSize: 14),
+                  ),
                 );
               },
             ),

@@ -7,7 +7,10 @@ abstract class RouteMapper {
         path: PgHome.routeName,
         name: PgHome.routeName,
         pageBuilder: (context, state) {
-          return _pageTransition(key: state.pageKey, child: PgHome());
+          return _pageTransition(
+            key: state.pageKey,
+            child: PgHome(),
+          );
         },
       ),
       GoRoute(
@@ -104,12 +107,13 @@ abstract class RouteMapper {
       if (!loggedIn) {
         return PgLogin.routeName;
       }
+      final _currentRoute = state.fullPath?.split("?")[0];
       if ([PgHome.routeName, PgLogin.routeName]
-          .any((e) => e == state.pageKey.value)) {
-        print("here>> ${state.pageKey.value}");
+          .any((e) => e == _currentRoute)) {
+        print("here>> $_currentRoute");
         return PgHome.routeName;
       }
-      print("here:>> null");
+      print("here:>> null ($_currentRoute)");
       return null;
     },
   );
