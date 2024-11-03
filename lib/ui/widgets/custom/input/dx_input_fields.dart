@@ -7,6 +7,7 @@ class DxInputText extends StatefulWidget {
   final String valueText;
   final String? errorText;
   final Function()? onClick;
+  final Function()? onSubmitted;
   final Function(String)? onChanged;
   final bool enabled;
 
@@ -28,6 +29,7 @@ class DxInputText extends StatefulWidget {
   final bool obscureText;
   final bool isPreSelectedTextMode;
   final bool readOnly;
+  final FocusNode? focusNode;
 
   DxInputText({
     super.key,
@@ -39,6 +41,7 @@ class DxInputText extends StatefulWidget {
     this.textSize,
     this.borderWidth,
     this.onChanged,
+    this.onSubmitted,
     this.readOnly = false,
     this.sufixIcon,
     this.enabled = true,
@@ -55,6 +58,7 @@ class DxInputText extends StatefulWidget {
     this.obscureText = false,
     this.isPreSelectedTextMode = false,
     this.errorText,
+    this.focusNode,
   }) {
 //it will make sure cursor is at the last position.
 
@@ -110,7 +114,7 @@ class _DxInputTextState extends State<DxInputText> {
         onTap: widget.onClick,
         child: TextFormField(
           obscureText: widget.obscureText,
-          // focusNode: _focusNode,
+          focusNode: widget.focusNode,
           autofocus: widget.autofocus,
           readOnly: widget.readOnly,
           validator: widget.validator,
@@ -122,6 +126,11 @@ class _DxInputTextState extends State<DxInputText> {
           inputFormatters: widget.inputFormatters,
           maxLines: widget.maxLines,
           enabled: widget.enabled,
+          onFieldSubmitted: (v) {
+            if (widget.onSubmitted != null) {
+              widget.onSubmitted!();
+            }
+          },
           onSaved: (v) {},
           onChanged: (query) {
             if (widget.onChanged != null) {

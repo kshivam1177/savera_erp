@@ -6,19 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppImages {
-  static String sadBoyURL = "assets/images/happy_boy.png";
-  static String cartURL = "assets/images/cart.png";
-  static String ledgerReportURL = "assets/images/ledger_rpt.png";
-  static String pointLedgerReportURL = "assets/images/point_ledger_rupee.png";
-  static String newPurchaseURL = "assets/images/new_purchase.png";
-  static String barcodeScanURL = "assets/images/barcode.png";
-  static String purchaseOrdersURL = "assets/images/purchase_orders.png";
+  static String loginImg = "assets/images/login-image.png";
   static String icLogoURL = "assets/images/ic_logo.png";
-  static String icLauncherURL = "assets/images/ic_launcher.png";
-  static String salesManAddURL = "assets/images/sales_man_add.png";
-  static String salesManListURL = "assets/images/sales_man.png";
-  static String retailerListURL = "assets/images/retailer.png";
-  static String retailerAddURL = "assets/images/retailer_add.png";
   static String errorAccess = "assets/images/acces.png";
   static String updateRequired = "assets/images/update_required.png";
 

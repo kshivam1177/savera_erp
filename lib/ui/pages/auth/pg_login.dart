@@ -73,7 +73,7 @@ class _PgLoginState extends State<PgLogin> {
 }
 
 class _LoginBody extends StatelessWidget {
-  const _LoginBody({
+  _LoginBody({
     required this.bloc,
     required this.userNameController,
     required this.passwordController,
@@ -84,6 +84,24 @@ class _LoginBody extends StatelessWidget {
   final TextEditingController userNameController;
   final TextEditingController passwordController;
   final bool isLoading;
+  final FocusNode _userNameFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
+
+  void _submitForm(BuildContext context) {
+    if (userNameController.text.length < 5) {
+      Helpers.toast(context, msg: "Invalid UserName");
+      _userNameFocus.requestFocus();
+      return;
+    } else if (passwordController.text.length < 4) {
+      Helpers.toast(
+        context,
+        msg: "Please enter valid and strong Password",
+      );
+      _passwordFocus.requestFocus();
+    } else {
+      bloc.doLogin(userNameController.text, passwordController.text);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +112,7 @@ class _LoginBody extends StatelessWidget {
             case DxLayoutType.mobile:
               return Stack(
                 children: [
-                  loginBody(context),
+                  loginBody(context, deviceType: deviceType),
                   if (isLoading) const LinearProgressIndicator(),
                 ],
               );
@@ -103,7 +121,7 @@ class _LoginBody extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 150.0),
-                    child: loginBody(context),
+                    child: loginBody(context, deviceType: deviceType),
                   ),
                   if (isLoading) const LinearProgressIndicator(),
                 ],
@@ -114,7 +132,12 @@ class _LoginBody extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      color: Colors.yellow,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(AppImages.loginImg),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
                   ),
                   Expanded(
@@ -129,6 +152,7 @@ class _LoginBody extends StatelessWidget {
                             top: 100,
                             bottom: 100,
                           ),
+                          deviceType: deviceType,
                         ),
                         if (isLoading)
                           Center(child: const CircularProgressIndicator()),
@@ -143,7 +167,12 @@ class _LoginBody extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      color: Colors.red,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(AppImages.loginImg),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
                   ),
                   Expanded(
@@ -158,6 +187,7 @@ class _LoginBody extends StatelessWidget {
                             top: 100,
                             bottom: 100,
                           ),
+                          deviceType: deviceType,
                         ),
                         if (isLoading)
                           Center(child: const CircularProgressIndicator()),
@@ -175,6 +205,7 @@ class _LoginBody extends StatelessWidget {
   Widget loginBody(
     BuildContext context, {
     EdgeInsetsGeometry? padding,
+    DxLayoutType? deviceType,
   }) {
     return Scaffold(
       body: Container(
@@ -210,11 +241,15 @@ class _LoginBody extends StatelessWidget {
                   child: DxInputText(
                     prefixIcon: const Icon(Icons.apartment_rounded),
                     keyboardType: TextInputType.emailAddress,
-                    autofocus: false,
+                    autofocus: deviceType != DxLayoutType.mobile,
                     controller: userNameController,
                     valueText: userNameController.text,
                     hintText: 'Username',
                     inputFormatters: [LengthLimitingTextInputFormatter(20)],
+                    focusNode: _userNameFocus,
+                    onSubmitted: () {
+                      _passwordFocus.requestFocus();
+                    },
                   ),
                 ),
                 const SizedBox(height: 35.0),
@@ -229,6 +264,8 @@ class _LoginBody extends StatelessWidget {
                     inputFormatters: [LengthLimitingTextInputFormatter(20)],
                     valueText: passwordController.text,
                     hintText: 'Password',
+                    focusNode: _passwordFocus,
+                    onSubmitted: () => _submitForm(context),
                   ),
                 ),
                 const SizedBox(height: 35.0),
@@ -241,22 +278,7 @@ class _LoginBody extends StatelessWidget {
                     fontSize: 18,
                     width: double.maxFinite,
                     height: kToolbarHeight * 0.9,
-                    onPressed: () async {
-                      if (userNameController.text.length < 5) {
-                        Helpers.toast(context, msg: "Invalid UserName");
-                        return;
-                      } else if (passwordController.text.length < 4) {
-                        Helpers.toast(
-                          context,
-                          msg: "Please enter valid and strong Password",
-                        );
-                      } else {
-                        bloc.doLogin(
-                          userNameController.text,
-                          passwordController.text,
-                        );
-                      }
-                    },
+                    onPressed: () => _submitForm(context),
                   ),
                 ),
                 const SizedBox(height: 15.0),
@@ -283,5 +305,4 @@ class _LoginBody extends StatelessWidget {
       ),
     );
   }
-
 }
